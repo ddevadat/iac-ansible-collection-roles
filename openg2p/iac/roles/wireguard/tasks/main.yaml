@@ -1,22 +1,52 @@
-- name: Create wireguard config directory
-  ansible.builtin.file:
-    path: /home/ubuntu/wireguard/config
+- name: "Create directory for docker compose"
+  file:
+    path: "{{ wireguard_compose_location }}/"
     state: directory
+    recurse: yes
     mode: '0755'
 
-- name: Install and start wireguard server
-  shell: |
-    docker run -d \
-      --name=wireguard \
-      --cap-add=NET_ADMIN \
-      --cap-add=SYS_MODULE \
-      -e PUID=1000 \
-      -e PGID=1000 \
-      -e TZ={{timezone}}\
-      -e PEERS=30 \
-      -p 51820:51820/udp \
-      -v /home/ubuntu/wireguard/config:/config \
-      -v /lib/modules:/lib/modules \
-      --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
-      --restart unless-stopped \
-      ghcr.io/linuxserver/wireguard
+
+- name: Create wireguard config directory
+  file:
+    path: "{{host_config_location}}"
+    state: directory
+    mode: '0755'
+    
+- name: "deploy systemd service"
+  template:
+    src: "wireguard.service.j2"
+    dest: "/etc/systemd/system/wireguard.service"
+  notify: Restart Wireguard
+
+- name: "deploy docker compose file"
+  template:
+    src: "wireguard.docker-compose.yml.j2"
+    dest: "{{ wireguard_compose_location }}/docker-compose.yml"
+  notify: Restart Wireguard
+
+- name: "set to auto restart"
+  systemd:
+    enabled: true
+    daemon_reload: true
+    name: "wireguard"
+    state: started
+
+
+
+
+# - name: Install and start wireguard server
+#   shell: |
+#     docker run -d \
+#       --name=wireguard \
+#       --cap-add=NET_ADMIN \
+#       --cap-add=SYS_MODULE \
+#       -e PUID=1000 \
+#       -e PGID=1000 \
+#       -e TZ={{timezone}}\
+#       -e PEERS=30 \
+#       -p 51820:51820/udp \
+#       -v /home/ubuntu/wireguard/config:/config \
+#       -v /lib/modules:/lib/modules \
+#       --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+#       --restart unless-stopped \
+#       ghcr.io/linuxserver/wireguard
