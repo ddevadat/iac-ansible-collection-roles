@@ -20,7 +20,7 @@
 
 - name: "deploy docker compose file"
   template:
-    src: "wireguard.docker-compose.yml.j2"
+    src: "wireguard.docker-compose.j2"
     dest: "{{ wireguard_compose_location }}/docker-compose.yml"
   notify: Restart Wireguard
 
