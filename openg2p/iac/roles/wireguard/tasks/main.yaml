@@ -1,0 +1,22 @@
+- name: Create wireguard config directory
+  ansible.builtin.file:
+    path: /home/ubuntu/wireguard/config
+    state: directory
+    mode: '0755'
+
+- name: Install and start wireguard server
+  shell: |
+    docker run -d \
+      --name=wireguard \
+      --cap-add=NET_ADMIN \
+      --cap-add=SYS_MODULE \
+      -e PUID=1000 \
+      -e PGID=1000 \
+      -e TZ={{timezone}}\
+      -e PEERS=30 \
+      -p 51820:51820/udp \
+      -v /home/ubuntu/wireguard/config:/config \
+      -v /lib/modules:/lib/modules \
+      --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
+      --restart unless-stopped \
+      ghcr.io/linuxserver/wireguard
