@@ -1,7 +1,14 @@
+- name: Update apt cache
+  shell: apt update
+
+- name: Install dependencies
+  package:
+    name:
+      - ca-certificates
+      - curl
+
 - name: Add Docker's official GPG key
   shell: |
-    apt-get update
-    apt-get install -y ca-certificates curl
     install -m 0755 -d /etc/apt/keyrings
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
     chmod a+r /etc/apt/keyrings/docker.asc
@@ -12,11 +19,21 @@
       "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
       $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-    sudo apt-get update
 
+- name: Update apt cache
+  shell: apt update
 
 - name: Install the Docker packages
-  shell: sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  package:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+
+# - name: Install the Docker packages
+#   shell: sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 - name: enable service docker and ensure it is started
   service:
