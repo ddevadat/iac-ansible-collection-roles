@@ -14,12 +14,17 @@
 - name: Install rke2
   shell: curl -sfL https://get.rke2.io | sh -
 
+- name: Restart RKE2
+  systemd:
+    name: "rke2-server"
+    state: restarted
+    
 - name: "set to auto restart"
   systemd:
     enabled: true
     daemon_reload: true
     name: "rke2-server"
-    state: restarted
+    state: started
 
 
 - name: set environment values
