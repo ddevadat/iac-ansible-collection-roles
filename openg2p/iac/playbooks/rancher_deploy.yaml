@@ -2,3 +2,4 @@
   become: true
   roles:
     - openg2p.iac.rancher_common
+    - openg2p.iac.rancher
