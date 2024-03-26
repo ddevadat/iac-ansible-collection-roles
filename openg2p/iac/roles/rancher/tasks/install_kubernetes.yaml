@@ -25,16 +25,15 @@
 #   shell: |
 #     echo 'export PATH="$PATH:/var/lib/rancher/rke2/bin"\nexport KUBECONFIG="/etc/rancher/rke2/rke2.yaml"' >> ~/.bashrc
 
-- name: updatebashrc
-  tasks:
-    - name: add block to bashrc
-      blockinfile:
-        path: /root/.bashrc
-        block: |
-          export PATH="$PATH:/var/lib/rancher/rke2/bin
-          export KUBECONFIG="/etc/rancher/rke2/rke2.yaml
-          alias k=kubectl
-          alias kctx=kubectx
-          alias kns=kubens
-        state: present
-        create: true
+
+- name: set environment values
+  blockinfile:
+    path: /root/.bashrc
+    block: |
+      export PATH="$PATH:/var/lib/rancher/rke2/bin
+      export KUBECONFIG="/etc/rancher/rke2/rke2.yaml
+      alias k=kubectl
+      alias kctx=kubectx
+      alias kns=kubens
+    state: present
+    create: true
