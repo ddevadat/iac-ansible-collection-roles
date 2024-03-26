@@ -13,18 +13,18 @@
     values:
       installCRDs: true
 
-# - name: Add a rancher helm repository
-#   kubernetes.core.helm_repository:
-#     name: rancher-latest
-#     repo_url: https://releases.rancher.com/server-charts/latest
+- name: Add a rancher helm repository
+  kubernetes.core.helm_repository:
+    name: rancher-latest
+    repo_url: https://releases.rancher.com/server-charts/latest
 
-# - name: Install rancher
-#   kubernetes.core.helm:
-#     name: rancher
-#     chart_ref: rancher-latest/rancher
-#     release_namespace: cattle-system
-#     create_namespace: true
-#     update_repo_cache: true
-#     values:
-#       hostname: "{{rancher_hostname}}"
-#       bootstrapPassword: "{{rancher_admin_password}}"
+- name: Install rancher
+  kubernetes.core.helm:
+    name: rancher
+    chart_ref: rancher-latest/rancher
+    release_namespace: cattle-system
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      hostname: "{{rancher_hostname}}"
+      bootstrapPassword: "{{rancher_admin_password}}"
