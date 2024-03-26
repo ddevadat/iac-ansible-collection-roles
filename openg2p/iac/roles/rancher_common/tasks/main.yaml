@@ -31,3 +31,11 @@
   shell: |
     wget -q https://github.com/ahmetb/kubectx/releases/download/v0.9.5/kubens -O /usr/local/bin/kubens
     chmod +x /usr/local/bin/kubens
+
+- name: Install k9s
+  ansible.builtin.unarchive:
+    src: https://github.com/derailed/k9s/releases/download/v0.32.4/k9s_Linux_amd64.tar.gz
+    dest: /usr/local/bin/
+    include: 
+      - "k9s"
+    remote_src: yes
