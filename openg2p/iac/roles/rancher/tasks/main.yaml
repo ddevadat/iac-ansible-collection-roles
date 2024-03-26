@@ -11,7 +11,7 @@
     dest: "{{rancher_config_location}}/config.yaml"
   notify: Restart Rancher   
 
-- name: Install rancher
+- name: Install rke2
   shell: curl -sfL https://get.rke2.io | sh -
 
 - name: "set to auto restart"
@@ -20,3 +20,7 @@
     daemon_reload: true
     name: "rke2-server"
     state: started
+
+- name: set environment
+  shell: |
+    echo -e 'export PATH="$PATH:/var/lib/rancher/rke2/bin"\nexport KUBECONFIG="/etc/rancher/rke2/rke2.yaml"' >> ~/.bashrc
