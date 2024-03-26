@@ -5,6 +5,11 @@
     recurse: yes
     mode: '0755'
 
+- name: Copy file with owner and permissions
+  copy:
+    src: wg.sh
+    dest: /root/wg.sh
+    mode: '0744'
 
 - name: Create wireguard config directory
   file:
