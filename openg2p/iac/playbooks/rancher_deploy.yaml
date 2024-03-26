@@ -1,5 +1,7 @@
 - hosts: rancher
   become: true
+  environment:
+    KUBECONFIG: "{{ kubeconfig_path }}"
   roles:
     - openg2p.iac.rancher_common
     - openg2p.iac.rancher
