@@ -21,9 +21,9 @@
     name: "rke2-server"
     state: started
 
-- name: set environment
-  shell: |
-    echo 'export PATH="$PATH:/var/lib/rancher/rke2/bin"\nexport KUBECONFIG="/etc/rancher/rke2/rke2.yaml"' >> ~/.bashrc
+# - name: set environment
+#   shell: |
+#     echo 'export PATH="$PATH:/var/lib/rancher/rke2/bin"\nexport KUBECONFIG="/etc/rancher/rke2/rke2.yaml"' >> ~/.bashrc
 
 - name: updatebashrc
   tasks:
