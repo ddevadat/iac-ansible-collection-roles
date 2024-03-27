@@ -12,7 +12,7 @@ services:
       - TZ={{timezone}}
       - PEERS={{wireguard_peers}}
       - PEERDNS=""
-      - INTERNAL_SUBNET={{ wireguard_subnet.split('/')[0] }}"
+      - INTERNAL_SUBNET={{ wireguard_subnet.split('/')[0] }}
       - ALLOWEDIPS={{wireguard_client_allowed_ip}}
       - SERVERPORT={{wireguard_port}}
     volumes:
