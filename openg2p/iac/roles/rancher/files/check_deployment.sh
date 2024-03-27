@@ -21,7 +21,6 @@ check_unavailable() {
     done <<<"$deployments"
 
     all_available=true
-    echo "Before starting checking all_available: $all_available"
     for line in "${lines[@]}"; do
       read -ra arr <<<"$line"
       if [ "${arr[1]}" != "${arr[2]}" ]; then
@@ -29,7 +28,6 @@ check_unavailable() {
         all_available=false
       else
         echo "${arr[0]} deployment has ${arr[2]} Ready Replicas"
-        echo $all_available
       fi
     done
 
