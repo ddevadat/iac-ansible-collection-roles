@@ -40,6 +40,8 @@ check_unavailable() {
     fi
 
     sleep 10  # Adjust the sleep duration as needed
+    unset deployments
+    unset lines
   done
 }
 
