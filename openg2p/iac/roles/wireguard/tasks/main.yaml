@@ -54,13 +54,11 @@
     name: "wireguard"
     state: started
 
-# - name: "copy ip_route.sh"
-#   template:
-#     src: "ip_route.sh.j2"
-#     dest: "/root/ip_route.sh"
-#     mode: '0755'
+# - name: "update ip route"
+#   shell: |
+#     WG_CONT_IP=$(docker inspect -f '{{ '{{' }} range.NetworkSettings.Networks {{ '}}' }} {{ '{{' }} .IPAddress {{ '}}' }} {{ '{{' }} end {{ '}}' }}' {{wireguard_name}})
 
 - name: "debug"
   debug: |
-    msg="docker inspect --format '{{ '{{' }} .NetworkSettings.IPAddress {{ '}}' }}' instance1"
+    msg="docker inspect -f '{{ '{{' }} range.NetworkSettings.Networks {{ '}}' }} {{ '{{' }} .IPAddress {{ '}}' }} {{ '{{' }} end {{ '}}' }}' {{wireguard_name}}"
 
