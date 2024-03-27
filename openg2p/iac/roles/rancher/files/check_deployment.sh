@@ -2,7 +2,7 @@
 
 check_unavailable() {
   while true; do
-    deployments=$(kubectl get deploy -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.unavailableReplicas}{'\n'}{end}")
+    deployments=$(kubectl get deployments -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.unavailableReplicas}{'\n'}{end}")
     while read -r line; do
       lines+=("$line")
     done <<<"$deployments"
