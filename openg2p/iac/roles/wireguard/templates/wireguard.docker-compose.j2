@@ -2,7 +2,7 @@
 services:
   wireguard:
     image: lscr.io/linuxserver/wireguard:latest
-    container_name: wireguard
+    container_name: {{wireguard_name}}
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -10,12 +10,16 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ={{timezone}}
-      - PEERS=30
+      - PEERS={{wireguard_peers}}
+      - PEERDNS=""
+      - INTERNAL_SUBNET={{ wireguard_subnet.split('/')[0] }}"
+      - ALLOWEDIPS={{wireguard_client_allowed_ip}}
+      - SERVERPORT={{wireguard_port}}
     volumes:
-      - {{host_config_location}}:/config
+      - {{wireguard_config_location}}:/config
       - /lib/modules:/lib/modules #optional
     ports:
-      - 51820:51820/udp
+      - {{wireguard_port}}:{{wireguard_port}}/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     restart: unless-stopped
