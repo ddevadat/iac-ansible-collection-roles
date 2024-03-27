@@ -9,11 +9,16 @@
   template:
     src: "rke2-server.conf.j2"
     dest: "{{rancher_config_location}}/config.yaml"
-  notify: Restart RKE2   
+  # notify: Restart RKE2   
 
 - name: Install rke2
   shell: curl -sfL https://get.rke2.io | sh -
-    
+
+- name: Restart RKE2
+  systemd:
+    name: "rke2-server"
+    state: restarted
+
 - name: "set to auto restart"
   systemd:
     enabled: true
