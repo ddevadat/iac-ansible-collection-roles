@@ -5,20 +5,16 @@ while true; do
 	echo "checking k8s nodes"
 	status=$(kubectl get nodes --no-headers | awk '{print $2}')
 	if [ "$status" = "Ready" ]; then
-	    break
+	break
 	else
-        echo "kubernetes nodes not in Ready state"
-	    sleep 5
+	sleep 5
 	fi
 done
 
 }
-
 check_unavailable() {
-  echo "Checking deployments in namespace ${NAMESPACE}"
-  sleep 30
   while true; do
-    deployments=$(kubectl get deployments -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.unavailableReplicas}{'\n'}{end}")
+    deployments=$(kubectl get deployments -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.replicas}{'\t'}{.status.readyReplicas}{'\n'}{end}")
     while read -r line; do
       lines+=("$line")
     done <<<"$deployments"
@@ -26,8 +22,8 @@ check_unavailable() {
     all_available=true
     for line in "${lines[@]}"; do
       read -ra arr <<<"$line"
-      if [ "${arr[1]}" ]; then
-        echo "${arr[0]} deployment has ${arr[1]} unavailable Replicas"
+      if [ "${arr[1]}" != "${arr[2]}" ]; then
+        echo "${arr[0]} deployment has ${arr[2]} unavailable Replicas"
         all_available=false
       fi
     done
@@ -43,5 +39,6 @@ check_unavailable() {
 
 # Set your namespace
 NAMESPACE=$1
+
 checkk8s
 check_unavailable
