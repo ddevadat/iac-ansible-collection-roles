@@ -1,2 +1,2 @@
-- include_tasks: install_kubernetes.yaml
+# - include_tasks: install_kubernetes.yaml
 - include_tasks: configure.yaml
