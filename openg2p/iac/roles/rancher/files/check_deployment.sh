@@ -24,11 +24,15 @@ check_unavailable() {
     for line in "${lines[@]}"; do
       read -ra arr <<<"$line"
       if [ "${arr[1]}" != "${arr[2]}" ]; then
-        echo "${arr[0]} deployment has ${arr[2]} unavailable Replicas"
+        echo "${arr[0]} deployment has ${arr[1]} Not Ready Replicas"
         all_available=false
+      else
+        echo "${arr[0]} deployment has ${arr[2]} Ready Replicas"
+        echo $all_available
       fi
     done
 
+    echo "----------"
     if $all_available; then
       echo "All deployments are available."
       break
