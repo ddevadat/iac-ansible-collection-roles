@@ -13,13 +13,32 @@
     state: started
     delay: 10
 
-- name: Wait for all deployments to be ready
-  kubectl:
+- name: Get all deployments in the namespace
+  kubernetes.core.k8s_info:
+    api_version: apps/v1
+    kind: Deployment
     namespace: kube-system
-    resource: deployment
-    wait: yes
-    wait_condition: "status.conditions[?type=='Available' && .status=='True']"
-    timeout: 300
+  register: deployments_info
+
+- name: Wait until all deployments are ready
+  block:
+    - name: Check if all deployments are ready
+      set_fact:
+        ready_deployments: "{{ deployments_info.resources | selectattr('status.conditions', 'equalto', [{'type': 'Available', 'status': 'True'}]) | map(attribute='metadata.name') | list }}"
+    - name: Wait for deployments to be ready
+      kubernetes.core.k8s_wait:
+        kind: Deployment
+        name: "{{ item }}"
+        namespace: your_namespace
+        timeout: 300
+        wait_condition:
+          type: Available
+          status: "True"
+      loop: "{{ ready_deployments }}"
+      retries: 20
+      delay: 15
+  when: ready_deployments | length > 0
+
 
 # - name: Add a certmanager helm repository
 #   kubernetes.core.helm_repository:
