@@ -54,8 +54,13 @@
     name: "wireguard"
     state: started
 
-- name: "copy ip_route.sh"
-  template:
-    src: "ip_route.sh.j2"
-    dest: "/root/ip_route.sh"
-    mode: '0755'
+# - name: "copy ip_route.sh"
+#   template:
+#     src: "ip_route.sh.j2"
+#     dest: "/root/ip_route.sh"
+#     mode: '0755'
+
+- name: "debug"
+  debug: |
+    msg="docker inspect --format '{{ '{{' }} .NetworkSettings.IPAddress {{ '}}' }}' instance1"
+
