@@ -13,6 +13,7 @@ done
 
 }
 check_unavailable() {
+  sleep 30
   while true; do
     deployments=$(kubectl get deployments -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.replicas}{'\t'}{.status.readyReplicas}{'\n'}{end}")
     while read -r line; do
