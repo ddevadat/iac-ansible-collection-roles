@@ -14,15 +14,17 @@
     delay: 10
 
 - name: Get deployments in kube-system namespace
-  command: kubectl get deployments -n kube-system -o=json
-  register: deployments_output
-  changed_when: false
-  
-- name: Check readiness of deployments
-  set_fact:
-    ready_deployments: "{{ deployments_output.stdout | from_json | json_query(query) }}"
-  vars:
-    query: "items[?status.conditions[?type=='Available' && .status=='True']].metadata.name"
+  shell: |
+    deployments=$(kubectl get deploy -n kube-system -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.unavailableReplicas}{'\n'}{end}")
+    while read -r line; do lines+=("$line"); done <<<"$deployments"
+    for line in "${lines[@]}"
+    do
+      read -ra arr <<< "$line"
+      if [ "${arr[1]}" ]; then
+        echo "${arr[0]} deployment has ${arr[1]} unavailable Replicas "
+      fi
+    done
+
 
 
 
