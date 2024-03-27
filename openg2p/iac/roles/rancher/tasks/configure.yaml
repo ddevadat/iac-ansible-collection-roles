@@ -13,6 +13,14 @@
     state: started
     delay: 10
 
+- name: Wait for all deployments to be ready
+  kubectl:
+    namespace: kube-system
+    resource: deployment
+    wait: yes
+    wait_condition: "status.conditions[?type=='Available' && .status=='True']"
+    timeout: 300
+
 # - name: Add a certmanager helm repository
 #   kubernetes.core.helm_repository:
 #     name: jetstack
