@@ -1,7 +1,21 @@
 #!/bin/bash
 
+checkk8s() {
+while true; do
+	echo "checking k8s nodes"
+	status=$(kubectl get nodes --no-headers | awk '{print $2}')
+	if [ "$status" = "Ready" ]; then
+	    break
+	else
+	    sleep 5
+	fi
+done
+
+}
+
 check_unavailable() {
   echo "Checking deployments in namespace ${NAMESPACE}"
+  sleep 30
   while true; do
     deployments=$(kubectl get deployments -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.unavailableReplicas}{'\n'}{end}")
     while read -r line; do
@@ -28,5 +42,5 @@ check_unavailable() {
 
 # Set your namespace
 NAMESPACE=$1
-
+checkk8s
 check_unavailable

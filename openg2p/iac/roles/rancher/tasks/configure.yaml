@@ -1,10 +1,10 @@
-- name: Check if Kubernetes nodes are ready
-  shell: kubectl get nodes --no-headers | awk '{print $2}' | grep -v "Ready"
-  register: node_check
-  until: node_check.stdout_lines | length == 0
-  retries: 60
-  delay: 10
-  ignore_errors: true
+# - name: Check if Kubernetes nodes are ready
+#   shell: kubectl get nodes --no-headers | awk '{print $2}' | grep -v "Ready"
+#   register: node_check
+#   until: node_check.stdout_lines | length == 0
+#   retries: 60
+#   delay: 10
+#   ignore_errors: true
 
 - name: Wait for kubernetes api port
   wait_for:
