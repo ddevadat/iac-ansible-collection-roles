@@ -20,7 +20,7 @@
     mode: "0755"
 
 - name: Get deployments in kube-system namespace
-  shell: sh /root/check_deployment.sh kube-system
+  shell: /root/check_deployment.sh kube-system
 
 
 
