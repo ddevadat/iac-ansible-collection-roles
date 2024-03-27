@@ -54,9 +54,8 @@
     name: "wireguard"
     state: started
 
-
-- name: "set ip route"
-  shell: |
-    #!/usr/bin/env bash
-    WG_CONT_IP=`docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' {{wireguard_name}}`
-    # ip route add {{wireguard_subnet}} via $WG_CONT_IP
+- name: "copy ip_route.sh"
+  template:
+    src: "ip_route.sh.j2"
+    dest: "/root/ip_route.sh"
+    mode: '0755'
