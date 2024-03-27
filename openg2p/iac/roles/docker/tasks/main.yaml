@@ -1,5 +1,9 @@
+# - name: Update apt cache
+#   shell: apt update
+
 - name: Update apt cache
-  shell: apt update
+  apt:
+    update_cache: yes
 
 - name: Install dependencies
   package:
@@ -20,8 +24,12 @@
       $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
       sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
+# - name: Update apt cache
+#   shell: apt update
+
 - name: Update apt cache
-  shell: apt update
+  apt:
+    update_cache: yes
 
 - name: Install the Docker packages
   package:
