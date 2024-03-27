@@ -20,11 +20,12 @@
     mode: "0755"
 
 - name: Get deployments in kube-system namespace
-  shell: /root/check_deployment.sh kube-system
+  shell: bash /root/check_deployment.sh kube-system
   register: deployment_check
 
 - name: Debug
-  debug: "{{deployment_check.stdout}}"
+  debug: |
+    msg: {{deployment_check.stdout}}
 
 # - name: Add a certmanager helm repository
 #   kubernetes.core.helm_repository:
