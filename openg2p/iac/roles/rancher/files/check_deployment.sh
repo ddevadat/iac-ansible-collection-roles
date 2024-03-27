@@ -7,6 +7,7 @@ while true; do
 	if [ "$status" = "Ready" ]; then
 	    break
 	else
+        echo "kubernetes nodes not in Ready state"
 	    sleep 5
 	fi
 done
