@@ -22,7 +22,7 @@
     update_repo_cache: true
     values:
       persistence: 
-        defaultClassReplicaCount: {{ longhorn_default_replica_count |default('1') }}
+        defaultClassReplicaCount: "{{ longhorn_default_replica_count |default('1') }}"
 
 - name: Get deployments in longhorn-system namespace
   shell: bash /root/check_deployment.sh longhorn-system
