@@ -29,11 +29,12 @@
       ingress:
         hostname: "{{keycloak_hostname}}"
         enabled: true
-        extraTls:
-        - hosts:
-          - "{{keycloak_hostname}}"
-          secretName: tls-keycloak-ingress
+        # extraTls:
+        # - hosts:
+        #   - "{{keycloak_hostname}}"
+        #   secretName: tls-keycloak-ingress
       replicaCount: 2
+      proxy: edge
       resources:
         limits: {}
         requests:
