@@ -44,7 +44,7 @@ check_deployments() {
 }
 
 
-check_deployments() {
+check_statefulsets() {
   sleep 30
   while true; do
     statefulsets=$(kubectl get statefulset -n "${NAMESPACE}" -o=jsonpath="{range .items[*]}{.metadata.name}{'\t'}{.status.replicas}{'\t'}{.status.readyReplicas}{'\n'}{end}")
