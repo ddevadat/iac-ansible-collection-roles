@@ -1,6 +1,6 @@
 - hosts: bastion
   become: true
   environment:
-    KUBECONFIG: "/root/.oci/oke_obs_config"
+    KUBECONFIG: "/root/.kube/oke_obs_config"
   roles:
     - openg2p.iac.rancher_oke
