@@ -20,5 +20,5 @@
             oci-network-load-balancer.oraclecloud.com/internal: false
             oci-network-load-balancer.oraclecloud.com/is-preserve-source: true
 
-- name: Get deployments in cattle-system namespace
-  shell: bash /root/check_deployment.sh cattle-system 
+- name: Get deployments in ingress-nginx namespace
+  shell: bash /root/check_deployment.sh ingress-nginx
