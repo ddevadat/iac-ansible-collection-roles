@@ -1,7 +1,6 @@
-- hosts: rancher
+- hosts: bastion
   become: true
   environment:
-    KUBECONFIG: "{{ kubeconfig_path }}"
+    KUBECONFIG: "/root/.oci/oke_obs_config"
   roles:
-    - openg2p.iac.rancher_common
-    - openg2p.iac.rancher
+    - openg2p.iac.rancher_oke

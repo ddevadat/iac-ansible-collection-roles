@@ -1,0 +1,3 @@
+- name: Starting Rancher setup task
+  debug: |
+    msg: "Starting rancher Task"
