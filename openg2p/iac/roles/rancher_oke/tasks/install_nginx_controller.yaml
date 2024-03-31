@@ -1,0 +1,24 @@
+- name: Add a nginx helm repository
+  kubernetes.core.helm_repository:
+    name: ingress-nginx
+    repo_url: https://kubernetes.github.io/ingress-nginx
+
+- name: Install nginx controller
+  kubernetes.core.helm:
+    name: ingress-nginx
+    chart_ref: ingress-nginx/ingress-nginx
+    chart_version: 4.10.0
+    release_namespace: ingress-nginx
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      controller:
+        service:
+          externalTrafficPolicy: Local
+          annotations:
+            oci.oraclecloud.com/load-balancer-type: nlb
+            oci-network-load-balancer.oraclecloud.com/internal: false
+            oci-network-load-balancer.oraclecloud.com/is-preserve-source: true
+
+- name: Get deployments in cattle-system namespace
+  shell: bash /root/check_deployment.sh cattle-system 
