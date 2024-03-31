@@ -44,7 +44,6 @@
 - name: Install oci cli
   ansible.builtin.pip:
     name: oci-cli
-    executable: pip3.3
 
 - name: set environment values
   blockinfile:
