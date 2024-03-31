@@ -13,6 +13,8 @@
     values:
       hostname: "{{rancher_hostname}}"
       bootstrapPassword: "{{rancher_admin_password}}"
+      ingress: 
+        ingressClassName: "nginx"
 
 - name: Get deployments in cattle-system namespace
   shell: bash /root/check_deployment.sh cattle-system 
