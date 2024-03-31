@@ -1,3 +1,4 @@
-- name: Starting Rancher setup task
-  debug: |
-    msg="Starting rancher Task"
+- include_tasks: install_certmanger.yaml
+# - include_tasks: configure.yaml
+# - include_tasks: install_longhorn.yaml
+# - include_tasks: install_keycloak.yaml
