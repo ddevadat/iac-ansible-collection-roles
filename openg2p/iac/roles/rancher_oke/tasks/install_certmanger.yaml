@@ -1,5 +1,6 @@
 - name: Get k8s status
   shell: |
+    export KUBECONFIG=/root/.kube/oke_obs_config
     kubectl get nodes > /root/oke_status.log
 
 - name: Add a certmanager helm repository
