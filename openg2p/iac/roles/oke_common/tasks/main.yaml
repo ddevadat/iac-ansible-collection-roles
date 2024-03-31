@@ -49,8 +49,6 @@
   blockinfile:
     path: /root/.bashrc
     block: |
-      export PATH=$PATH:/var/lib/rancher/rke2/bin
-      export KUBECONFIG=/etc/rancher/rke2/rke2.yaml
       alias k=kubectl
       alias kctx=kubectx
       alias kns=kubens
