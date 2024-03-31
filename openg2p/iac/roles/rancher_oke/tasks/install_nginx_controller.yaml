@@ -19,6 +19,7 @@
             oci.oraclecloud.com/load-balancer-type: nlb
             oci-network-load-balancer.oraclecloud.com/internal: false
             oci-network-load-balancer.oraclecloud.com/is-preserve-source: true
+            oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "{{nsg_lb_oke_obs_cluster}}"
 
 - name: Get deployments in ingress-nginx namespace
   shell: bash /root/check_deployment.sh ingress-nginx
