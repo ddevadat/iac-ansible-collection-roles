@@ -21,8 +21,6 @@ spec:
       k8s:
         hpaSpec:
           minReplicas: 3
-        nodeSelector:
-          shouldInstallIstioIngress: "true"
         serviceAnnotations:
           oci.oraclecloud.com/load-balancer-type: "nlb"
           oci-network-load-balancer.oraclecloud.com/internal: "false"
