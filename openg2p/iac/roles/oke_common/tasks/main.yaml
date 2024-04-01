@@ -83,7 +83,11 @@
 
 - name: Install istioctl
   shell: |
-    curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.21.0 TARGET_ARCH=x86_64 sh -
+    export ISTIO_VERSION=1.21.0
+    curl -L https://istio.io/downloadIstio -O /root/istio_install.sh
+    chmod +x /root/istio_install.sh
+    /root/istio_install.sh
+    
 
 - name: set environment values
   blockinfile:
