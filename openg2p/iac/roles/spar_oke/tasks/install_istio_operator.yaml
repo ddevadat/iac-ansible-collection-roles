@@ -16,3 +16,11 @@
 
 - name: Install istio ingress gateway
   shell: kubectl apply -f /root/kubernetes/istio/istio-operator-external-lb.yaml
+
+- name: "Update clusterissuer config"
+  template:
+    src: "cluster_issuer.j2"
+    dest: "/root/kubernetes/istio/cluster_issuer.yaml"
+
+- name: Install Cluster Issuer
+  shell: kubectl apply -f /root/kubernetes/istio/cluster_issuer.yaml
