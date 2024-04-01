@@ -1,8 +1,3 @@
-- name: Install istio operator
-  shell: |
-    export PATH=/root/istio-1.21.0/bin:$PATH
-    istioctl operator init
-
 - name: Create istio config directory
   file:
     path: "/root/kubernetes/istio"
@@ -14,8 +9,13 @@
     src: "istio-operator-external-lb.j2"
     dest: "/root/kubernetes/istio/istio-operator-external-lb.yaml"
 
-- name: Install istio ingress gateway
-  shell: kubectl apply -f /root/kubernetes/istio/istio-operator-external-lb.yaml
+- name: Install istio operator
+  shell: |
+    export PATH=/root/istio-1.21.0/bin:$PATH
+    istioctl install -f /root/kubernetes/istio/istio-operator-external-lb.yaml
+
+# - name: Install istio ingress gateway
+#   shell: kubectl apply -f /root/kubernetes/istio/istio-operator-external-lb.yaml
 
 - name: Upload ssl cert private key
   copy:
