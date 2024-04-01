@@ -88,6 +88,7 @@
     chmod +x /root/istio_install.sh
     cd /root
     ./istio_install.sh
+    rm /root/istio_install.sh
 
 
 - name: set environment values
