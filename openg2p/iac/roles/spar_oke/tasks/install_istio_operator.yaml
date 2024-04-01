@@ -12,7 +12,7 @@
 - name: Install istio operator
   shell: |
     export PATH=/root/istio-1.21.0/bin:$PATH
-    istioctl install -f /root/kubernetes/istio/istio-operator-external-lb.yaml
+    istioctl install -y -f /root/kubernetes/istio/istio-operator-external-lb.yaml
 
 # - name: Install istio ingress gateway
 #   shell: kubectl apply -f /root/kubernetes/istio/istio-operator-external-lb.yaml

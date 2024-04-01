@@ -24,9 +24,9 @@ spec:
         nodeSelector:
           shouldInstallIstioIngress: "true"
         serviceAnnotations:
-          oci.oraclecloud.com/load-balancer-type: nlb
-          oci-network-load-balancer.oraclecloud.com/internal: false
-          oci-network-load-balancer.oraclecloud.com/is-preserve-source: true
+          oci.oraclecloud.com/load-balancer-type: "nlb"
+          oci-network-load-balancer.oraclecloud.com/internal: "false"
+          oci-network-load-balancer.oraclecloud.com/is-preserve-source: "true"
           oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "{{nsg_lb_oke_k8s_cluster}}"            
         service:
           type: LoadBalancer
