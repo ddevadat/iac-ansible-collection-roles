@@ -1,0 +1,14 @@
+- name: Install istio operator
+  shell: istioctl operator init
+
+- name: Create istio config directory
+  file:
+    path: "/root/kubernetes/istio"
+    state: directory
+    mode: '0755'
+
+- name: "Update istio operator config"
+  template:
+    src: "istio-operator-external-lb.j2"
+    dest: "/root/kubernetes/istio/istio-operator-external-lb.yaml"
+
