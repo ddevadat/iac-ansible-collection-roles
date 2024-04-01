@@ -28,6 +28,7 @@ spec:
           oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "{{nsg_lb_oke_k8s_cluster}}"            
         service:
           type: LoadBalancer
+          externalTrafficPolicy: Local
           ports:
           - name: tcp-status-port
             port: 15021
