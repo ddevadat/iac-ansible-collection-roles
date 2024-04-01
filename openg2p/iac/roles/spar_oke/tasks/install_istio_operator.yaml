@@ -17,6 +17,35 @@
 - name: Install istio ingress gateway
   shell: kubectl apply -f /root/kubernetes/istio/istio-operator-external-lb.yaml
 
+- name: Upload ssl cert private key
+  copy:
+    src: "{{ ansible_ssl_cert_private_key_file }}"
+    dest: "/root/.ssh/ssl_cert_private_key.key"
+    mode: "0600"
+
+- name: Upload ssl cert file
+  copy:
+    src: "{{ ansible_ssl_cert_file }}"
+    dest: "/root/.ssh/ssl_cert.pem"
+    mode: "0600"
+
+- name: Create ssl secret for istio gateway
+  shell: |
+    kubectl create secret tls tls-openg2p-ingress -n istio-system \
+    --cert=/root/.ssh/ssl_cert.pem \
+    --key=/root/.ssh/ssl_cert_private_key.key
+
+- name: Remove ssl cert private key
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert_private_key.key
+    state: absent
+
+- name: Remove ssl cert file
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert.pem
+    state: absent
+
+
 # - name: "Update clusterissuer config"
 #   template:
 #     src: "cluster_issuer.j2"
