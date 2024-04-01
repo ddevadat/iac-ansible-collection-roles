@@ -31,6 +31,7 @@
 
 - name: Create ssl secret for istio gateway
   shell: |
+    kubectl -n istio-system delete secret tls-openg2p-ingress
     kubectl create secret tls tls-openg2p-ingress -n istio-system \
     --cert=/root/.ssh/ssl_cert.pem \
     --key=/root/.ssh/ssl_cert_private_key.key
