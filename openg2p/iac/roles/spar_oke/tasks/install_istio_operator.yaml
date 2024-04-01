@@ -46,8 +46,13 @@
     path: /root/.ssh/ssl_cert.pem
     state: absent
 
+- name: "Update istio gateway config"
+  template:
+    src: "gateway.j2"
+    dest: "/root/kubernetes/istio/gateway.yaml"
+
 - name: Create istio gateway for all hosts
-  shell: kubectl apply -f /root/openg2p-deployment/kubernetes/istio/istio-gateway.yaml
+  shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
 
 # - name: "Update clusterissuer config"
 #   template:
