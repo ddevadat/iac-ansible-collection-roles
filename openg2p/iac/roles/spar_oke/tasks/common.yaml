@@ -4,7 +4,7 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
-- name: Example clone of a single branch
+- name: Clone OpenG2P Deployment Repo
   ansible.builtin.git:
     repo: https://github.com/OpenG2P/openg2p-deployment.git
     dest: /root/openg2p-deployment

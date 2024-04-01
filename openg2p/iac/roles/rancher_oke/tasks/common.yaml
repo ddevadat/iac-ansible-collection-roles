@@ -3,10 +3,3 @@
     src: "check_deployment.sh"
     dest: "/root/check_deployment.sh"
     mode: "0755"
-
-- name: Clone OpenG2P Deployment Repo
-  ansible.builtin.git:
-    repo: https://github.com/OpenG2P/openg2p-deployment.git
-    dest: /root/openg2p-deployment
-    single_branch: yes
-    version: main
