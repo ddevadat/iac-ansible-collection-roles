@@ -81,11 +81,16 @@
     /root/install.sh --accept-all-defaults
     rm  /root/install.sh
 
+- name: Install istioctl
+  shell: |
+    curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.21.0 TARGET_ARCH=x86_64 sh -
+
 - name: set environment values
   blockinfile:
     path: /root/.bashrc
     block: |
       export KUBECONFIG=/root/.kube/oke_obs_config
+      export PATH=/root/istio-1.21.0/bin:$PATH
       alias k=kubectl
       alias kctx=kubectx
       alias kns=kubens
