@@ -10,12 +10,12 @@
     mode: '0755'
 
 - name: Copy deployment  script
-  copy:
-    src: "activemq/{{ item }}"
-    dest: "/root/mosip/activemq/{{ item }}"
+  template:
+    src: "activemq/{{ item }}.j2"
+    dest: "/root/mosip/activemq/{{ item }}.sh"
     mode: '0755'
   with_items:
-    - install.sh
+    - install
 
 - name: Copy deployment  script
   template:
