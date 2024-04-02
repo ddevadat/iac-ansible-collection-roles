@@ -27,12 +27,16 @@
 #       - install.sh
 #       - values.yaml
 
-- name: copy files
+- name: Copy deployment check script
   copy:
     src: "{{ item }}"
     dest: "/root/mosip/config-server/{{ item }}"
   with_items:
     - values.yaml
+    - copy_cm_func.sh
+    - copy_cm.sh
+    - copy_secrets.sh
+    - install.sh
 
 # - name: Clone mosip infra Repo
 #   ansible.builtin.git:
