@@ -15,9 +15,21 @@
     state: directory
     mode: '0755'
 
+# - name: Copy deployment check script
+#   copy:
+#     src: "{{ item }}"
+#     dest: "/root/mosip/config-server/{{ item }}"
+#     mode: '0755'
+#   with_items:
+#     - values.yaml
+#     - copy_cm_func.sh
+#     - copy_cm.sh
+#     - copy_secrets.sh
+#     - install.sh
+
 - name: Copy deployment check script
   copy:
-    src: "{{ item }}"
+    src: "config-server/{{ item }}"
     dest: "/root/mosip/config-server/{{ item }}"
     mode: '0755'
   with_items:
@@ -27,7 +39,7 @@
     - copy_secrets.sh
     - install.sh
 
-- name: Install config server
-  shell: |
-    cd /root/mosip/config-server/
-    ./install.sh
+# - name: Install config server
+#   shell: |
+#     cd /root/mosip/config-server/
+#     ./install.sh
