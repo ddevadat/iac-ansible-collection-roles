@@ -23,8 +23,8 @@ function Prereg_Captcha() {
   echo Istio label
   kubectl label ns $NS istio-injection=enabled --overwrite
 
-  PREREG_HOST=$(kubectl get cm global -o jsonpath={.data.mosip-prereg-host})
-  RESIDENT_HOST=$(kubectl get cm global -o jsonpath={.data.mosip-resident-host})
+  PREREG_HOST=prereg.{{domain}}
+  RESIDENT_HOST=resident.{{domain}}
 
   SITE_KEY={{pre_reg_captcha_site_key}}
   SECRET_KEY={{pre_reg_captcha_secret_key}}
