@@ -26,7 +26,7 @@ function installing_Activemq() {
   echo Installing Activemq
   ACTIVEMQ_HOST=activemq.{{domain}}
   echo Activemq host: $ACTIVEMQ_HOST
-  helm -n $NS install activemq mosip/activemq-artemis -f values.yaml --set istio.hosts[0]="$ACTIVEMQ_HOST" --wait
+  helm -n $NS upgrade --install --atomic activemq mosip/activemq-artemis -f values.yaml --set istio.hosts[0]="$ACTIVEMQ_HOST" --wait
   return 0
 }
 
