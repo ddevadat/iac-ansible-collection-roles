@@ -1,1 +1,10 @@
 base_domain: all
+smtp_host: mock-smtp.mock-smtp
+sms_host: mock-smtp.mock-smtp
+smtp_port: 8025
+sms_port: 8080
+smtp_user: mock-smtp.user
+sms_user: mock-sms.user
+smtp_secret: mock-smtp.secret
+sms_secret: mock-sms.secret
+sms_authkey: authkey
