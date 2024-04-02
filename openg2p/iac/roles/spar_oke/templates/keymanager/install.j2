@@ -41,7 +41,7 @@ kubectl label ns $CONF_SECRETS_NS istio-injection=disabled --overwrite
 kubectl label ns $CONFIG_SERVER_NS istio-injection=disabled --overwrite
 kubectl label ns $KEYMANAGER_NS istio-injection=disabled --overwrite
 
-envsubst < global-conf-map.yaml | kubectl apply -f -
+envsubst < global-conf-map.yaml | kubectl -n default apply -f -
 
 echo Installing Softhsm for Kernel
 helm -n $SOFTHSM_NS upgrade --install --atomic softhsm-kernel mosip/softhsm -f softhsm-values.yaml --version 12.0.1-B2 --wait
