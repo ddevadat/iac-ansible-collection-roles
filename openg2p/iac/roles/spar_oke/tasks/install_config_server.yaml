@@ -29,10 +29,10 @@
 
 - name: copy files
   copy:
-    src: "{{ item }}.yaml"
-    dest: "/root/mosip/config-server/{{ item }}.yaml"
+    src: "{{ item }}"
+    dest: "/root/mosip/config-server/{{ item }}"
   with_items:
-    - values
+    - values.yaml
 
 # - name: Clone mosip infra Repo
 #   ansible.builtin.git:
