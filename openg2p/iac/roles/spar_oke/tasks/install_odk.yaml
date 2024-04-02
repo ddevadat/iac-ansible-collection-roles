@@ -1,0 +1,8 @@
+- name: Deploy ODK
+  shell: |
+    export SANDBOX_HOSTNAME={{domain}}
+    cd /root/openg2p-deployment/kubernetes/odk-central
+    ./install.sh
+
+- name: Wait for deployments in odk namespace
+  shell: bash /root/check_deployment.sh odk
