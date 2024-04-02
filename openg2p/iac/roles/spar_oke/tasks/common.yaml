@@ -16,15 +16,19 @@
     repo: https://github.com/mosip/mosip-infra.git
     dest: /root/mosip-infra
     single_branch: yes
-    version: v1.2.0.1
+    version: "{{mosip_rel_version}}"
 
 - name: Add a mosip helm repository
   kubernetes.core.helm_repository:
     name: mosip
     repo_url: https://mosip.github.io/mosip-helm
 
-- name: Create customization directory
+- name: Create project directories
   file:
-    path: "/root/openg2p/customization"
+    path: "{{item}}"
     state: directory
     mode: '0755'
+  with_items:
+    - /root/openg2p/customization
+    - /root/mosip/activemq
+

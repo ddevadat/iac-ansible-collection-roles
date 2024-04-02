@@ -1,14 +1,3 @@
-- name: Add a mosip helm repository
-  kubernetes.core.helm_repository:
-    name: mosip
-    repo_url: https://mosip.github.io/mosip-helm
-
-- name: Create global config directory
-  file:
-    path: "/root/mosip/activemq"
-    state: directory
-    mode: '0755'
-
 - name: Copy deployment  script
   template:
     src: "activemq/{{ item }}.j2"
