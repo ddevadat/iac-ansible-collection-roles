@@ -33,5 +33,5 @@
 # - include_tasks: install_odk.yaml
 # - include_tasks: install_kafka.yaml
 # - include_tasks: install_logging_opensearch.yaml
-- include_tasks: install_key_manager.yaml
-# - include_tasks: install_esignet.yaml
+# - include_tasks: install_key_manager.yaml
+- include_tasks: install_esignet.yaml
