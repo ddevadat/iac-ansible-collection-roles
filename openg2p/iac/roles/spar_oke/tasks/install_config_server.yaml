@@ -17,10 +17,10 @@
 
 - name: "Copy deployment check script"
   copy:
-    src: "{{item}}"
-    dest: "/root/mosip/config-server/{{item}}"
+    src: "{{ item }}"
+    dest: "/root/mosip/config-server/{{ item }}"
     mode: "0755"
-    loop:
+    with_items:
       - copy_cm_func.sh
       - copy_cm.sh
       - copy_secrets.sh
