@@ -14,4 +14,5 @@
 # - include_tasks: install_config_server.yaml
 # - include_tasks: install_artifactory.yaml
 
+- include_tasks: install_kafka.yaml
 - include_tasks: install_esignet.yaml
