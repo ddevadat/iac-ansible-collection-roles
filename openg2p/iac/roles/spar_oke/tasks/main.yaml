@@ -9,10 +9,8 @@
 # - include_tasks: install_s3_credentials.yaml
 # - include_tasks: install_msg_gateway.yaml
 # - include_tasks: install_captcha.yaml
+# - include_tasks: install_global_config.yaml
+# - include_tasks: install_config_server_secrets.yaml
+# - include_tasks: install_config_server.yaml
 
-
-- include_tasks: install_global_config.yaml
-- include_tasks: install_config_server_secrets.yaml
-- include_tasks: install_config_server.yaml
-
-# - include_tasks: install_esignet.yaml
+- include_tasks: install_esignet.yaml
