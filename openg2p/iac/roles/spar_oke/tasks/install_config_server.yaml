@@ -20,7 +20,7 @@
     src: "{{item}}"
     dest: "/root/mosip/config-server/{{item}}"
     mode: "0755"
-    with_items:
+    loop:
       - copy_cm_func.sh
       - copy_cm.sh
       - copy_secrets.sh
