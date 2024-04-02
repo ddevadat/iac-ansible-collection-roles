@@ -22,3 +22,9 @@
   kubernetes.core.helm_repository:
     name: mosip
     repo_url: https://mosip.github.io/mosip-helm
+
+- name: Create customization directory
+  file:
+    path: "/root/openg2p/customization"
+    state: directory
+    mode: '0755'
