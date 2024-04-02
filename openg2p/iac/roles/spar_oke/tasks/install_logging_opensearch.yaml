@@ -1,4 +1,4 @@
-- name: Deploy kafka
+- name: Deploy Logging
   shell: |
     export SANDBOX_HOSTNAME={{domain}}
     cd /root/openg2p-deployment/kubernetes/logging
