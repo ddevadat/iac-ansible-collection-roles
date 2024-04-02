@@ -1,6 +1,7 @@
 - name: Deploy Keymanager
   shell: |
     export SANDBOX_HOSTNAME={{domain}}
+    kubens default
     cd /root/openg2p-deployment/kubernetes/keymanager
     ./install.sh
 
