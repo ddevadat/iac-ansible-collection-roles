@@ -15,17 +15,24 @@
     state: directory
     mode: '0755'
 
-- name: "Copy deployment check script"
+# - name: "Copy deployment check script"
+#   copy:
+#     src: "{{ item }}"
+#     dest: "/root/mosip/config-server/{{ item }}"
+#     mode: "0755"
+#     with_items:
+#       - copy_cm_func.sh
+#       - copy_cm.sh
+#       - copy_secrets.sh
+#       - install.sh
+#       - values.yaml
+
+- name: copy files
   copy:
-    src: "{{ item }}"
-    dest: "/root/mosip/config-server/{{ item }}"
-    mode: "0755"
-    with_items:
-      - copy_cm_func.sh
-      - copy_cm.sh
-      - copy_secrets.sh
-      - install.sh
-      - values.yaml
+    src: "{{ item }}.yaml"
+    dest: "/root/mosip/config-server/{{ item }}.yaml"
+  with_items:
+    - values
 
 # - name: Clone mosip infra Repo
 #   ansible.builtin.git:
