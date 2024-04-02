@@ -17,7 +17,7 @@
   with_items:
     - install.sh
 
-- name: Install soft hsm
+- name: Install artifactory
   shell: |
     cd /root/mosip/artifactory/
     ./install.sh
