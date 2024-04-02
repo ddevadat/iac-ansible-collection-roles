@@ -9,7 +9,7 @@
     state: directory
     mode: '0755'
 
-- name: Copy deployment check script
+- name: Copy deployment  script
   copy:
     src: "activemq/{{ item }}"
     dest: "/root/mosip/activemq/{{ item }}"
@@ -17,7 +17,7 @@
   with_items:
     - install.sh
 
-- name: Copy deployment check script
+- name: Copy deployment  script
   template:
     src: "activemq/values.j2"
     dest: "/root/mosip/activemq/values.yaml"
@@ -28,3 +28,6 @@
   shell: |
     cd /root/mosip/activemq/
     ./install.sh
+
+- name: Wait for deployments in activemq namespace
+  shell: bash /root/check_deployment.sh activemq
