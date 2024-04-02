@@ -6,17 +6,17 @@
 # - include_tasks: install_soft_hsm.yaml
 # - include_tasks: install_activemq_artemis.yaml
 
-- include_tasks: install_minio_object_store.yaml
-- include_tasks: install_s3_credentials.yaml
+# - include_tasks: install_minio_object_store.yaml
+# - include_tasks: install_s3_credentials.yaml
 
 # - include_tasks: install_msg_gateway.yaml
 # - include_tasks: install_captcha.yaml
 
-- include_tasks: install_global_config.yaml
-- include_tasks: install_config_server_secrets.yaml
-- include_tasks: install_config_server.yaml
+# - include_tasks: install_global_config.yaml
+# - include_tasks: install_config_server_secrets.yaml
+# - include_tasks: install_config_server.yaml
 
 # - include_tasks: install_artifactory.yaml
 
 # - include_tasks: install_kafka.yaml
-# - include_tasks: install_esignet.yaml
+- include_tasks: install_esignet.yaml
