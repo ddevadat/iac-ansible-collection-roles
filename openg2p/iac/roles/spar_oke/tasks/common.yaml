@@ -10,4 +10,3 @@
     dest: /root/openg2p-deployment
     single_branch: yes
     version: main
-
