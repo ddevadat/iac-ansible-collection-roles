@@ -25,9 +25,9 @@
 # - include_tasks: install_istio_operator.yaml
 # - include_tasks: install_postgres.yaml
 # - include_tasks: install_keycloak.yaml
-- include_tasks: install_minio_object_store.yaml
-# - include_tasks: install_s3_credentials.yaml
-# - include_tasks: install_msg_gateway.yaml
+# - include_tasks: install_minio_object_store.yaml
+# - include_tasks: install_s3_credentials.yaml    ### ---> not required . This will be taken care in keymanager deployment
+- include_tasks: install_msg_gateway.yaml
 # - include_tasks: install_captcha.yaml
 # - include_tasks: install_odk.yaml
 # - include_tasks: install_kafka.yaml

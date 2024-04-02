@@ -1,9 +1,3 @@
-- name: Create global config directory
-  file:
-    path: "/root/mosip/msg_gateway"
-    state: directory
-    mode: '0755'
-
 - name: Copy msg gateway setup scripts
   template:
     src: msg_gw/install.j2
