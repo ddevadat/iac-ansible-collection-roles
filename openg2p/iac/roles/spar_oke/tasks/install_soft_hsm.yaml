@@ -5,7 +5,7 @@
 
 - name: Create global config directory
   file:
-    path: "/root/kubernetes/soft_hsm"
+    path: "/root/mosip/soft_hsm"
     state: directory
     mode: '0755'
 
