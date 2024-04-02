@@ -1,9 +1,3 @@
-- name: Create global config directory
-  file:
-    path: "/root/mosip/captcha"
-    state: directory
-    mode: '0755'
-
 - name: Copy captcha setup scripts
   template:
     src: captcha/install.j2

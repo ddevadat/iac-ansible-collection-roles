@@ -32,4 +32,5 @@
     - /root/openg2p/customization
     - /root/mosip/activemq
     - /root/mosip/msg_gateway
+    - /root/mosip/captcha
 

@@ -31,6 +31,7 @@ function Prereg_Captcha() {
   RSITE_KEY={{resident_captcha_site_key}}
   RSECRET_KEY={{resident_captcha_secret_key}}
 
+  kubectl -n $NS delete --ignore-not-found=true secret mosip-captcha
   kubectl -n $NS create secret generic mosip-captcha --from-literal=prereg-captcha-site-key=$SITE_KEY --from-literal=prereg-captcha-secret-key=$SECRET_KEY --from-literal=resident-captcha-site-key=$RSITE_KEY --from-literal=resident-captcha-secret-key=$RSECRET_KEY --dry-run=client -o yaml | kubectl apply -f -
   
   return 0
