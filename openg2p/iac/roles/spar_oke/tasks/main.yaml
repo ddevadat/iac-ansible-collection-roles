@@ -4,9 +4,10 @@
 # - include_tasks: install_postgres.yaml
 # - include_tasks: install_keycloak.yaml
 # - include_tasks: install_soft_hsm.yaml
+- include_tasks: install_activemq_artemis.yaml
 
-- include_tasks: install_global_config.yaml
-- include_tasks: install_config_server_secrets.yaml
-- include_tasks: install_config_server.yaml
+# - include_tasks: install_global_config.yaml
+# - include_tasks: install_config_server_secrets.yaml
+# - include_tasks: install_config_server.yaml
 
 # - include_tasks: install_esignet.yaml
