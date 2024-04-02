@@ -7,7 +7,7 @@ function copying_secrets() {
   $COPY_UTIL secret db-common-secrets postgres $DST_NS
   $COPY_UTIL secret keycloak keycloak $DST_NS
   $COPY_UTIL secret keycloak-client-secrets keycloak $DST_NS
-#   $COPY_UTIL secret activemq-activemq-artemis activemq $DST_NS
+  $COPY_UTIL secret activemq-activemq-artemis activemq $DST_NS
   $COPY_UTIL secret softhsm-kernel softhsm $DST_NS
   $COPY_UTIL secret softhsm-ida softhsm $DST_NS
 #   $COPY_UTIL secret s3 s3 $DST_NS
