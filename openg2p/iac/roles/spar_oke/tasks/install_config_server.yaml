@@ -11,3 +11,12 @@
     single_branch: yes
     version: v1.2.0.1
 
+- name: Add a mosip helm repository
+  kubernetes.core.helm_repository:
+    name: mosip
+    repo_url: https://mosip.github.io/mosip-helm
+
+- name: Install config server
+  shell: |
+    cd /root/mosip-infra/deployment/v3/mosip/config-server
+    ./install.sh
