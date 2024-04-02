@@ -27,10 +27,10 @@
     - copy_secrets.sh
     - install.sh
 
-# - name: Install config server
-#   shell: |
-#     cd /root/mosip/config-server/
-#     ./install.sh
+- name: Install config server
+  shell: |
+    cd /root/mosip/config-server/
+    ./install.sh
 
 # - name: Clone mosip infra Repo
 #   ansible.builtin.git:
