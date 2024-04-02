@@ -9,8 +9,7 @@ fi
 NS=conf-secrets
 CHART_VERSION=12.0.2
 
-echo Create $NS namespace
-create_namespace
+
 
 function create_namespace() {
     if kubectl get namespace $NS &> /dev/null; then
@@ -37,4 +36,6 @@ set -o errexit   ## set -e : exit the script if any statement returns a non-true
 set -o nounset   ## set -u : exit the script if you try to use an uninitialised variable
 set -o errtrace  # trace ERR through 'time command' and other functions
 set -o pipefail  # trace ERR through pipes
+echo Create $NS namespace
+create_namespace
 config_secrets   # calling function
