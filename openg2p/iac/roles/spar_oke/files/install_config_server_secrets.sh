@@ -10,7 +10,16 @@ NS=conf-secrets
 CHART_VERSION=12.0.2
 
 echo Create $NS namespace
-kubectl create ns $NS
+create_namespace
+
+function create_namespace() {
+    if kubectl get namespace $NS &> /dev/null; then
+    echo "Namespace $NS exists."
+    else
+    echo "Namespace $NS does not exist. Creating namespace $NS"
+    kubectl create namespace $NS
+    fi    
+}
 
 function config_secrets() {
   echo Istio label

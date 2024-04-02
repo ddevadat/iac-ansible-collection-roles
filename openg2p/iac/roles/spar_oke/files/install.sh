@@ -10,7 +10,17 @@ NS=config-server
 CHART_VERSION=12.0.1
 
 echo Create $NS namespace
-kubectl create ns $NS
+create_namespace
+
+function create_namespace() {
+    if kubectl get namespace $NS &> /dev/null; then
+    echo "Namespace $NS exists."
+    else
+    echo "Namespace $NS does not exist. Creating namespace $NS"
+    kubectl create namespace $NS
+    fi    
+}
+
 # set commands for error handling.
 set -e
 set -o errexit   ## set -e : exit the script if any statement returns a non-true return value
