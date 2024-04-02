@@ -26,7 +26,7 @@ function config_secrets() {
   helm repo update
 
   echo "Installing Secrets required by config-server"
-  helm -n $NS install conf-secrets mosip/conf-secrets --version $CHART_VERSION --wait
+  helm -n $NS upgrade --install --atomic conf-secrets mosip/conf-secrets --version $CHART_VERSION --wait
   return 0
 }
 
