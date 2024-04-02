@@ -1,4 +1,4 @@
-- name: Deploy Postgres
+- name: Deploy Keycloak
   shell: |
     export SANDBOX_HOSTNAME={{domain}}
     export KEYCLOAK_ISTIO_ENABLED=true
