@@ -7,8 +7,9 @@
 # - include_tasks: install_activemq_artemis.yaml
 # - include_tasks: install_minio_object_store.yaml
 # - include_tasks: install_s3_credentials.yaml
+# - include_tasks: install_msg_gateway.yaml
 
-- include_tasks: install_msg_gateway.yaml
+- include_tasks: install_captcha.yaml
 
 
 # - include_tasks: install_global_config.yaml

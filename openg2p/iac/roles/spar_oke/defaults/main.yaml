@@ -8,3 +8,9 @@ sms_user: mock-sms.user
 smtp_secret: mock-smtp.secret
 sms_secret: mock-sms.secret
 sms_authkey: authkey
+
+pre_reg_captcha_site_key: dummy-site-key
+pre_reg_captcha_secret_key: dummy-secret-key
+
+resident_captcha_site_key: dummy-site-key
+resident_captcha_secret_key: dummy-secret-key
