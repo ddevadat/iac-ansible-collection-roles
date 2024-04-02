@@ -4,10 +4,10 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
-- name: Clone OpenG2P Deployment Repo
+- name: Clone mosip infra Repo
   ansible.builtin.git:
-    repo: https://github.com/OpenG2P/openg2p-deployment.git
-    dest: /root/openg2p-deployment
+    repo: https://github.com/mosip/mosip-infra.git
+    dest: /root/mosip-infra
     single_branch: yes
-    version: main
+    version: v1.2.0.1
 
