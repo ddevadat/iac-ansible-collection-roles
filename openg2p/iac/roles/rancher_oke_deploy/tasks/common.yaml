@@ -8,12 +8,14 @@
   apt:
     name: python3-pip
     update_cache: yes
-    state: absent
 
+- name: Install oci sdk
+  pip:
+    name: 
+      - pyOpenSSL
+      - oci
 
-# - name: Install oci sdk
-#   pip:
-#     name: 
-#       - pyOpenSSL
-#       - oci
-#     state: absent
+- name: Remove OpenSSL python packages
+  shell: |
+    rm -R /usr/lib/python3/dist-packages/OpenSSL
+    pip3 install pyOpenSSL --upgrade
