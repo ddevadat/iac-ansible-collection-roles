@@ -16,10 +16,3 @@
 #     name: 
 #       - pyOpenSSL
 #       - oci
-
-- name: Install oci sdk
-  ansible.builtin.pip:
-    name:
-      - pyOpenSSL
-      - oci
-  state: absent
