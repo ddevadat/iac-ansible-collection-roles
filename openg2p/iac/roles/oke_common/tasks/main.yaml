@@ -37,11 +37,13 @@
 
 - name: Generate kube config for oke k8s cluster
   shell: |
+    export PATH=/root/bin:$PATH
     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /root/.kube/oke_k8s_config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 /root/.kube/oke_k8s_config
 
 - name: Generate kube config for oke obs cluster
   shell: |
+    export PATH=/root/bin:$PATH
     oci ce cluster create-kubeconfig --cluster-id {{oke_obs_cluster_id}} --file /root/.kube/oke_obs_config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 /root/.kube/oke_obs_config
 
