@@ -32,8 +32,6 @@
     - config-server
     - conf-secrets
 
-
-
 - name: Uninstall istio
   shell: |
     export PATH=/root/istio-1.21.0/bin:$PATH
