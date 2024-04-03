@@ -1,0 +1,32 @@
+- name: Create cleanup directory
+  file:
+    path: "/root/openg2p/cleanup"
+    state: directory
+    mode: '0755'
+
+- name: Copy cleanup script
+  template:
+    src: uninstall.j2
+    dest: "/root/openg2p/cleanup/uninstall.sh"
+    mode: '0755'
+
+- name: Uninstall applications
+  shell: /root/openg2p/cleanup/uninstall.sh {{item}}
+  with_items:
+    - spar
+    - esignet
+    - keymanager
+    - activemq
+    - cattle-logging-system
+    - kafka
+    - odk
+    - captcha
+    - msg-gateways
+    - minio
+    - keycloak
+    - postgres
+    - monitoring
+    - cert-manager
+
+- name: Uninstall istio
+  shell: istioctl uninstall -y --purge
