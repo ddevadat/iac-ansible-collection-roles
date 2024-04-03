@@ -8,8 +8,9 @@
   apt:
     name: python3-pip
     update_cache: yes
-    
+
 - name: Install oci sdk
   pip:
     name: 
+      - pyOpenSSL
       - oci
