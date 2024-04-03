@@ -32,7 +32,7 @@
     - config-server
     - conf-secrets
 
-- name: Uninstall istio
+- name: Uninstall istio service mesh
   shell: |
     export PATH=/root/istio-1.21.0/bin:$PATH
     istioctl uninstall -y --purge
