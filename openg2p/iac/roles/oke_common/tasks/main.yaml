@@ -34,7 +34,7 @@
     chmod +x /root/install.sh
     /root/install.sh --accept-all-defaults
     rm  /root/install.sh
-    mv /root/bin/oci /usr/local/bin/
+    cp /root/bin/oci /usr/local/bin/
 
 - name: Generate kube config for oke k8s cluster
   shell: |
