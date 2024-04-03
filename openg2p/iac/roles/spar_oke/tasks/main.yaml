@@ -31,8 +31,8 @@
 # - include_tasks: install_captcha.yaml
 # - include_tasks: install_odk.yaml
 # - include_tasks: install_kafka.yaml
-- include_tasks: install_logging_opensearch.yaml     ### put on hold for now
-# - include_tasks: install_key_manager.yaml
+# - include_tasks: install_logging_opensearch.yaml
 # - include_tasks: install_activemq_artemis.yaml
+# - include_tasks: install_key_manager.yaml
 # - include_tasks: install_esignet.yaml
 # - include_tasks: install_spar.yaml
