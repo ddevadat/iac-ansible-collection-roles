@@ -4,6 +4,11 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
+- name: Install Pip3
+  apt:
+    name: python3-pip
+    update_cache: yes
+    
 - name: Install oci sdk
   pip:
     name: 
