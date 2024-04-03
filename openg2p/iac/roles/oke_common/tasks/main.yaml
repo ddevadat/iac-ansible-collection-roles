@@ -34,6 +34,7 @@
     chmod +x /root/install.sh
     /root/install.sh --accept-all-defaults
     rm  /root/install.sh
+    mv /root/bin/oci /usr/local/bin/
 
 - name: Generate kube config for oke k8s cluster
   shell: |
@@ -98,7 +99,7 @@
     path: /root/.bashrc
     block: |
       export KUBECONFIG=/root/.kube/oke_obs_config
-      export PATH=/root/istio-1.21.0/bin:/root/bin:$PATH
+      export PATH=/root/istio-1.21.0/bin:$PATH
       alias k=kubectl
       alias kctx=kubectx
       alias kns=kubens

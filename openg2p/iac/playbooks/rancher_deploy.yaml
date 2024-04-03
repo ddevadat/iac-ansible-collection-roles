@@ -2,6 +2,5 @@
   become: true
   environment:
     KUBECONFIG: "/root/.kube/oke_obs_config"
-    PATH: "/root/istio-1.21.0/bin:/root/bin:$PATH"
   roles:
     - openg2p.iac.rancher_oke_deploy
