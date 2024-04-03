@@ -1,0 +1,7 @@
+- name: Get a specific zone
+  oracle.oci.oci_dns_zone_facts:
+    zone_name_or_id: "{{domain}}"
+
+- name: Dump result
+  debug: 
+    msg: '{{result}}'
