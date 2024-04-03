@@ -31,6 +31,7 @@
     - softhsm
     - config-server
     - conf-secrets
+  ignore_errors: true
 
 - name: Uninstall istio service mesh
   shell: |
