@@ -98,7 +98,7 @@
     path: /root/.bashrc
     block: |
       export KUBECONFIG=/root/.kube/oke_obs_config
-      export PATH=/root/istio-1.21.0/bin:$PATH
+      export PATH=/root/istio-1.21.0/bin:/root/bin:$PATH
       alias k=kubectl
       alias kctx=kubectx
       alias kns=kubens
