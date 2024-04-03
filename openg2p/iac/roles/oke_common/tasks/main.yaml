@@ -28,6 +28,13 @@
     dest: "/root/.oci/bastion.key"
     mode: "0600"
 
+- name: Install oci cli
+  shell: |
+    wget -q https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh -O /root/install.sh
+    chmod +x /root/install.sh
+    /root/install.sh --accept-all-defaults
+    rm  /root/install.sh
+
 - name: Generate kube config for oke k8s cluster
   shell: |
     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /root/.kube/oke_k8s_config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
@@ -73,13 +80,6 @@
     include: 
       - "k9s"
     remote_src: yes
-
-- name: Install oci cli
-  shell: |
-    wget -q https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh -O /root/install.sh
-    chmod +x /root/install.sh
-    /root/install.sh --accept-all-defaults
-    rm  /root/install.sh
 
 - name: Install istioctl
   shell: |
