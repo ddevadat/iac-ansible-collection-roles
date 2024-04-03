@@ -1,0 +1,8 @@
+- name: Deploy SPAR
+  shell: |
+    export SANDBOX_HOSTNAME={{domain}}
+    cd /root/openg2p-deployment/kubernetes/social-payments-account-registry
+    ./install.sh
+
+- name: Wait for deployments in spar namespace
+  shell: bash /root/check_deployment.sh spar
