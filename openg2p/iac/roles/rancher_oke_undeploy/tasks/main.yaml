@@ -1,0 +1,20 @@
+- name: Create cleanup directory
+  file:
+    path: "/root/rancher/cleanup"
+    state: directory
+    mode: '0755'
+
+- name: Copy cleanup script
+  template:
+    src: uninstall.j2
+    dest: "/root/rancher/cleanup/uninstall.sh"
+    mode: '0755'
+
+- name: Uninstall applications
+  shell: /root/rancher/cleanup/uninstall.sh {{item}}
+  with_items:
+    - cattle-system
+    - cert-manager
+    - ingress-nginx
+  ignore_errors: true
+
