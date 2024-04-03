@@ -27,6 +27,15 @@
     - postgres
     - monitoring
     - cert-manager
+    - artifactory
+    - softhsm
+    - config-server
+    - conf-secrets
+
+
 
 - name: Uninstall istio
-  shell: istioctl uninstall -y --purge
+  shell: |
+    export PATH=/root/istio-1.21.0/bin:$PATH
+    istioctl uninstall -y --purge
+    kubectl delete ns istio-system
