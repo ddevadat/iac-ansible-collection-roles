@@ -13,7 +13,7 @@
 - name: Uninstall applications
   shell: /root/rancher/cleanup/uninstall.sh {{item}}
   with_items:
-    - cattle-system
+    # - cattle-system
     - cert-manager
     - ingress-nginx
   ignore_errors: true
