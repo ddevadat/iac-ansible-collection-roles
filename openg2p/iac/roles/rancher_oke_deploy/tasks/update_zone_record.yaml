@@ -33,7 +33,7 @@
 
 - name: Show external ip
   debug: 
-    msg: '{{result.stdout}}'
+    msg: '{{rancher_external_ip.stdout}}'
 
 - name: Update rrset
   oracle.oci.oci_dns_rrset:
