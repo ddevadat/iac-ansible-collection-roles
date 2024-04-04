@@ -31,7 +31,8 @@
     zone_name_or_id: "{{result.zones[0].id}}"
     update_items:
     - # required
-      domain: "keycloak"
+      domain: "{{domain}}"
+      record_hash: "keycloak"
       rdata: "217.142.250.79"
       rtype: "A"
       ttl: 300
