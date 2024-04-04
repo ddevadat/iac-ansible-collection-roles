@@ -13,7 +13,7 @@
 - name: "Install opentofu"
   shell: |
     wget -q https://github.com/opentofu/opentofu/releases/download/v{{opentofu_version}}/tofu_{{opentofu_version}}_linux_amd64.zip -O /tmp/tofu_{{opentofu_version}}_linux_amd64.zip
-    unzip /tmp/tofu_{{opentofu_version}}_linux_amd64.zip -d /usr/local/bin
+    unzip -o /tmp/tofu_{{opentofu_version}}_linux_amd64.zip -d /usr/local/bin
     rm /tmp/tofu_{{opentofu_version}}_linux_amd64.zip
 
 - name: Create project directories
