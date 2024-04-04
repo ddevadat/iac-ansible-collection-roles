@@ -23,13 +23,3 @@
   with_items:
     - /root/rancher/terraform
 
-- name: "Copy rancher terraform files"
-  template:
-    src: "rancher.j2"
-    dest: "/root/rancher/terraform/rancher.tf"
-    mode: "0755"
-
-# - name: "Execute rancher terraform"
-#   shell: |
-#     cd /root/rancher/terraform/
-#     tofu apply -auto-approve -refresh=false
