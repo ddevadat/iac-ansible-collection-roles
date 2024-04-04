@@ -5,4 +5,4 @@
   
 - name: Dump result
   debug: 
-    msg: '{{result}}'
+    msg: '{{result.zones[0].name}}'
