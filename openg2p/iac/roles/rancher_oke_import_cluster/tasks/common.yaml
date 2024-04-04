@@ -1,0 +1,35 @@
+- name: "Copy deployment check script"
+  copy:
+    src: "check_deployment.sh"
+    dest: "/root/check_deployment.sh"
+    mode: "0755"
+
+- name: Install dependencies
+  package:
+    name:
+      - jq
+
+- name: "Install opentofu"
+  shell: |
+    wget -q https://github.com/opentofu/opentofu/releases/download/v{{opentofu_version}}/tofu_{{opentofu_version}}_linux_amd64.zip -O /tmp/tofu_{{opentofu_version}}_linux_amd64.zip
+    unzip /tmp/tofu_{{opentofu_version}}_linux_amd64.zip -d /usr/local/bin
+    rm /tmp/tofu_{{opentofu_version}}_linux_amd64.zip
+
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /root/rancher/terraform
+
+- name: "Copy rancher terraform files"
+  copy:
+    src: "rancher.j2"
+    dest: "/root/rancher/terraform/rancher.tf"
+    mode: "0755"
+
+# - name: "Execute rancher terraform"
+#   shell: |
+#     cd /root/rancher/terraform/
+#     tofu apply -auto-approve -refresh=false
