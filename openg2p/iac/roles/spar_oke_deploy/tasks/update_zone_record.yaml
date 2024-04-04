@@ -40,3 +40,10 @@
   with_items:
     - kafka
     - keycloak
+    - odk
+    - opensearch
+    - esignet
+    - minio
+    - keymanager
+    - spar
+    
