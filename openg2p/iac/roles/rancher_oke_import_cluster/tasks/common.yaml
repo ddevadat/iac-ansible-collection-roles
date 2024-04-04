@@ -8,6 +8,7 @@
   package:
     name:
       - jq
+      - unzip
 
 - name: "Install opentofu"
   shell: |
