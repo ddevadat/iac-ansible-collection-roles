@@ -49,7 +49,7 @@
 
 
 - name: Update rrset
-  oci_dns_rrset:
+  oracle.oci.oci_dns_rrset:
     zone_name_or_id: "{{domain}}"
     domain: rancher.{{domain}}
     rtype: "A"
