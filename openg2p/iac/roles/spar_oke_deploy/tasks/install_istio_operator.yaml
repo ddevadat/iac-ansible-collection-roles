@@ -54,6 +54,9 @@
 - name: Create istio gateway for all hosts
   shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
 
+- name: Wait for deployments in istio-system namespace
+  shell: bash /root/check_deployment.sh istio-system
+
 # - name: "Update clusterissuer config"
 #   template:
 #     src: "cluster_issuer.j2"
