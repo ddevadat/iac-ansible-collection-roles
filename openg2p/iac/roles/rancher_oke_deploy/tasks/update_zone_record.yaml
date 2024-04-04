@@ -1,7 +1,7 @@
 - name: Get a specific zone
   oracle.oci.oci_dns_zone_facts:
     compartment_id: "{{compartment_id}}"
-    name: "{{domain}}"
+    name: "test.{{domain}}"
   register: result
   
 - name: Dump result
