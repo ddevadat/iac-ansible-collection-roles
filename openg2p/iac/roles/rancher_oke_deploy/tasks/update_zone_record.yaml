@@ -1,7 +1,7 @@
 - name: Checking if zone is already present
   oracle.oci.oci_dns_zone_facts:
     compartment_id: "{{compartment_id}}"
-    name: "{{domain}}"
+    name: "dummy.{{domain}}"
   register: result
   
 - name: Dump result
@@ -20,7 +20,7 @@
 
 - name: Create zone 
   oracle.oci.oci_dns_zone:
-    name: "{{domain}}"
+    name: "dummy.{{domain}}"
     compartment_id: "{{compartment_id}}"
     zone_type: PRIMARY
   when: result.zones | length == 0
@@ -28,9 +28,9 @@
 
 - name: Update zone_records
   oracle.oci.oci_dns_zone_records:
-    zone_name_or_id: "{{domain}}"
+    zone_name_or_id: "dummy.{{domain}}"
     update_items:
-    - domain: "rancher.{{domain}}"
+    - domain: "rancher.dummy.{{domain}}"
       rdata: "217.142.250.79"
       rtype: "A"
       ttl: 300
