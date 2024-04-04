@@ -31,9 +31,9 @@
     echo $EXTERNAL_IP
   register: rancher_external_ip
 
-- name: Show external ip
-  debug: 
-    msg: '{{rancher_external_ip.stdout}}'
+# - name: Show external ip
+#   debug: 
+#     msg: '{{rancher_external_ip.stdout}}'
 
 - name: Update rrset
   oracle.oci.oci_dns_rrset:
@@ -42,7 +42,7 @@
     rtype: "A"
     update_items:
     - domain: rancher.{{domain}}
-      rdata: 217.142.250.80
+      rdata: "{{rancher_external_ip.stdout}}"
       rtype: "A"
       ttl: 300
     compartment_id: "{{compartment_id}}"
