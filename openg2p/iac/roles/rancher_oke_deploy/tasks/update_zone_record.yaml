@@ -32,6 +32,9 @@
     patch_items:
     - domain: "rancher.{{domain}}"
       operation: "ADD"
+      rdata: "217.142.250.79"
+      rtype: "A"
+      ttl: 300
     compartment_id: "{{compartment_id}}"
 
 - name: Update zone_records
