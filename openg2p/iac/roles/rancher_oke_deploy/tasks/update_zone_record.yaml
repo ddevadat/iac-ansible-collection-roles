@@ -42,6 +42,8 @@
     patch_items:
     - domain: "rancher.{{domain}}"
       operation: "ADD"
+    update_items:
+    - domain: "rancher.{{domain}}"
       rdata: "217.142.250.79"
       rtype: "A"
       ttl: 300
