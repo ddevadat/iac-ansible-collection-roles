@@ -24,7 +24,7 @@
     - /root/rancher/terraform
 
 - name: "Copy rancher terraform files"
-  copy:
+  templates:
     src: "rancher.j2"
     dest: "/root/rancher/terraform/rancher.tf"
     mode: "0755"
