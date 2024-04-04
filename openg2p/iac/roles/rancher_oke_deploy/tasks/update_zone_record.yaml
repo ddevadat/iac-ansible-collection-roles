@@ -26,22 +26,17 @@
   when: result.zones | length == 0
 
 
-# - name: Update zone_records
-#   oracle.oci.oci_dns_zone_records:
-#     zone_name_or_id: "{{domain}}"
-#     update_items:
-#     - domain: "rancher.{{domain}}"
-#       rdata: "217.142.250.79"
-#       rtype: "A"
-#       ttl: 300
-#     compartment_id: "{{compartment_id}}"
-
-- name: Update zone_records
+- name: Add zone_records
   oracle.oci.oci_dns_zone_records:
     zone_name_or_id: "{{domain}}"
     patch_items:
     - domain: "rancher.{{domain}}"
       operation: "ADD"
+    compartment_id: "{{compartment_id}}"
+
+- name: Update zone_records
+  oracle.oci.oci_dns_zone_records:
+    zone_name_or_id: "{{domain}}"
     update_items:
     - domain: "rancher.{{domain}}"
       rdata: "217.142.250.79"
