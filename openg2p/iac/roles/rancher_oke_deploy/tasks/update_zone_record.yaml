@@ -25,28 +25,15 @@
     zone_type: PRIMARY
   when: result.zones | length == 0
 
+- name: Get the external ip of the nginx ingress controller
+  shell: |
+    EXTERNAL_IP=$(kubectl get svc -n ingress-nginx ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo $EXTERNAL_IP
+  register: rancher_external_ip
 
-# - name: Add zone_records
-#   oracle.oci.oci_dns_zone_records:
-#     zone_name_or_id: "{{domain}}"
-#     patch_items:
-#     - domain: "rancher.{{domain}}"
-#       operation: "ADD"
-#       rdata: "217.142.250.80"
-#       rtype: "A"
-#       ttl: 300
-#     compartment_id: "{{compartment_id}}"
-
-# - name: Update zone_records
-#   oracle.oci.oci_dns_zone_records:
-#     zone_name_or_id: "{{domain}}"
-#     update_items:
-#     - domain: "rancher.{{domain}}"
-#       rdata: "217.142.250.80"
-#       rtype: "A"
-#       ttl: 300
-#     compartment_id: "{{compartment_id}}"
-
+- name: Show external ip
+  debug: 
+    msg: '{{result.stdout}}'
 
 - name: Update rrset
   oracle.oci.oci_dns_rrset:
