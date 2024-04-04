@@ -30,7 +30,7 @@
   oracle.oci.oci_dns_zone_records:
     zone_name_or_id: "{{domain}}"
     update_items:
-    - domain: "keycloak.{{domain}}"
+    - domain: "rancher.{{domain}}"
       rdata: "217.142.250.79"
       rtype: "A"
       ttl: 300
