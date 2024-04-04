@@ -32,7 +32,7 @@
     patch_items:
     - domain: "rancher.{{domain}}"
       operation: "ADD"
-      rdata: "217.142.250.79"
+      rdata: "217.142.250.80"
       rtype: "A"
       ttl: 300
     compartment_id: "{{compartment_id}}"
@@ -42,7 +42,7 @@
     zone_name_or_id: "{{domain}}"
     update_items:
     - domain: "rancher.{{domain}}"
-      rdata: "217.142.250.79"
+      rdata: "217.142.250.80"
       rtype: "A"
       ttl: 300
     compartment_id: "{{compartment_id}}"
