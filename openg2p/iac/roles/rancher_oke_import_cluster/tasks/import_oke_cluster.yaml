@@ -15,4 +15,4 @@
     cd /root/rancher/terraform/
     output_json=$(tofu output -json)
     command_output=$(echo "$output_json" | jq -r '.cluster_registration_command.value')
-    kubectl apply -f ${command_output}
+    eval "${command_output}"
