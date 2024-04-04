@@ -7,3 +7,13 @@
 - name: Dump result
   debug: 
     msg: '{{result}}'
+
+- name: Zone not found
+  debug:
+    msg: "Zone test.{{domain}} not found"
+  when: result.zones | length == 0
+
+- name: Zone  found
+  debug:
+    msg: "Zone test.{{domain}}  found"
+  when: result.zones | length != 0
