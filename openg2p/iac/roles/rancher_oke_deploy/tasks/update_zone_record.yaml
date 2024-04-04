@@ -30,8 +30,7 @@
   oracle.oci.oci_dns_zone_records:
     zone_name_or_id: "{{domain}}"
     update_items:
-    - # required
-      domain: "{{domain}}"
+    - domain: "{{domain}}"
       record_hash: "keycloak"
       rdata: "217.142.250.79"
       rtype: "A"
