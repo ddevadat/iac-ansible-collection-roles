@@ -28,7 +28,7 @@
 
 - name: Update zone_records
   oracle.oci.oci_dns_zone_records:
-    zone_name_or_id: result.zones[0].id
+    zone_name_or_id: "{{result.zones[0].id}}"
     update_items:
     - # required
       domain: "keycloak.{{domain}}"
