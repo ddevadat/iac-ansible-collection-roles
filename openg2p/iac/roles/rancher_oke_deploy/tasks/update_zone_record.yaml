@@ -1,12 +1,12 @@
-- name: Get a specific zone
+- name: Checking if zone is already present
   oracle.oci.oci_dns_zone_facts:
     compartment_id: "{{compartment_id}}"
-    name: "test.{{domain}}"
+    name: "{{domain}}"
   register: result
   
-# - name: Dump result
-#   debug: 
-#     msg: '{{result}}'
+- name: Dump result
+  debug: 
+    msg: '{{result}}'
 
 # - name: Zone not found
 #   debug:
@@ -20,7 +20,7 @@
 
 - name: Create zone 
   oracle.oci.oci_dns_zone:
-    name: "test.{{domain}}"
+    name: "{{domain}}"
     compartment_id: "{{compartment_id}}"
     zone_type: PRIMARY
   when: result.zones | length == 0
