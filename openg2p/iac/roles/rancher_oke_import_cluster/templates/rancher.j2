@@ -66,7 +66,7 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 resource "null_resource" "run_kubectl" {
   provisioner "local-exec" {
     command     = <<-EOT
-          eval(${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command})
+          ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command}
     EOT
     working_dir = path.module
   }
