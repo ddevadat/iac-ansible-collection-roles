@@ -15,8 +15,8 @@
     kubectl create ns keycloak
     kubectl -n keycloak delete secret tls-keycloak-ingress
     kubectl create secret tls tls-keycloak-ingress -n keycloak \
-    --tls.crt=/root/.ssh/ssl_cert.pem \
-    --tls.key=/root/.ssh/ssl_cert_private_key.key
+    --cert=/root/.ssh/ssl_cert.pem \
+    --key=/root/.ssh/ssl_cert_private_key.key
   ignore_errors: true
   
 - name: Remove ssl cert private key
