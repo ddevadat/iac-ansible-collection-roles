@@ -66,7 +66,7 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 resource "null_resource" "run_kubectl" {
   provisioner "local-exec" {
     command     = <<-EOT
-          echo "Hello ${output.cluster_registration_command}"
+          echo "Hello ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].token}"
     EOT
     working_dir = path.module
   }
@@ -74,7 +74,7 @@ resource "null_resource" "run_kubectl" {
   #   inventory_file_sha_hex = local_sensitive_file.cluster_agent_yaml.id
   # }
   triggers = {
-    token = output.cluster_registration_command
+    token = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command
   }
   depends_on = [
     rancher2_cluster.openg2p_k8s_cluster
