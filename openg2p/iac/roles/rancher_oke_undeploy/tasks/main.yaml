@@ -14,7 +14,7 @@
   shell: /root/rancher/cleanup/uninstall.sh {{item}}
   with_items:
     - cattle-system
-    - cert-manager
+    - keycloak
     - ingress-nginx
   ignore_errors: true
 
