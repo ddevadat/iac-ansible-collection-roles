@@ -49,8 +49,6 @@
         ingressClassName: "nginx"
         tls: true
         hostname: "keycloak-rancher.{{domain}}"
-        secrets: 
-          - keycloak-rancher.{{domain}}-tls
 
 - name: Wait for deployments in keycloak namespace
   shell: bash /root/check_deployment.sh keycloak
