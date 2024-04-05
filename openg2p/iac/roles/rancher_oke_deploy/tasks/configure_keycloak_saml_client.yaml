@@ -22,6 +22,7 @@
     secret: REALLYWELLKEPTSECRET
     redirect_uris:
       - https://rancher.{{domain}}/v1-saml/keycloak/saml/acs
+    web_origins: []
     not_before: 0
     bearer_only: false
     consent_required: false
