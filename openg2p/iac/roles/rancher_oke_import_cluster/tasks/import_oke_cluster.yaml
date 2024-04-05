@@ -8,7 +8,6 @@
   shell: |
     cd /root/rancher/terraform/
     tofu init
-    tofu apply -auto-approve -refresh=false
     tofu destroy -target rancher2_cluster.openg2p_k8s_cluster -auto-approve -refresh=false
     tofu apply -auto-approve -refresh=false
 
