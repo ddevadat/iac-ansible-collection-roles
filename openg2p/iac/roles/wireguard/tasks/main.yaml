@@ -23,17 +23,17 @@
 #     state: directory
 #     mode: '0755'
 
-- name: "copy server.conf"
-  template:
-    src: "server.conf.j2"
-    dest: "/etc/{{ wireguard_name }}/templates/server.conf"
-    mode: '0755'
+# - name: "copy server.conf"
+#   template:
+#     src: "server.conf.j2"
+#     dest: "/etc/{{ wireguard_name }}/templates/server.conf"
+#     mode: '0755'
   
-- name: "copy rules.sh"
-  template:
-    src: "rules.sh.j2"
-    dest: "/etc/{{ wireguard_name }}/rules.sh"
-    mode: '0755'
+# - name: "copy rules.sh"
+#   template:
+#     src: "rules.sh.j2"
+#     dest: "/etc/{{ wireguard_name }}/rules.sh"
+#     mode: '0755'
 
 - name: "deploy systemd service"
   template:
