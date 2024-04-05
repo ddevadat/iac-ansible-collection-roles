@@ -58,10 +58,10 @@
         ingressClassName: "nginx"
         tls: true
         hostname: "keycloak-rancher.{{domain}}"
-        secrets:
-          - name: keycloak-rancher.{{domain}}-tls
-            key: "{{ssl_cert_key}}"
-            certificate: "{{ssl_cert}}"
+        # secrets:
+        #   - name: keycloak-rancher.{{domain}}-tls
+        #     key: "{{ssl_cert_key}}"
+        #     certificate: "{{ssl_cert}}"
 
 - name: Remove ssl cert private key
   ansible.builtin.file:
