@@ -15,8 +15,8 @@
     kubectl create ns keycloak
     kubectl -n keycloak delete secret tls-keycloak-ingress
     kubectl create secret tls tls-keycloak-ingress -n keycloak \
-    --certificate=/root/.ssh/ssl_cert.pem \
-    --key=/root/.ssh/ssl_cert_private_key.key
+    --tls.crt=/root/.ssh/ssl_cert.pem \
+    --tls.key=/root/.ssh/ssl_cert_private_key.key
   ignore_errors: true
   
 - name: Remove ssl cert private key
@@ -49,9 +49,7 @@
         ingressClassName: "nginx"
         tls: true
         hostname: "keycloak-rancher.{{domain}}"
-        secrets:
-          - tls-keycloak-ingress
-
+        existingSecret: tls-keycloak-ingress
 
 - name: Wait for deployments in keycloak namespace
   shell: bash /root/check_deployment.sh keycloak
