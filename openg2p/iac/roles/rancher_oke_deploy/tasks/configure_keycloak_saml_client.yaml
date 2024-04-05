@@ -11,7 +11,7 @@
     auth_realm: master
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
-    state: absent
+    state: present
     realm: master
     client_id: https://rancher.{{domain}}/v1-saml/keycloak/saml/metadata
     id: d8b127a3-31f6-44c8-a7e4-4ab9a3e78d95
