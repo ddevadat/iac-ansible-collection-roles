@@ -11,15 +11,8 @@
     mode: "0755"
 
 
-- name: "Execute rancher terraform"
-  shell: |
-    cd /root/rancher/terraform/
-    tofu init
-    tofu apply -auto-approve
-
-# - name: "Running Register Cluster Command"
+# - name: "Execute rancher terraform"
 #   shell: |
 #     cd /root/rancher/terraform/
-#     output_json=$(tofu output -json)
-#     command_output=$(echo "$output_json" | jq -r '.cluster_registration_command.value')
-#     eval "${command_output}"
+#     tofu init
+#     tofu apply -auto-approve

@@ -7,6 +7,10 @@ terraform {
       source  = "rancher/rancher2"
       version = "4.1.0"
     }
+    http = {
+      source = "hashicorp/http"
+      version = "3.4.2"
+    }
   }
 }
 
@@ -22,6 +26,14 @@ variable "server_url" {
 
 variable "admin_password" {
   default = "{{rancher_admin_password}}"
+}
+
+variable "ssl_cert" {
+  default = "https://{{ssl_cert}}"
+}
+
+variable "ssl_cert_key" {
+  default = "{{ssl_cert_key}}"
 }
 
 
@@ -42,6 +54,34 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
   provider    = rancher2.admin
   name        = "{{oke_k8s_cluster_name | replace("_", "-") }}"
   description = "OpenG2P K8S Cluster"
+}
+
+# The following example shows how to issue an HTTP GET request supplying
+# an optional request header.
+data "http" "example" {
+  url = "https://checkpoint-api.hashicorp.com/v1/check/terraform"
+
+  # Optional request headers
+  request_headers = {
+    Accept = "application/json"
+  }
+}
+
+data "http" "idp_metadata" {
+  url    = "https://keycloak-rancher.{{domain}}/realms/master/protocol/saml/descriptor"
+  method = "GET"
+}
+
+resource "rancher2_auth_config_keycloak" "keycloak" {
+  provider    = rancher2.admin
+  display_name_field = "givenName"
+  groups_field = "member"
+  idp_metadata_content = data.http.idp_metadata.response_body
+  rancher_api_host = "https://rancher.{{domain}}"
+  sp_cert = var.ssl_cert
+  sp_key = var.ssl_cert_key
+  uid_field = "username"
+  user_name_field = "email"
 }
 
 
