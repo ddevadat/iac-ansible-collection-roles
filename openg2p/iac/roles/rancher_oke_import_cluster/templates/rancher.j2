@@ -46,32 +46,35 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 
 
 
-resource "local_sensitive_file" "cluster_agent_yaml" {
-  content = templatefile(
-    "${path.module}/templates/clusteragent.yaml.tmpl",
-    { 
-      b64_url          = base64encode(var.server_url),
-      url              = var.server_url
-      token        = base64encode(rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].token)
-      }
-  )
-  filename        = "${path.module}/clusteragent.yaml"
-  file_permission = "0600"
+# resource "local_sensitive_file" "cluster_agent_yaml" {
+#   content = templatefile(
+#     "${path.module}/templates/clusteragent.yaml.tmpl",
+#     { 
+#       b64_url          = base64encode(var.server_url),
+#       url              = var.server_url
+#       token        = base64encode(rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].token)
+#       }
+#   )
+#   filename        = "${path.module}/clusteragent.yaml"
+#   file_permission = "0600"
 
-  depends_on = [
-    rancher2_cluster.openg2p_k8s_cluster
-  ]
-}
+#   depends_on = [
+#     rancher2_cluster.openg2p_k8s_cluster
+#   ]
+# }
 
 resource "null_resource" "run_kubectl" {
   provisioner "local-exec" {
     command     = <<-EOT
-          echo "Hello"
+          echo "Hello ${output.cluster_registration_command}"
     EOT
     working_dir = path.module
   }
+  # triggers = {
+  #   inventory_file_sha_hex = local_sensitive_file.cluster_agent_yaml.id
+  # }
   triggers = {
-    inventory_file_sha_hex = local_sensitive_file.cluster_agent_yaml.id
+    token = output.cluster_registration_command
   }
   depends_on = [
     local_sensitive_file.cluster_agent_yaml
