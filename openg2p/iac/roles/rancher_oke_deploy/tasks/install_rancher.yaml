@@ -45,10 +45,10 @@
       hostname: "{{rancher_hostname}}"
       bootstrapPassword: "{{rancher_admin_password}}"
       tls: external
-      # ingress: 
-      #   tls:
-      #     source: secret
-      #   ingressClassName: "nginx"
+      ingress: 
+        tls:
+          source: secret
+        ingressClassName: "nginx"
 
 - name: Get deployments in cattle-system namespace
   shell: bash /root/check_deployment.sh cattle-system 
