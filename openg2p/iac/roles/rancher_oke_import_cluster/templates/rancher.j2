@@ -51,7 +51,7 @@ resource "rancher2_setting" "server_url" {
 
 resource "rancher2_cluster" "openg2p_k8s_cluster" {
   provider    = rancher2.admin
-  name        = "{{oke_k8s_cluster_name}}"
+  name        = "{{oke_k8s_cluster_name | replace("_", "-") }}"
   description = "OpenG2P K8S Cluster"
 }
 
