@@ -50,7 +50,7 @@
         tls: true
         hostname: "keycloak-rancher.{{domain}}"
         secrets:
-          - name: keycloak.local-tls
+          - name: keycloak-rancher.{{domain}}-tls
             key: |-
               -----BEGIN PRIVATE KEY-----
               -----END PRIVATE KEY-----
