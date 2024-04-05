@@ -26,12 +26,28 @@ provider "rancher2" {
   insecure  = true
 }
 
+# provider "rancher2" {
+#   alias = "admin"
+
+#   api_url   = rancher2_bootstrap.admin.url
+#   token_key = rancher2_bootstrap.admin.token
+#   insecure  = true
+# }
+
 provider "rancher2" {
   alias = "admin"
 
-  api_url   = rancher2_bootstrap.admin.url
-  token_key = rancher2_bootstrap.admin.token
+  api_url   = data.terraform_remote_state.bootstrap_admin.outputs.url
+  token_key = data.terraform_remote_state.bootstrap_admin.outputs.token
   insecure  = true
+}
+
+data "terraform_remote_state" "bootstrap_admin" {
+  backend = "local"
+
+  config = {
+    path = "${path.module}/terraform.tfstate"
+  }
 }
 
 resource "rancher2_bootstrap" "admin" {
@@ -56,12 +72,20 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 }
 
 
-
 output "cluster_registration_token" {
   sensitive = true
   value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].token
 }
 
+
+output "url" {
+  value     = rancher2_bootstrap.admin.url
+}
+
+output "token" {
+  sensitive = true
+  value     = rancher2_bootstrap.admin.token
+}
 
 output "cluster_registration_command" {
   value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command

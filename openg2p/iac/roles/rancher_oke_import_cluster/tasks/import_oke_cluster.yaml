@@ -4,16 +4,16 @@
     dest: "/root/rancher/terraform/rancher.tf"
     mode: "0755"
 
-- name: "Execute rancher terraform"
-  shell: |
-    cd /root/rancher/terraform/
-    tofu init > /root/rancher/terraform/tofu.log 
-    tofu destroy -target rancher2_cluster.openg2p_k8s_cluster >> /root/rancher/terraform/tofu.log
-    tofu apply -auto-approve >> /root/rancher/terraform/tofu.log
+# - name: "Execute rancher terraform"
+#   shell: |
+#     cd /root/rancher/terraform/
+#     tofu init > /root/rancher/terraform/tofu.log 
+#     tofu destroy -target rancher2_cluster.openg2p_k8s_cluster >> /root/rancher/terraform/tofu.log
+#     tofu apply -auto-approve >> /root/rancher/terraform/tofu.log
 
-- name: "Running Register Cluster Command"
-  shell: |
-    cd /root/rancher/terraform/
-    output_json=$(tofu output -json)
-    command_output=$(echo "$output_json" | jq -r '.cluster_registration_command.value')
-    eval "${command_output}"
+# - name: "Running Register Cluster Command"
+#   shell: |
+#     cd /root/rancher/terraform/
+#     output_json=$(tofu output -json)
+#     command_output=$(echo "$output_json" | jq -r '.cluster_registration_command.value')
+#     eval "${command_output}"
