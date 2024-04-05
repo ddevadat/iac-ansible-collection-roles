@@ -22,5 +22,5 @@
     state: directory
     mode: '0755'
   with_items:
-    - /root/rancher/terraform
+    - /root/rancher/terraform/bootstrap
 

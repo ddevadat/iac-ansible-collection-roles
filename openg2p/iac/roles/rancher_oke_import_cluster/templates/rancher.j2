@@ -10,6 +10,12 @@ terraform {
   }
 }
 
+provider "rancher2" {
+  alias = "admin"
+  api_url   = module.bootstrap.url
+  token_key = module.bootstrap.token
+}
+
 variable "server_url" {
   default = "https://{{rancher_hostname}}"
 }
@@ -18,45 +24,12 @@ variable "admin_password" {
   default = "{{rancher_admin_password}}"
 }
 
-provider "rancher2" {
-  alias = "bootstrap"
 
-  api_url   = var.server_url
-  bootstrap = true
-  insecure  = true
-}
 
-# provider "rancher2" {
-#   alias = "admin"
-
-#   api_url   = rancher2_bootstrap.admin.url
-#   token_key = rancher2_bootstrap.admin.token
-#   insecure  = true
-# }
-
-provider "rancher2" {
-  alias = "admin"
-
-  api_url   = data.terraform_remote_state.bootstrap_admin.outputs.url
-  token_key = data.terraform_remote_state.bootstrap_admin.outputs.token
-  insecure  = true
-}
-
-data "terraform_remote_state" "bootstrap_admin" {
-  backend = "local"
-
-  config = {
-    path = "${path.module}/terraform.tfstate"
-  }
-}
-
-resource "rancher2_bootstrap" "admin" {
-  provider         = rancher2.bootstrap
-  initial_password = var.admin_password
-  password         = var.admin_password
-  telemetry        = true
-  token_ttl        = 60
-  token_update     = true
+module "bootstrap" {
+  source                         = "./bootstrap"
+  server_url                     = var.server_url
+  admin_password                 = var.admin_password
 }
 
 resource "rancher2_setting" "server_url" {
@@ -71,20 +44,9 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
   description = "OpenG2P K8S Cluster"
 }
 
-
 output "cluster_registration_token" {
   sensitive = true
   value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].token
-}
-
-
-output "url" {
-  value     = rancher2_bootstrap.admin.url
-}
-
-output "token" {
-  sensitive = true
-  value     = rancher2_bootstrap.admin.token
 }
 
 output "cluster_registration_command" {
