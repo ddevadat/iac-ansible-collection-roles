@@ -21,8 +21,8 @@
 
 - name: Set ssl certificate and key variables
   set_fact:
-    ssl_cert: "{{ lookup('file', '/root/.ssh/ssl_cert.pem') }}"
-    ssl_cert_key: "{{ lookup('file', '/root/.ssh/ssl_cert_private_key.key) }}"
+    ssl_cert: "{{ lookup('file', {{ ansible_ssl_cert_file }}) }}"
+    ssl_cert_key: "{{ lookup('file', {{ ansible_ssl_cert_private_key_file }}) }}"
   
 - name: Add a keycloak helm repository
   kubernetes.core.helm_repository:
@@ -48,15 +48,15 @@
             key: "{{ssl_cert_key}}"
             certificate: "{{ssl_cert}}"
 
-# - name: Remove ssl cert private key
-#   ansible.builtin.file:
-#     path: /root/.ssh/ssl_cert_private_key.key
-#     state: absent
+- name: Remove ssl cert private key
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert_private_key.key
+    state: absent
 
-# - name: Remove ssl cert file
-#   ansible.builtin.file:
-#     path: /root/.ssh/ssl_cert.pem
-#     state: absent
+- name: Remove ssl cert file
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert.pem
+    state: absent
 
 - name: Wait for deployments in keycloak namespace
   shell: bash /root/check_deployment.sh keycloak
