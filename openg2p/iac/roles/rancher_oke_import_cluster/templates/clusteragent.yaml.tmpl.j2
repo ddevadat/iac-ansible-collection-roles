@@ -67,8 +67,8 @@ metadata:
   namespace: cattle-system
 type: Opaque
 data:
-  url: base64encode(${url})
-  token: base64encode(${token})
+  url: ${b64_url}
+  token: ${token}
   namespace: ""
 
 ---
