@@ -13,6 +13,7 @@
     update_repo_cache: true
     values:
       ingress:
+        enabled: true
         ingressClassName: "nginx"
         hostname: "keycloak-rancher.{{domain}}"
         extraTls:
