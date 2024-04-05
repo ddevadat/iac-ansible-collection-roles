@@ -16,9 +16,9 @@
         enabled: true
         ingressClassName: "nginx"
         hostname: "keycloak-rancher.{{domain}}"
-        extraTls:
-          - hosts:
-              - "keycloak-rancher.{{domain}}"
+        # extraTls:
+        #   - hosts:
+        #       - "keycloak-rancher.{{domain}}"
 
 
 
