@@ -44,6 +44,7 @@
     values:
       hostname: "{{rancher_hostname}}"
       bootstrapPassword: "{{rancher_admin_password}}"
+      tls: external
       ingress: 
         tls:
           source: secret
