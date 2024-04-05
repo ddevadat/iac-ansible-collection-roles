@@ -1,6 +1,6 @@
 - name: Get keycloak admin passord
   shell: |
-    admin_password=`kubectl get secret --namespace keycloak keycloak -o go-template='{{index .data "admin-password"|base64decode}}'`
+    admin_password=`kubectl get secret --namespace keycloak keycloak -o go-template='{{ '{{' }}index .data "admin-password"|base64decode{{ '}}' }}'`
     echo $admin_password
   register: keycloak_admin_password
 
