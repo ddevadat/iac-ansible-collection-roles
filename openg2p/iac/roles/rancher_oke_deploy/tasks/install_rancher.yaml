@@ -46,7 +46,7 @@
       bootstrapPassword: "{{rancher_admin_password}}"
       ingress: 
         tls:
-          source: rancher
+          source: secret
         ingressClassName: "nginx"
 
 - name: Get deployments in cattle-system namespace
