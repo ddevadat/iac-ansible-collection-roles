@@ -18,6 +18,11 @@
 #     --cert=/root/.ssh/ssl_cert.pem \
 #     --key=/root/.ssh/ssl_cert_private_key.key
 #   ignore_errors: true
+
+- name: Set ssl certificate and key variables
+  set_fact:
+    ssl_cert: "{{ lookup('file', '/root/.ssh/ssl_cert.pem') }}"
+    ssl_cert_key: "{{ lookup('file', '/root/.ssh/ssl_cert_private_key.key) }}"
   
 - name: Remove ssl cert private key
   ansible.builtin.file:
@@ -51,12 +56,7 @@
         hostname: "keycloak-rancher.{{domain}}"
         secrets:
           - name: keycloak-rancher.{{domain}}-tls
-            key: |-
-              -----BEGIN PRIVATE KEY-----
-              -----END PRIVATE KEY-----
-            certificate: |-
-              -----BEGIN PRIVATE KEY-----
-              -----END PRIVATE KEY-----           
-
+            key: "{{ssl_cert_key}}"
+            certificate: "{{ssl_cert}}"
 - name: Wait for deployments in keycloak namespace
   shell: bash /root/check_deployment.sh keycloak
