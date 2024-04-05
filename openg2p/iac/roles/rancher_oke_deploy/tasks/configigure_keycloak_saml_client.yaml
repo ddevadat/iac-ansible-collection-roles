@@ -11,7 +11,7 @@
     auth_realm: master
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
-    state: present
+    state: absent
     realm: master
     client_id: test
     
