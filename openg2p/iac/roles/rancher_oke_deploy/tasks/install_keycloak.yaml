@@ -1,3 +1,35 @@
+- name: Upload ssl cert private key
+  copy:
+    src: "{{ ansible_ssl_cert_private_key_file }}"
+    dest: "/root/.ssh/ssl_cert_private_key.key"
+    mode: "0600"
+
+- name: Upload ssl cert file
+  copy:
+    src: "{{ ansible_ssl_cert_file }}"
+    dest: "/root/.ssh/ssl_cert.pem"
+    mode: "0600"
+
+- name: Create ssl secret for keycloak ingress tls
+  shell: |
+    kubectl create ns keycloak
+    kubectl -n keycloak delete secret tls-keycloak-ingress
+    kubectl create secret tls tls-keycloak-ingress -n keycloak \
+    --certificate=/root/.ssh/ssl_cert.pem \
+    --key=/root/.ssh/ssl_cert_private_key.key
+  ignore_errors: true
+  
+- name: Remove ssl cert private key
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert_private_key.key
+    state: absent
+
+- name: Remove ssl cert file
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert.pem
+    state: absent
+
+
 - name: Add a keycloak helm repository
   kubernetes.core.helm_repository:
     name: bitnami
@@ -15,14 +47,10 @@
       ingress:
         enabled: true
         ingressClassName: "nginx"
+        tls: true
         hostname: "keycloak-rancher.{{domain}}"
-        # extraTls:
-        #   - hosts:
-        #       - "keycloak-rancher.{{domain}}"
-
-
-
-
+        secrets:
+          - tls-keycloak-ingress
 
 
 - name: Wait for deployments in keycloak namespace
