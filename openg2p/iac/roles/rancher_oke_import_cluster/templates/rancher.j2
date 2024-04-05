@@ -82,6 +82,10 @@ resource "rancher2_auth_config_keycloak" "keycloak" {
   sp_key = var.ssl_cert_key
   uid_field = "username"
   user_name_field = "email"
+
+  triggers = {
+    idp_metadata_content = data.http.idp_metadata.response_body
+  }
 }
 
 
