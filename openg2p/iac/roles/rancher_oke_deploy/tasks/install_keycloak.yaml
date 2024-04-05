@@ -1,0 +1,28 @@
+- name: Add a keycloak helm repository
+  kubernetes.core.helm_repository:
+    name: bitnami
+    repo_url: https://charts.bitnami.com/bitnami
+
+- name: Install keycloak
+  kubernetes.core.helm:
+    name: keycloak
+    chart_ref: bitnami/keycloak
+    chart_version: 7.1.18
+    release_namespace: keycloak
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      ingress:
+        ingressClassName: "nginx"
+        hostname: "keycloak-rancher.{{domain}}"
+        extraTls:
+          - hosts:
+              - "keycloak-rancher.{{domain}}"
+
+
+
+
+
+
+- name: Wait for deployments in keycloak namespace
+  shell: bash /root/check_deployment.sh keycloak
