@@ -48,6 +48,7 @@
         enabled: true
         ingressClassName: "nginx"
         tls: true
+        selfSigned: true
         hostname: "keycloak-rancher.{{domain}}"
 
 - name: Wait for deployments in keycloak namespace
