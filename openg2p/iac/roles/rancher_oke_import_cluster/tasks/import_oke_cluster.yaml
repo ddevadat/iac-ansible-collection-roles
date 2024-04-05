@@ -10,6 +10,12 @@
     dest: "/root/rancher/terraform/bootstrap/bootstrap.tf"
     mode: "0755"
 
+- name: "Copy terraform template files"
+  template:
+    src: "clusteragent.yaml.tmpl.j2"
+    dest: "/root/rancher/terraform/templates/clusteragent.yaml.tmpl"
+    mode: "0755"
+
 # - name: "Execute rancher terraform"
 #   shell: |
 #     cd /root/rancher/terraform/

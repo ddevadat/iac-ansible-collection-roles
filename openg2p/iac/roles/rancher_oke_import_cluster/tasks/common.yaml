@@ -23,4 +23,5 @@
     mode: '0755'
   with_items:
     - /root/rancher/terraform/bootstrap
+    - /root/rancher/terraform/templates
 
