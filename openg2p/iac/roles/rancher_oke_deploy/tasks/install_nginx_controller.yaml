@@ -13,6 +13,8 @@
     update_repo_cache: true
     values:
       controller:
+        extraArgs:
+          default-ssl-certificate: cattle-system/tls-rancher-ingress
         service:
           externalTrafficPolicy: Local
           annotations:
