@@ -8,7 +8,7 @@
   shell: |
     cd /root/rancher/terraform/
     tofu init > /root/rancher/terraform/tofu.log 
-    tofu destroy -target rancher2_cluster.openg2p_k8s_cluster -auto-approve -refresh=false >> /root/rancher/terraform/tofu.log
+    tofu destroy -target rancher2_cluster.openg2p_k8s_cluster >> /root/rancher/terraform/tofu.log
     tofu apply -auto-approve >> /root/rancher/terraform/tofu.log
 
 - name: "Running Register Cluster Command"
