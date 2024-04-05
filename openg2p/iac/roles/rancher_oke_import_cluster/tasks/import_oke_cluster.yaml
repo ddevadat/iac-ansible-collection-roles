@@ -7,9 +7,9 @@
 - name: "Execute rancher terraform"
   shell: |
     cd /root/rancher/terraform/
-    tofu init
-    tofu destroy -target rancher2_cluster.openg2p_k8s_cluster -auto-approve -refresh=false
-    tofu apply -auto-approve -refresh=false
+    tofu init > /root/rancher/terraform/tofu.log 
+    tofu destroy -target rancher2_cluster.openg2p_k8s_cluster -auto-approve -refresh=false >> /root/rancher/terraform/tofu.log
+    tofu apply -auto-approve -refresh=false >> /root/rancher/terraform/tofu.log
 
 - name: "Running Register Cluster Command"
   shell: |
