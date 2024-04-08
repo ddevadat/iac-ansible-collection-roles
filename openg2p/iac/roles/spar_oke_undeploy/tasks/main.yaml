@@ -26,7 +26,6 @@
     - keycloak
     - postgres
     - monitoring
-    - cert-manager
     - artifactory
     - softhsm
     - config-server
