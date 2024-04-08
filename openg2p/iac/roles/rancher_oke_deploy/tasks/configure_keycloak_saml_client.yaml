@@ -99,13 +99,13 @@
 
     attributes:
         id.token.as.detached.signature: "false"
-        saml.assertion.signature: "false"
+        saml.assertion.signature: "true"
+        saml.server.signature: "false"
         saml.force.post.binding: "false"
         saml.multivalued.roles: "false"
         saml.encrypt: "false"
         oauth2.device.authorization.grant.enabled: "false"
         backchannel.logout.revoke.offline.tokens: "false"
-        saml.server.signature: "true"
         saml.server.signature.keyinfo.ext: "false"
         use.refresh.tokens: "false"
         exclude.session.state.from.auth.response: "false"
