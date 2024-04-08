@@ -99,7 +99,7 @@
 
     attributes:
         id.token.as.detached.signature: "false"
-        saml.assertion.signature: "true"
+        saml.assertion.signature: "false"
         saml.force.post.binding: "false"
         saml.multivalued.roles: "false"
         saml.encrypt: "false"
