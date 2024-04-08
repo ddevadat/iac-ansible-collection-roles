@@ -30,5 +30,5 @@
     - ingress-nginx
   ignore_errors: true
 
-- name: Running rancher clean up script
-  shell: /root/rancher/cleanup/cleanup.sh force
+# - name: Running rancher clean up script
+#   shell: /root/rancher/cleanup/cleanup.sh force
