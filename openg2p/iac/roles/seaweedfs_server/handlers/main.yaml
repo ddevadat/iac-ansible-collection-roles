@@ -1,4 +1,0 @@
-- name: Restart Seaweedfs
-  systemd:
-    name: "seaweedfs"
-    state: restarted

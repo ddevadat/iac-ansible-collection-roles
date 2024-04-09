@@ -1,2 +1,0 @@
-kubeconfig_location: "/etc/rancher/k3s/k3s.yaml"
-kubeconfig_local_location: "/tmp"
