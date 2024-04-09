@@ -20,3 +20,21 @@
           value: "{{keycloak_admin_password.stdout}}"
           temporary: false
     state: present
+  register: create_admin_user
+
+- name: debug
+  debug: "{{create_admin_user.end_state}}"
+
+# - name: Map admin role to a user
+#   community.general.keycloak_user_rolemapping:
+#     auth_keycloak_url: https://keycloak-rancher.{{domain}}
+#     auth_username: user
+#     auth_password: "{{keycloak_admin_password.stdout}}"
+#     auth_realm: master
+#     state: present
+#     user_id: user1Id
+#     roles:
+#       - name: role_name1
+#         id: role_id1
+#       - name: role_name2
+#         id: role_id2
