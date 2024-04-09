@@ -120,4 +120,5 @@
         saml.authnstatement: "false"
         display.on.consent.screen: "false"
         saml.onetimeuse.condition: "false"
+        saml_idp_initiated_sso_url_name: "IdPSSOName"
     
