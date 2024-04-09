@@ -30,13 +30,13 @@ variable "admin_password" {
 
 variable "ssl_cert" {
   default = <<EOF
-  "{{ssl_cert}}"
+  {{ssl_cert}}
 EOF
 }
 
 variable "ssl_cert_key" {
   default = <<EOF
-  "{{ssl_cert_key}}"
+  {{ssl_cert_key}}
 EOF
 }
 
