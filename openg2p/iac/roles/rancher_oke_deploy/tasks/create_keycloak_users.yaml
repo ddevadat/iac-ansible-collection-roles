@@ -10,7 +10,8 @@
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
     auth_realm: user
-    username: user
+    username: rancheradmin
+    firstName: rancheradmin
     email: rancheradmin1@xyz.com
     enabled: true
     emailVerified: false
