@@ -9,7 +9,7 @@
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
-    realm: master
+    auth_realm: master
     username: rancheradmin
     firstName: rancheradmin
     email: rancheradmin@xyz.com
