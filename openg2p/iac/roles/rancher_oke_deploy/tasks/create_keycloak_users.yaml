@@ -1,0 +1,22 @@
+- name: Get keycloak admin passord
+  shell: |
+    admin_password=`kubectl get secret --namespace keycloak keycloak -o go-template='{{ '{{' }}index .data "admin-password"|base64decode{{ '}}' }}'`
+    echo $admin_password
+  register: keycloak_admin_password
+
+- name: Create an admin user
+  community.general.keycloak_user:
+    auth_keycloak_url: https://keycloak-rancher.{{domain}}
+    auth_username: user
+    auth_password: "{{keycloak_admin_password.stdout}}"
+    realm: master
+    username: rancheradmin
+    firstName: rancheradmin
+    email: rancheradmin@xyz.com
+    enabled: true
+    emailVerified: false
+    credentials:
+        - type: password
+          value: "{{keycloak_admin_password.stdout}}"
+          temporary: false
+    state: present
