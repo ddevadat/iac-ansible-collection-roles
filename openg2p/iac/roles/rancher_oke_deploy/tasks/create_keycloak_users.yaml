@@ -23,7 +23,8 @@
   register: create_admin_user
 
 - name: debug
-  debug: "{{create_admin_user.end_state}}"
+  debug: 
+    msg: '{{create_admin_user}}'
 
 # - name: Map admin role to a user
 #   community.general.keycloak_user_rolemapping:
