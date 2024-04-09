@@ -22,4 +22,4 @@
 
 - name: "Create grafana virtual service"
   shell: |
-    kubectl apply -n monitoring /root/openg2p/customization/grafana/grafana_vs.yaml
+    kubectl apply -n monitoring -f /root/openg2p/customization/grafana/grafana_vs.yaml
