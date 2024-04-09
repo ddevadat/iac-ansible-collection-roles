@@ -9,10 +9,9 @@
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
-    auth_realm: master
-    username: rancheradmin
-    firstName: rancheradmin
-    email: rancheradmin@xyz.com
+    auth_realm: user
+    username: user
+    email: rancheradmin1@xyz.com
     enabled: true
     emailVerified: false
     credentials:
@@ -22,9 +21,9 @@
     state: present
   register: create_admin_user
 
-- name: debug
-  debug: 
-    msg: '{{create_admin_user}}'
+# - name: debug
+#   debug: 
+#     msg: '{{create_admin_user}}'
 
 # - name: Map admin role to a user
 #   community.general.keycloak_user_rolemapping:
@@ -33,7 +32,7 @@
 #     auth_password: "{{keycloak_admin_password.stdout}}"
 #     auth_realm: master
 #     state: present
-#     user_id: user1Id
+#     target_username: rancheradmin
 #     roles:
 #       - name: role_name1
 #         id: role_id1
