@@ -13,3 +13,13 @@
 
 - name: Wait for deployments in monitoring namespace
   shell: bash /root/check_deployment.sh monitoring
+
+- name: "Update grafana virtual service config"
+  template:
+    src: "grafana/grafana_vs.yaml.j2"
+    dest: "/root/openg2p/customization/grafana/"
+    mode: '0755'
+
+- name: "Create grafana virtual service"
+  shell: |
+    kubectl apply -n monitoring /root/openg2p/customization/grafana/grafana_vs.yaml

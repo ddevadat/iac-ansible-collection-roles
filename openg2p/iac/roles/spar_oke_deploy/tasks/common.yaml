@@ -30,7 +30,9 @@
     mode: '0755'
   with_items:
     - /root/openg2p/customization
+    - /root/openg2p/customization/grafana
     - /root/mosip/activemq
     - /root/mosip/msg_gateway
     - /root/mosip/captcha
+
 
