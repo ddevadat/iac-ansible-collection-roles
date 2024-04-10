@@ -47,6 +47,8 @@
     - spar
     - grafana
     - keycloak
+    - opensearch
+    - postgres
     
 - name: Update private rrset
   oracle.oci.oci_dns_rrset:
@@ -67,10 +69,8 @@
     - admin
     - minio
     - kafka
-    - postgres
     - pmp
     - smtp
     - compliance
     - odk
-    - opensearch
     - keymanager
