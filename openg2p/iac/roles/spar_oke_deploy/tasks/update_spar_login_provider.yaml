@@ -1,0 +1,6 @@
+- name: "Update spar update query"
+  template:
+    src: "spar/update_table.sql.j2"
+    dest: "/root/openg2p/customization/kubernetes/social-payments-account-registry/update_table.sql"
+    mode: '0755'
+
