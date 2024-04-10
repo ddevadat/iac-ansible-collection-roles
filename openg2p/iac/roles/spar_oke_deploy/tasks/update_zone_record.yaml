@@ -46,6 +46,7 @@
     - esignet
     - spar
     - grafana
+    - keycloak
     
 - name: Update private rrset
   oracle.oci.oci_dns_rrset:
@@ -66,7 +67,6 @@
     - admin
     - minio
     - kafka
-    - keycloak
     - postgres
     - pmp
     - smtp
