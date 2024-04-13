@@ -3,4 +3,4 @@
   environment:
     KUBECONFIG: "/root/.kube/oke_k8s_config"
   roles:
-    - sunbird-rc.iac.sbrc_oke_deploy
+    - sunbird_rc.iac.sbrc_oke_deploy
