@@ -16,7 +16,7 @@
     zone_type: PRIMARY
   when: result.zones | length == 0
 
-- name: Get the external ip of the nginx ingress controller
+- name: Get the external ip of the ingress controller
   shell: |
     EXTERNAL_IP=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     echo $EXTERNAL_IP
@@ -40,37 +40,5 @@
       ttl: 300
     compartment_id: "{{compartment_id}}"
   with_items:
-    - api
-    - prereg
-    - resident
-    - esignet
-    - spar
-    - grafana
-    - keycloak
-    - opensearch
-    - postgres
+    - longhorn
     
-- name: Update private rrset
-  oracle.oci.oci_dns_rrset:
-    zone_name_or_id: "{{domain}}"
-    domain: "{{item}}.{{domain}}"
-    rtype: "A"
-    update_items:
-    - domain: "{{item}}.{{domain}}"
-      rdata: "{{istio_gw_internal_ip.stdout}}"
-      rtype: "A"
-      ttl: 300
-    compartment_id: "{{compartment_id}}"
-  with_items:
-    - api-internal
-    - activemq
-    - kibana
-    - regclient
-    - admin
-    - minio
-    - kafka
-    - pmp
-    - smtp
-    - compliance
-    - odk
-    - keymanager

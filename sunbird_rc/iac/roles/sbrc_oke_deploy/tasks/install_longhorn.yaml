@@ -15,3 +15,11 @@
 
 - name: Wait for deployments in longhorn-system namespace
   shell: bash /root/check_deployment.sh longhorn-system
+
+- name: "Update longhorn virtual service config"
+  template:
+    src: "longhorn/longhorn-virtual-service.yaml.j2"
+    dest: "/root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml"
+
+- name: Create longhorn virtual service
+  shell: kubectl -n longhorn-system apply -f /root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml
