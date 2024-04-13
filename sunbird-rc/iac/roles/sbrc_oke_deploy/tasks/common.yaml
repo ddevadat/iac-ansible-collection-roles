@@ -4,24 +4,10 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
-- name: Clone sunbird-rc Deployment Repo
-  ansible.builtin.git:
-    repo: https://github.com/sunbird-rc/sunbird-rc-deployment.git
-    dest: /root/sunbird-rc-deployment
-    single_branch: yes
-    version: main
-
-- name: Clone MOSIP infra Deployment Repo
-  ansible.builtin.git:
-    repo: https://github.com/mosip/mosip-infra.git
-    dest: /root/mosip-infra
-    single_branch: yes
-    version: "{{mosip_rel_version}}"
-
-- name: Add a mosip helm repository
+- name: Add a daas helm repository
   kubernetes.core.helm_repository:
-    name: mosip
-    repo_url: https://mosip.github.io/mosip-helm
+    name: daas
+    repo_url: https://oci-sunbird.github.io/daas-helm
 
 - name: Create project directories
   file:
@@ -30,9 +16,6 @@
     mode: '0755'
   with_items:
     - /root/sunbird-rc/customization
-    - /root/sunbird-rc/customization/grafana
-    - /root/mosip/activemq
-    - /root/mosip/msg_gateway
-    - /root/mosip/captcha
+
 
 

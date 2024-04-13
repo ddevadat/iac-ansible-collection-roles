@@ -1,7 +1,0 @@
-- name: Deploy SPAR UI from url
-  kubernetes.core.helm:
-    name: spar_ui
-    chart_ref: "https://github.com/sunbird-rc/sunbird-rc-helm/blob/gh-pages/spar-self-service-ui-0.1.0.tgz"
-    release_namespace: spar
-    create_namespace: true
-    values:

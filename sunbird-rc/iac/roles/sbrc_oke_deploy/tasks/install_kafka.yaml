@@ -1,8 +1,0 @@
-- name: Deploy kafka
-  shell: |
-    export SANDBOX_HOSTNAME={{domain}}
-    cd /root/sunbird-rc-deployment/kubernetes/kafka
-    ./install.sh
-
-- name: Wait for deployments in kafka namespace
-  shell: bash /root/check_deployment.sh kafka
