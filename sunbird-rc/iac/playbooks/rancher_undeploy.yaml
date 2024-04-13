@@ -1,6 +1,0 @@
-- hosts: bastion
-  become: true
-  environment:
-    KUBECONFIG: "/root/.kube/oke_obs_config"
-  roles:
-    - sunbird-rc.iac.rancher_oke_undeploy
