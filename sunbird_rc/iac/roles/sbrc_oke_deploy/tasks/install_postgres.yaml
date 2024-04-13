@@ -1,0 +1,22 @@
+- name: Install Postgres
+  kubernetes.core.helm:
+    name: cnpg
+    chart_ref: cnpg/cloudnative-pg
+    chart_version: 0.20.2
+    release_namespace: cnpg-system
+    create_namespace: true
+    update_repo_cache: true
+
+- name: Wait for deployments in cnpg-system namespace
+  shell: bash /root/check_deployment.sh cnpg-system
+
+##### Disabling this as we need to figure out basic authenthication by using istio virtual service
+# https://longhorn.io/docs/1.6.1/deploy/accessing-the-ui/longhorn-ingress/
+
+# - name: "Update longhorn virtual service config"
+#   template:
+#     src: "longhorn/longhorn-virtual-service.yaml.j2"
+#     dest: "/root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml"
+
+# - name: Create longhorn virtual service
+#   shell: kubectl -n longhorn-system apply -f /root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml
