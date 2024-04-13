@@ -1,0 +1,39 @@
+- name: Create cleanup directory
+  file:
+    path: "/root/sunbird-rc/cleanup"
+    state: directory
+    mode: '0755'
+
+- name: Copy cleanup script
+  template:
+    src: uninstall.j2
+    dest: "/root/sunbird-rc/cleanup/uninstall.sh"
+    mode: '0755'
+
+- name: Uninstall applications
+  shell: /root/sunbird-rc/cleanup/uninstall.sh {{item}}
+  with_items:
+    - spar
+    - esignet
+    - keymanager
+    - activemq
+    - cattle-logging-system
+    - kafka
+    - odk
+    - captcha
+    - msg-gateways
+    - minio
+    - keycloak
+    - postgres
+    - monitoring
+    - artifactory
+    - softhsm
+    - config-server
+    - conf-secrets
+  ignore_errors: true
+
+- name: Uninstall istio service mesh
+  shell: |
+    export PATH=/root/istio-1.21.0/bin:$PATH
+    istioctl uninstall -y --purge
+    kubectl delete ns istio-system

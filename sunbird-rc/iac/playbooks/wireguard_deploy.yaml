@@ -1,0 +1,7 @@
+- hosts: bastion
+  become: true
+  roles:
+    - sunbird-rc.iac.bastion_common
+    - sunbird-rc.iac.docker
+    - sunbird-rc.iac.wireguard
+    - sunbird-rc.iac.oke_common
