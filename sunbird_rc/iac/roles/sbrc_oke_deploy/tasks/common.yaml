@@ -50,6 +50,8 @@
     - /root/sunbird-rc/customization/postgres
     - /root/sunbird-rc/customization/vault
     - /root/sunbird-rc/customization/filestorage
+    - /root/sunbird-rc/customization/keycloak
+    - /root/sunbird-rc/customization/registry
 
 - name: Create a k8s namespace
   kubernetes.core.k8s:

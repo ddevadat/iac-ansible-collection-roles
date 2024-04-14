@@ -41,6 +41,6 @@
     compartment_id: "{{compartment_id}}"
   with_items:
     - sbrc
-    - sbrciam
-    - sbrcfs
+    - sbrc.iam
+    - sbrc.fs
     

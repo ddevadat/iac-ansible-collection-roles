@@ -10,3 +10,4 @@
 # - include_tasks: install_claim_ms.yaml
 # - include_tasks: install_elasticsearch.yaml
 - include_tasks: install_filestorage.yaml
+- include_tasks: install_keycloak.yaml

@@ -6,13 +6,13 @@ spec:
   gateways:
     - istio-system/all-hosts
   hosts:
-    - sbrc.fs.{{domain}}
+    - sbrc.iam.{{domain}}
   http:
     - route:
         - destination:
-            host: filestorage
+            host: keycloak
             port:
-              number: 9001
+              number: 8080
       headers:
         request:
           set:
