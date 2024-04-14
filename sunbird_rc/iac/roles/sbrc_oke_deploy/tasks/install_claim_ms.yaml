@@ -7,7 +7,7 @@
     update_repo_cache: true
     values:
       claim_msenv:
-        connectionInfo_uri: "jdbc:{{db_url}}?sslmode=disable"
+        connectionInfo_uri: "{{claims_ms_db_url}}?sslmode=disable"
         connectionInfo_username: "{{postgres_connectionInfo_username}}"
         connectionInfo_password: "{{postgres_connectionInfo_password}}"
 
