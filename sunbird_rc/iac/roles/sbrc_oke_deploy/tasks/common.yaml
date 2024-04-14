@@ -4,6 +4,18 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
+- name: Install Pip3
+  apt:
+    name: python3-pip
+    update_cache: yes
+
+- name: Install kubernetes pre requisites
+  pip:
+    name: 
+      - openshift
+      - pyyaml
+      - kubernetes
+
 - name: Add a daas helm repository
   kubernetes.core.helm_repository:
     name: daas
