@@ -26,4 +26,4 @@
   shell: |
     cd /root/sunbird-rc/customization/vault/
     /root/sunbird-rc/customization/vault/init_vault.sh
-  when: vault_secrets_file.stat.exists
+  when: not vault_secrets_file.stat.exists
