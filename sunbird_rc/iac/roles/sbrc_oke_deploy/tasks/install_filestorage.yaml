@@ -7,7 +7,7 @@
     update_repo_cache: true
     values:
       filestorageenv:
-        MINIO_ROOT_PASSWORD: "{{filestorage_root_passsword}}"
+        MINIO_ROOT_PASSWORD: "{{filestorage_root_password}}"
         
       storage_size: "{{filestorage_storage_size}}"
       storage_class_name: "{{filestorage_storage_class}}"
