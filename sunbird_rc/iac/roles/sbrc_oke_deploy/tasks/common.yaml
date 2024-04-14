@@ -45,10 +45,6 @@
     - /root/sunbird-rc/customization/postgres
     - /root/sunbird-rc/customization/vault
 
-- name: Create a k8s namespace for sunbird-rc
-  shell: kubectl create ns sunbird-rc
-  ignore_errors: true
-
 - name: Create a k8s namespace
   kubernetes.core.k8s:
     name: sunbird-rc
