@@ -10,30 +10,29 @@
     dest: "/root/sunbird-rc/cleanup/uninstall.sh"
     mode: '0755'
 
+
+- name: Uninstall longhorn
+  shell: |
+    kubectl -n longhorn-system patch -p '{"value": "true"}' --type=merge lhs deleting-confirmation-flag
+  ignore_errors: true
+
+- name: Uninstall postgres
+  shell: |
+    kubectl -n sunbird-rc delete cluster.postgresql.cnpg.io/postgres-cluster
+  ignore_errors: true
+
 - name: Uninstall applications
   shell: /root/sunbird-rc/cleanup/uninstall.sh {{item}}
   with_items:
-    - spar
-    - esignet
-    - keymanager
-    - activemq
-    - cattle-logging-system
-    - kafka
-    - odk
-    - captcha
-    - msg-gateways
-    - minio
-    - keycloak
-    - postgres
-    - monitoring
-    - artifactory
-    - softhsm
-    - config-server
-    - conf-secrets
+    - sunbird-rc
+    - cnpg-system
+    - vault   
+    - longhorn-system
   ignore_errors: true
 
-- name: Uninstall istio service mesh
-  shell: |
-    export PATH=/root/istio-1.21.0/bin:$PATH
-    istioctl uninstall -y --purge
-    kubectl delete ns istio-system
+
+# - name: Uninstall istio service mesh
+#   shell: |
+#     export PATH=/root/istio-1.21.0/bin:$PATH
+#     istioctl uninstall -y --purge
+#     kubectl delete ns istio-system
