@@ -42,4 +42,5 @@
   with_items:
     - sbrc
     - sbrc.iam
+    - sbrc.fs
     
