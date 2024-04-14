@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 60
 kubectl -n vault exec vault-0 -- vault operator init \
 -key-shares=1 \
 -key-threshold=1 \

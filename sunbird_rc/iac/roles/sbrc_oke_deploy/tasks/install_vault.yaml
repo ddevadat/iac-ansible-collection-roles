@@ -10,8 +10,6 @@
         ha:
           enabled: false
 
-- name: Wait for deployments in vault namespace
-  shell: bash /root/check_deployment.sh vault
 
 - name: "Upload vault init script"
   copy:
