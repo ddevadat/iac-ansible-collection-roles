@@ -40,5 +40,6 @@
       ttl: 300
     compartment_id: "{{compartment_id}}"
   with_items:
-    - longhorn
+    - sbrc
+    - sbrc.iam
     
