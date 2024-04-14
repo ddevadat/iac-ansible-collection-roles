@@ -1,0 +1,31 @@
+- name: Install Vault
+  kubernetes.core.helm:
+    name: vault
+    chart_ref: hashicorp/vault
+    release_namespace: vault
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      server:
+        ha:
+          enabled: false
+
+- name: Wait for deployments in vault namespace
+  shell: bash /root/check_deployment.sh vault
+
+- name: "Upload vault init script"
+  copy:
+    src: "init_vault.sh"
+    dest: "/root/sunbird-rc/customization/vault/init_vault.sh"
+    mode: "0700"
+
+- name: Check if vault secrets already exists
+  stat:
+    path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
+  register: vault_secrets_file
+
+- name: Unseal vault
+  shell: |
+    cd /root/sunbird-rc/customization/vault/
+    /root/sunbird-rc/customization/vault/init_vault.sh
+  when: vault_secrets_file.stat.exists

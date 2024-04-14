@@ -19,6 +19,11 @@
     name: cnpg
     repo_url: https://cloudnative-pg.github.io/charts
 
+- name: Add hashicorp helm repository
+  kubernetes.core.helm_repository:
+    name: hashicorp
+    repo_url: https://helm.releases.hashicorp.com
+
 - name: Create project directories
   file:
     path: "{{item}}"
@@ -28,6 +33,7 @@
     - /root/sunbird-rc/customization
     - /root/sunbird-rc/customization/longhorn
     - /root/sunbird-rc/customization/postgres
+    - /root/sunbird-rc/customization/vault
 
 - name: Create a k8s namespace for sunbird-rc
   shell: kubectl create ns sunbird-rc
