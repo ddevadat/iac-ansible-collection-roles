@@ -4,3 +4,4 @@ postgres_storage_class: longhorn
 postgres_data_size: 1Gi
 postgres_connectionInfo_username: registry
 postgress_db_host: postgres-cluster-rw
+db_url: postgres://{{postgres_connectionInfo_username}}:{{postgres_connectionInfo_password}}@{{postgress_db_host}}:5432/registry

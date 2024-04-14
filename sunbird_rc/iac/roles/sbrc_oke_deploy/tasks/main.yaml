@@ -5,3 +5,4 @@
 # - include_tasks: install_postgres.yaml
 # - include_tasks: install_certificateapi.yaml
 # - include_tasks: install_vault.yaml
+- include_tasks: install_identity.yaml
