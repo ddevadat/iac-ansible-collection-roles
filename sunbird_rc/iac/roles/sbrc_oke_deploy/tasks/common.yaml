@@ -14,6 +14,11 @@
     name: 
       - kubernetes
 
+- name: Add a reloader helm repository
+  kubernetes.core.helm_repository:
+    name: stakater
+    repo_url: https://stakater.github.io/stakater-charts
+
 - name: Add a daas helm repository
   kubernetes.core.helm_repository:
     name: daas
