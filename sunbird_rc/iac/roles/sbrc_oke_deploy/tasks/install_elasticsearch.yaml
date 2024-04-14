@@ -4,7 +4,7 @@
     chart_ref: elastic/elasticsearch
     release_namespace: sunbird-rc
     create_namespace: true
-    chart_version: 7.3.2
+    chart_version: 7.17.3
     update_repo_cache: true
     values:
       volumeClaimTemplate:
