@@ -28,5 +28,10 @@
     - /root/sunbird-rc/customization
     - /root/sunbird-rc/customization/longhorn
 
-
+- name: Create a k8s namespace for sunbird-rc
+  kubernetes.core.k8s:
+    name: sunbird-rc
+    api_version: v1
+    kind: Namespace
+    state: present
 

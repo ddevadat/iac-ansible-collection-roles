@@ -1,18 +1,6 @@
 base_domain: all
-smtp_host: mock-smtp.mock-smtp
-sms_host: mock-smtp.mock-smtp
-smtp_port: 8025
-sms_port: 8080
-smtp_user: mock-smtp.user
-sms_user: mock-sms.user
-smtp_secret: mock-smtp.secret
-sms_secret: mock-sms.secret
-sms_authkey: authkey
-
-pre_reg_captcha_site_key: dummy-site-key
-pre_reg_captcha_secret_key: dummy-secret-key
-
-resident_captcha_site_key: dummy-site-key
-resident_captcha_secret_key: dummy-secret-key
-
-mosip_rel_version: v1.2.0.1
+postgres_replica: 3
+postgres_storage_class: longhorn
+postgres_data_size: 1Gi
+postgres_connectionInfo_username: registry
+postgress_db_host: postgres-cluster-rw

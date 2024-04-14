@@ -10,13 +10,11 @@
 - name: Wait for deployments in cnpg-system namespace
   shell: bash /root/check_deployment.sh cnpg-system
 
-##### Disabling this as we need to figure out basic authenthication by using istio virtual service
-# https://longhorn.io/docs/1.6.1/deploy/accessing-the-ui/longhorn-ingress/
+- name: "Update postgres db config"
+  template:
+    src: "postgres/postgres.yaml.j2"
+    dest: "/root/sunbird-rc/customization/postgres/postgres.yaml"
 
-# - name: "Update longhorn virtual service config"
-#   template:
-#     src: "longhorn/longhorn-virtual-service.yaml.j2"
-#     dest: "/root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml"
-
-# - name: Create longhorn virtual service
-#   shell: kubectl -n longhorn-system apply -f /root/sunbird-rc/customization/longhorn/longhorn-virtual-service.yaml
+- name: Create postres db
+  shell: |
+    kubectl -n sunbird-rc apply -f /root/sunbird-rc/customization/postgres/postgres.yaml
