@@ -13,8 +13,8 @@
       global:
         host: "sbrc.{{domain}}"
         secrets:
-          VAULT_SECRET_TOKEN: {{vault_root_token |b64encode }}
-          DB_URL: {{db_url |b64encode}}
+          VAULT_SECRET_TOKEN: "{{vault_root_token |b64encode }}"
+          DB_URL: "{{db_url |b64encode}}"
 
 - name: Wait for deployments in sunbird-rc namespace
   shell: bash /root/check_deployment.sh sunbird-rc
