@@ -5,4 +5,4 @@ postgres_data_size: 1Gi
 postgres_connectionInfo_username: registry
 postgress_db_host: postgres-cluster-rw
 db_url: postgres://{{postgres_connectionInfo_username}}:{{postgres_connectionInfo_password}}@{{postgress_db_host}}:5432/registry
-claims_ms_db_url: jdbc:postgresql://{{postgres_connectionInfo_username}}:{{postgres_connectionInfo_password}}@{{postgress_db_host}}:5432/registry
+claims_ms_db_url: jdbc:postgresql://{{postgres_connectionInfo_username}}:{{postgres_connectionInfo_password}}@{{postgress_db_host}}.sunbird-rc:5432/registry
