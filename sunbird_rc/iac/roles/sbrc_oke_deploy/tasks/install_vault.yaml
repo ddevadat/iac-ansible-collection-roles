@@ -32,7 +32,7 @@
 - name: Fetch file from remote server
   fetch:
     src: /root/sunbird-rc/customization/vault/vault_secrets.yaml
-    dest: /iac-run-dir/output/sbrc-deploy
+    dest: /iac-run-dir/output/sbrc-deploy/
     flat: yes
 
 # - name: Include variables from file
