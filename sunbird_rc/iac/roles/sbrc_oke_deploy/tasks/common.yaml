@@ -27,6 +27,7 @@
   with_items:
     - /root/sunbird-rc/customization
     - /root/sunbird-rc/customization/longhorn
+    - /root/sunbird-rc/customization/postgres
 
 - name: Create a k8s namespace for sunbird-rc
   kubernetes.core.k8s:
