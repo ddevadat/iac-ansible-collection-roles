@@ -27,3 +27,11 @@
     cd /root/sunbird-rc/customization/vault/
     /root/sunbird-rc/customization/vault/init_vault.sh
   when: not vault_secrets_file.stat.exists
+
+- name: Include variables from file
+  include_vars:
+    file: /root/sunbird-rc/customization/vault/vault_secrets.yaml
+
+- name: Print variables
+  debug:
+    msg: "vault_unseal_key: {{ vault_unseal_key }}, vault_root_token: {{ vault_root_token }}"
