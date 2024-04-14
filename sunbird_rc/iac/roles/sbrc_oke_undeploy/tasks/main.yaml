@@ -21,6 +21,11 @@
     kubectl -n sunbird-rc delete cluster.postgresql.cnpg.io/postgres-cluster
   ignore_errors: true
 
+- name: Cleanu up vault
+  file:
+    path: /root/sunbird-rc/customization/vault/vault_init.done
+    state: absent
+
 - name: Uninstall applications
   shell: /root/sunbird-rc/cleanup/uninstall.sh {{item}}
   with_items:
