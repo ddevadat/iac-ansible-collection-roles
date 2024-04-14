@@ -1,0 +1,17 @@
+- name: Install elasticsearch
+  kubernetes.core.helm:
+    name: elasticsearch
+    chart_ref: elastic/elasticsearch
+    release_namespace: sunbird-rc
+    create_namespace: true
+    chart_version: 7.3.2
+    update_repo_cache: true
+    values:
+      volumeClaimTemplate:
+        storageClassName: "{{ elastic_search_storage_class }}"
+        resources:
+          requests:
+            storage: "{{elastic_search_storage_size }}"
+
+- name: Wait for deployments in sunbird-rc namespace
+  shell: bash /root/check_deployment.sh sunbird-rc

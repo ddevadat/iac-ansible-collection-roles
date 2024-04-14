@@ -34,6 +34,11 @@
     name: hashicorp
     repo_url: https://helm.releases.hashicorp.com
 
+- name: Add elasticsearch helm repository
+  kubernetes.core.helm_repository:
+    name: elastic
+    repo_url: https://helm.elastic.co
+
 - name: Create project directories
   file:
     path: "{{item}}"
