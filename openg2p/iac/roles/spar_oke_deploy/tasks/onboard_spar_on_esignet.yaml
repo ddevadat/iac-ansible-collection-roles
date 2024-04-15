@@ -13,13 +13,13 @@
   shell: |
     #!/bin/bash
     cd /root/openg2p/customization/esignet/
-    python3 mkjwk.py
+    # python3 mkjwk.py
     if [ $? -eq 0 ]; then
       echo "OIDC client creation completed successfully" > /root/openg2p/customization/esignet/create_oidc_client.done
     fi
   register: create_oidc_client
   when: not create_oidc_client_file.stat.exists
 
-- name: Dump result
-  debug: 
-    msg: '{{create_oidc_client.stdout}}'
+# - name: Dump result
+#   debug: 
+#     msg: '{{create_oidc_client.stdout}}'
