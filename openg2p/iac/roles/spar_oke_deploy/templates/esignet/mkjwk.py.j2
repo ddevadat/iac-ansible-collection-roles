@@ -24,7 +24,9 @@ json_data = {
     "request": {
       "clientId": "sparclientid",
       "clientName": "SPAR",
-      "publicKey": public_key_json,
+      "publicKey": {
+        "jwk": public_key_json
+        }
       "userClaims": [
         "birthdate","address","gender","name","phone_number","email","picture"
       ],
