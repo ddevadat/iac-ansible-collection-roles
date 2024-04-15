@@ -1,0 +1,14 @@
+- name: "Upload make jwk script"
+  copy:
+    src: "esignet/mkjwk.py"
+    dest: "/root/openg2p/customization/esignet/mkjwk.py"
+    mode: '0755'
+
+- name: Execute mkjwk script
+  shell: |
+    cd /root/openg2p/customization/esignet/
+    python3 mkjwk.py
+
+# - name: Dump result
+#   debug: 
+#     msg: '{{data_load.stdout}}'

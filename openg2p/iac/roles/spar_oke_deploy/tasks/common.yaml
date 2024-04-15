@@ -4,6 +4,12 @@
     dest: "/root/check_deployment.sh"
     mode: "0755"
 
+- name: Install pip pre requisites
+  pip:
+    name: 
+      - kubernetes
+      - jwcrypto
+
 - name: Clone OpenG2P Deployment Repo
   ansible.builtin.git:
     repo: https://github.com/OpenG2P/openg2p-deployment.git

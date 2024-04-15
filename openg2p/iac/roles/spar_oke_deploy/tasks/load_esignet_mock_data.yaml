@@ -16,6 +16,6 @@
     python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
   register: data_load
 
-- name: Dump result
-  debug: 
-    msg: '{{data_load.stdout}}'
+# - name: Dump result
+#   debug: 
+#     msg: '{{data_load.stdout}}'
