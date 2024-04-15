@@ -31,11 +31,11 @@
     client_assertion_jwk: "{{jwk_private_key_encoded.content | b64decode}}"
 
 
-# - name: "Update spar update query"
-#   template:
-#     src: "spar/update_table.sql.j2"
-#     dest: "/root/openg2p/customization/kubernetes/social-payments-account-registry/update_table.sql"
-#     mode: '0755'
+- name: "Update spar update query"
+  template:
+    src: "spar/update_table.sql.j2"
+    dest: "/root/openg2p/customization/kubernetes/social-payments-account-registry/update_table.sql"
+    mode: '0755'
 
 # - name: Get postgres spar user password
 #   shell: |
@@ -48,10 +48,10 @@
 #     cd /root/openg2p/customization/kubernetes/social-payments-account-registry/
 #     kubectl -n postgres exec -i postgres-postgresql-0 -- bash -c 'export PGPASSWORD={{sparuser_password.stdout}} ; psql -U sparuser -d spardb -f -' < update_table.sql
 
-- name: Dump result
-  debug: 
-    msg: '{{client_assertion_jwk}}'
+# - name: Dump result
+#   debug: 
+#     msg: '{{client_assertion_jwk}}'
 
-- name: Dump result with double quotes
-  debug: 
-    msg: "{{client_assertion_jwk | regex_replace(\"'\", '\"') }}"
+# - name: Dump result with double quotes
+#   debug: 
+#     msg: "{{client_assertion_jwk | regex_replace(\"'\", '\"') }}"
