@@ -54,4 +54,4 @@
 
 - name: Dump result with double quotes
   debug: 
-    msg: '{{client_assertion_jwk | replace(\"'\",'\"') }}'
+    msg: "{{client_assertion_jwk | regex_replace(\"'\", '\"') }}"
