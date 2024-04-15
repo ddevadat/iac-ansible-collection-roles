@@ -1,13 +1,24 @@
 - name: "Upload make jwk script"
-  copy:
-    src: "esignet/mkjwk.py"
+  template:
+    src: "esignet/mkjwk.py.j2"
     dest: "/root/openg2p/customization/esignet/mkjwk.py"
     mode: '0755'
 
+- name: Check if oidc client creationg is already done
+  stat:
+    path: /root/openg2p/customization/esignet/create_oidc_client.done
+  register: create_oidc_client_file
+
 - name: Execute mkjwk script
   shell: |
+    #!/bin/bash
     cd /root/openg2p/customization/esignet/
-    python3 mkjwk.py
+    #python3 mkjwk.py
+    if [ $? -eq 0 ]; then
+      echo "OIDC client creation completed successfully" > /root/openg2p/customization/esignet/create_oidc_client.done
+    fi
+  register: create_oidc_client
+  when: not create_oidc_client_file.stat.exists
 
 # - name: Dump result
 #   debug: 
