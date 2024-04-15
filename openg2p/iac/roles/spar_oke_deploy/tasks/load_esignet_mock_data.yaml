@@ -17,15 +17,12 @@
 
 - name: Load sample seed data to esignet
   shell: |
+    #!/bin/bash
     cd /root/openg2p/customization/esignet/
+    jladslj
     # python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
+    if [ $? -eq 0 ]; then
+      echo "Data load completed successfully" > /root/openg2p/customization/esignet/data_load.done
+    fi
   register: data_load
   when: not data_load_file.stat.exists
-
-- name: Create progress file for data load
-  file:
-    path: /root/openg2p/customization/esignet/data_load.done
-    state: touch
-  when: 
-    - data_load.rc == 0
-    - data_load.rc is defined
