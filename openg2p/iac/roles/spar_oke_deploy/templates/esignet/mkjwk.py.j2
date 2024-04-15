@@ -42,8 +42,7 @@ json_data = {
         "private_key_jwt"
       ]
     }
+}
 api_res = requests.post(api_url, json=json_data)
 api_res.raise_for_status()
 print(f"Done line {i}", api_res.text)
-
-}
