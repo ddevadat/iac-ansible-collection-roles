@@ -8,7 +8,7 @@ import sys
 import requests
 
 # Generate RSA key pair
-key = jwk.JWK.generate(kty='RSA', size=2048)
+key = jwk.JWK.generate(kty='RSA', size=2048, use='sig')
 
 private_key_json = key.export()
 with open('private_key.json', 'w') as private_key_file:
