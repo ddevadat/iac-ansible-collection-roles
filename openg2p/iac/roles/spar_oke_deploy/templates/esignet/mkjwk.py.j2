@@ -43,7 +43,12 @@ json_data = {
       ],
       "clientAuthMethods": [
         "private_key_jwt"
-      ]
+      ],
+     "clientNameLangMap": {
+        "additionalProp1": "string",
+        "additionalProp2": "string",
+        "additionalProp3": "string"
+      }
     }
 }
 api_res = requests.post(api_url, json=json_data)
