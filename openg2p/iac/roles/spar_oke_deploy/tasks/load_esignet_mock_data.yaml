@@ -19,7 +19,7 @@
   shell: |
     #!/bin/bash
     cd /root/openg2p/customization/esignet/
-    # python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
+    python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
     if [ $? -eq 0 ]; then
       echo "Data load completed successfully" > /root/openg2p/customization/esignet/data_load.done
     fi
