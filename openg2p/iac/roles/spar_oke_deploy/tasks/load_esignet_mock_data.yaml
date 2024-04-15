@@ -10,12 +10,20 @@
     dest: "/root/openg2p/customization/esignet/sample_data2.csv"
     mode: '0755'
 
+- name: Check if data load is already done
+  stat:
+    path: /root/openg2p/customization/esignet/data_load.done
+  register: data_load_file
+
 - name: Load sample seed data to esignet
   shell: |
     cd /root/openg2p/customization/esignet/
-    python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
+    # python3 upload_data_to_mock_esignet.py /root/openg2p/customization/esignet/sample_data2.csv
   register: data_load
+  when: not data_load_file.stat.exists
 
-# - name: Dump result
-#   debug: 
-#     msg: '{{data_load.stdout}}'
+- name: Create progress file for data load
+  file:
+    path: /root/openg2p/customization/esignet/data_load.done
+    state: touch
+  when: data_load.rc == 0
