@@ -6,7 +6,7 @@ SET authorization_parameters = '{
   "jwks_endpoint": "https://esignet.{{domain}}/v1/esignet/oauth/.well-known/jwks.json",
   "client_id": "sparclientid",
   "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
-  "client_assertion_jwk": {{client_assertion_jwk}},
+  "client_assertion_jwk": '{{client_assertion_jwk}}',
   "response_type": "code",
   "scope": "openid profile email",
   "redirect_uri": "https://spar.{{domain}}/spar/v1/oauth2/callback",
