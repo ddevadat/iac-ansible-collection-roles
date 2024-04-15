@@ -31,6 +31,7 @@
   with_items:
     - /root/openg2p/customization
     - /root/openg2p/customization/grafana
+    - /root/openg2p/customization/esignet
     - /root/mosip/activemq
     - /root/mosip/msg_gateway
     - /root/mosip/captcha
