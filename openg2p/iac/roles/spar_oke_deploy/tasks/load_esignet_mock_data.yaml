@@ -26,4 +26,6 @@
   file:
     path: /root/openg2p/customization/esignet/data_load.done
     state: touch
-  when: data_load.rc == 0
+  when: 
+    - data_load.rc == 0
+    - data_load.rc is defined
