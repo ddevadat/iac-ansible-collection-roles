@@ -36,6 +36,17 @@
   ignore_errors: true
 
 
+- name: Remove zone records
+  oracle.oci.oci_dns_rrset:
+    zone_name_or_id: "{{domain}}"
+    domain: "{{item}}.{{domain}}"
+    rtype: "A"
+    state: absent
+  with_items:
+    - sbrc
+    - sbrciam
+    - sbrcfs
+
 # - name: Uninstall istio service mesh
 #   shell: |
 #     export PATH=/root/istio-1.21.0/bin:$PATH
