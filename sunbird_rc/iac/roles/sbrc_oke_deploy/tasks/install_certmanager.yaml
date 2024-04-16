@@ -16,5 +16,26 @@
     create_namespace: true
     update_repo_cache: true
 
-- name: Wait for deployments in cert-manager namespace
-  shell: bash /root/check_deployment.sh cert-manager
+# - name: Wait for deployments in cert-manager namespace
+#   shell: bash /root/check_deployment.sh cert-manager
+
+
+- name: Get oci iam user api private key
+  slurp:
+    src: /root/.oci/bastion.key
+  register: api_private_key
+
+- name: Set client_assertion_jwk private key
+  set_fact:
+    bastion_user_api_key: "{{api_private_key.content | b64decode}}"
+
+- name: "Update oci-profile secret"
+  template:
+    src: "cert-manager/oci-webhook-profile.yaml.j2"
+    dest: "/root/sunbird-rc/customization/cert-manager/oci-webhook-profile.yaml"
+    mode: '0755'
+
+- name: Create oci profile secret for cert-manager-webhook-oci
+  kubernetes.core.k8s:
+    state: present
+    src: /root/sunbird-rc/customization/cert-manager/oci-webhook-profile.yaml
