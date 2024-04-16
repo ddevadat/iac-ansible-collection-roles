@@ -1,0 +1,22 @@
+- name: Install certmanager
+  kubernetes.core.helm:
+    name: cert-manager
+    chart_ref: jetstack/cert-manager
+    release_namespace: cert-manager
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      installCRDs: true
+
+- name: Install cert-manager-webhook-oci
+  kubernetes.core.helm:
+    name: cert-manager-webhook-oci
+    chart_ref: cert-manager-webhook-oci/cert-manager-webhook-oci
+    release_namespace: cert-manager
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      installCRDs: true
+
+- name: Wait for deployments in cert-manager namespace
+  shell: bash /root/check_deployment.sh cert-manager
