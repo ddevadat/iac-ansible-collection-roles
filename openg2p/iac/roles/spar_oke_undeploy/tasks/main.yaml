@@ -37,3 +37,41 @@
     export PATH=/root/istio-1.21.0/bin:$PATH
     istioctl uninstall -y --purge
     kubectl delete ns istio-system
+
+
+- name: Remove zone records
+  oracle.oci.oci_dns_rrset:
+    zone_name_or_id: "{{domain}}"
+    domain: "{{item}}.{{domain}}"
+    rtype: "A"
+    state: absent
+  with_items:
+    - api
+    - prereg
+    - resident
+    - esignet
+    - spar
+    - grafana
+    - keycloak
+    - opensearch
+    - postgres
+    - api-internal
+    - activemq
+    - kibana
+    - regclient
+    - admin
+    - minio
+    - kafka
+    - pmp
+    - smtp
+    - compliance
+    - odk
+    - keymanager
+
+- name: Remove progres files
+  file:
+    path: "{{item}}"
+    state: absent
+  with_items:
+    - /root/openg2p/customization/esignet/data_load.done
+    - /root/openg2p/customization/esignet/create_oidc_client.done
