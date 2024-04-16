@@ -8,7 +8,7 @@ import sys
 import requests
 
 # Generate RSA key pair
-key = jwk.JWK.generate(kty='RSA', size=2048,alg='RS256',use='sig')
+key = jwk.JWK.generate(kty='RSA', size=2048)
 
 private_key_json = key.export()
 with open('private_key.json', 'w') as private_key_file:
@@ -24,8 +24,8 @@ api_url = "https://esignet.{{domain}}/v1/esignet/client-mgmt/oauth-client"
 json_data = {
     "requestTime": datetime.utcnow().isoformat(timespec="milliseconds")+"Z",
     "request": {
-      "clientId": "sparclientid3",
-      "clientName": "SPAR3",
+      "clientId": "sparclientid",
+      "clientName": "SPAR",
       "relyingPartyId": "dummyrelyingpartyid",
       "publicKey":  public_key_json,
       "userClaims": [
@@ -45,7 +45,7 @@ json_data = {
         "private_key_jwt"
       ],
      "clientNameLangMap": {
-        "eng": "SPAR3",
+        "eng": "SPAR",
       }
     }
 }
