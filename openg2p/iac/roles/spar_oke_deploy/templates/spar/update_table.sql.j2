@@ -1,7 +1,7 @@
 UPDATE login_providers
 SET authorization_parameters = '{
   "authorize_endpoint": "https://esignet.{{domain}}/authorize",
-  "token_endpoint": "https://esignet.{{domain}}/v1/esignet/oauth/token",
+  "token_endpoint": "https://esignet.{{domain}}/v1/esignet/oauth/v2/token",
   "validate_endpoint": "https://esignet.{{domain}}/v1/esignet/oidc/userinfo",
   "jwks_endpoint": "https://esignet.{{domain}}/v1/esignet/oauth/.well-known/jwks.json",
   "client_id": "sparclientid",
