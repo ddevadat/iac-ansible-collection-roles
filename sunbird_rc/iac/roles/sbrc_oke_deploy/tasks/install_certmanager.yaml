@@ -15,8 +15,6 @@
     release_namespace: cert-manager
     create_namespace: true
     update_repo_cache: true
-    values:
-      installCRDs: true
 
 - name: Wait for deployments in cert-manager namespace
   shell: bash /root/check_deployment.sh cert-manager
