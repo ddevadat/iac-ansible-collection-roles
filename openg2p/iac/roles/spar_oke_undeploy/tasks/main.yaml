@@ -10,6 +10,11 @@
     dest: "/root/openg2p/cleanup/uninstall.sh"
     mode: '0755'
 
+- name: Uninstall longhorn
+  shell: |
+    kubectl -n longhorn-system patch -p '{"value": "true"}' --type=merge lhs deleting-confirmation-flag
+  ignore_errors: true
+
 - name: Uninstall applications
   shell: /root/openg2p/cleanup/uninstall.sh {{item}}
   with_items:
@@ -30,6 +35,7 @@
     - softhsm
     - config-server
     - conf-secrets
+    - longhorn-system
   ignore_errors: true
 
 - name: Uninstall istio service mesh
