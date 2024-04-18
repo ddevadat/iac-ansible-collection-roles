@@ -16,3 +16,4 @@ resident_captcha_site_key: dummy-site-key
 resident_captcha_secret_key: dummy-secret-key
 
 mosip_rel_version: v1.2.0.1
+zone_compartment_id: "{{compartment_id}}"
