@@ -1,6 +1,6 @@
 - name: Checking if zone is already present
   oracle.oci.oci_dns_zone_facts:
-    compartment_id: "{{compartment_id}}"
+    compartment_id: "{{zone_compartment_id}}"
     name: "{{domain}}"
   register: result
   
@@ -21,7 +21,7 @@
 - name: Create zone 
   oracle.oci.oci_dns_zone:
     name: "{{domain}}"
-    compartment_id: "{{compartment_id}}"
+    compartment_id: "{{zone_compartment_id}}"
     zone_type: PRIMARY
   when: result.zones | length == 0
 
@@ -58,7 +58,7 @@
       rdata: "{{rancher_external_ip.stdout}}"
       rtype: "A"
       ttl: 300
-    compartment_id: "{{compartment_id}}"
+    compartment_id: "{{zone_compartment_id}}"
   with_items:
     - rancher
     - keycloak-rancher
