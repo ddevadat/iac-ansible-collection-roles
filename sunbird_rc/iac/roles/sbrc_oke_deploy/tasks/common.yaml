@@ -22,6 +22,17 @@
       - kubernetes
       - psycopg2
 
+- name: Install oci sdk
+  pip:
+    name: 
+      - pyOpenSSL
+      - oci
+
+- name: Remove OpenSSL python packages
+  shell: |
+    rm -R /usr/lib/python3/dist-packages/OpenSSL
+    pip3 install pyOpenSSL --upgrade
+
 - name: Add a reloader helm repository
   kubernetes.core.helm_repository:
     name: stakater
