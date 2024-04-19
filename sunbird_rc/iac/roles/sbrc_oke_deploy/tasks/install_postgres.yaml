@@ -31,18 +31,17 @@
     login_host: "{{postgress_db_host}}"
     login_user: "{{postgres_admin_user}}"
     login_password: "{{postgres_connectionInfo_password}}"
-    owner: "registry"
   when: create_registry_db 
 
 
-- name: Connect to registry database, create registry user, and grant access to database and products table
-  community.postgresql.postgresql_user:
-    db: registry
-    name: registry
-    password: "{{postgres_connectionInfo_password}}"
-    login_host: "{{postgress_db_host}}"
-    login_user: "{{postgres_admin_user}}"
-    login_password: "{{postgres_connectionInfo_password}}"
-    priv: "CONNECT/products:ALL"
-    expires: "infinity"
-  when: create_registry_db 
+# - name: Connect to registry database, create registry user, and grant access to database and products table
+#   community.postgresql.postgresql_user:
+#     db: registry
+#     name: registry
+#     password: "{{postgres_connectionInfo_password}}"
+#     login_host: "{{postgress_db_host}}"
+#     login_user: "{{postgres_admin_user}}"
+#     login_password: "{{postgres_connectionInfo_password}}"
+#     priv: "CONNECT/products:ALL"
+#     expires: "infinity"
+#   when: create_registry_db 
