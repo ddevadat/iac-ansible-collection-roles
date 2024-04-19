@@ -54,7 +54,6 @@
     state: present
     privs: ALL
     type: database
-    schema: public
     roles: registry
     grant_option: true
   when: create_registry_db 
