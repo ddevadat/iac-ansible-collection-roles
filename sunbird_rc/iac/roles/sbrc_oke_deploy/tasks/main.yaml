@@ -1,6 +1,6 @@
 
 - include_tasks: common.yaml
-# - include_tasks: install_istio_operator.yaml
+- include_tasks: install_istio_operator.yaml
 # - include_tasks: install_longhorn.yaml
 # - include_tasks: install_postgres.yaml
 # - include_tasks: install_reloader.yaml
@@ -13,4 +13,4 @@
 # - include_tasks: install_filestorage.yaml
 # - include_tasks: install_keycloak.yaml
 # - include_tasks: install_elasticsearch.yaml
-- include_tasks: install_registry.yaml
+# - include_tasks: install_registry.yaml
