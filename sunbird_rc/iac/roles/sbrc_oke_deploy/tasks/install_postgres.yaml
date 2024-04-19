@@ -8,15 +8,20 @@
     update_repo_cache: true
   when: not create_registry_db 
 
-# - name: Wait for deployments in cnpg-system namespace
-#   shell: bash /root/check_deployment.sh cnpg-system
+- name: Wait for deployments in cnpg-system namespace
+  shell: bash /root/check_deployment.sh cnpg-system
+  when: not create_registry_db 
 
-# - name: "Update postgres db config"
-#   template:
-#     src: "postgres/postgres.yaml.j2"
-#     dest: "/root/sunbird-rc/customization/postgres/postgres.yaml"
+- name: "Update postgres db config"
+  template:
+    src: "postgres/postgres.yaml.j2"
+    dest: "/root/sunbird-rc/customization/postgres/postgres.yaml"
+  when: not create_registry_db 
 
-# - name: Create postres db
-#   shell: |
-#     kubectl -n sunbird-rc apply -f /root/sunbird-rc/customization/postgres/postgres.yaml
+- name: Create postres db
+  shell: |
+    kubectl -n sunbird-rc apply -f /root/sunbird-rc/customization/postgres/postgres.yaml
+  when: not create_registry_db 
+
+
 
