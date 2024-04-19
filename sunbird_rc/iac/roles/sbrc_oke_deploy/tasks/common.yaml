@@ -9,6 +9,11 @@
     name: python3-pip
     update_cache: yes
 
+- name: Install postgres lib
+  package:
+    name:
+      - libpq-dev
+
 - name: Install kubernetes pre requisites
   pip:
     name: 
