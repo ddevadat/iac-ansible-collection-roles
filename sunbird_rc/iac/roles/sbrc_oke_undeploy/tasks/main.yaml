@@ -22,7 +22,7 @@
   ignore_errors: true
   when: not create_registry_db 
 
-- name: Cleanu up vault
+- name: Clean up vault
   file:
     path: /root/sunbird-rc/customization/vault/vault_init.done
     state: absent
