@@ -34,17 +34,17 @@
 #     state: present
 #   when: create_registry_db 
 
-# - name: Create registry user.
-#   community.postgresql.postgresql_user:
-#     name: "registry"
-#     password: "{{postgres_connectionInfo_password}}"
-#     login_db: "postgres"
-#     login_host: "{{postgress_db_host}}"
-#     login_user: "{{postgres_admin_user}}"
-#     login_password: "{{postgres_connectionInfo_password}}"
-#     expires: infinity
-#     state: absent
-#   when: create_registry_db 
+- name: Create registry user.
+  community.postgresql.postgresql_user:
+    name: "registry"
+    password: "{{postgres_connectionInfo_password}}"
+    login_db: "postgres"
+    login_host: "{{postgress_db_host}}"
+    login_user: "{{postgres_admin_user}}"
+    login_password: "{{postgres_connectionInfo_password}}"
+    expires: infinity
+    state: absent
+  when: create_registry_db 
 
 - name: Grant privs to user registry on database registry
   community.postgresql.postgresql_privs:
