@@ -7,7 +7,6 @@
     update_repo_cache: true
     values:
       rccoreenv:
-        elastic_search_enabled: False
         connectionInfo_uri: "{{registry_db_url}}"
         connectionInfo_username: "{{postgres_connectionInfo_username}}"
         connectionInfo_password: "{{postgres_connectionInfo_password}}"
