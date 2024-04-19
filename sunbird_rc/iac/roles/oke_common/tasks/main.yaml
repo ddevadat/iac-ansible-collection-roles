@@ -41,11 +41,6 @@
     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /root/.kube/oke_k8s_config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 /root/.kube/oke_k8s_config
 
-- name: Generate kube config for oke obs cluster
-  shell: |
-    oci ce cluster create-kubeconfig --cluster-id {{oke_obs_cluster_id}} --file /root/.kube/oke_obs_config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
-    chmod 600 /root/.kube/oke_obs_config
-
 - name: Update apt cache
   apt:
     update_cache: yes
@@ -96,7 +91,7 @@
   blockinfile:
     path: /root/.bashrc
     block: |
-      export KUBECONFIG=/root/.kube/oke_obs_config
+      export KUBECONFIG=/root/.kube/oke_k8s_config
       export PATH=/root/istio-1.21.0/bin:$PATH
       alias k=kubectl
       alias kctx=kubectx
