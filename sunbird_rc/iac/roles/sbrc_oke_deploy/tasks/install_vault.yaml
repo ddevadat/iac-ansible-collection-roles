@@ -40,10 +40,10 @@
     flat: yes
   when: vault_secrets_file.stat.exists
 
-# - name: Delete vault secret file
-#   file:
-#     path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
-#     state: absent
+- name: Delete vault secret file
+  file:
+    path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
+    state: absent
 
 - name: Delete vault cluster key json file
   file:
