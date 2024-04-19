@@ -28,6 +28,7 @@
   community.postgresql.postgresql_user:
     name: "registry"
     password: "{{postgres_connectionInfo_password}}"
+    login_db: "postgres"
     login_host: "{{postgress_db_host}}"
     login_user: "{{postgres_admin_user}}"
     login_password: "{{postgres_connectionInfo_password}}"
