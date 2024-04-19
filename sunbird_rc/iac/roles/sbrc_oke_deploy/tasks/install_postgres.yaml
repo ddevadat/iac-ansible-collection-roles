@@ -53,7 +53,7 @@
     login_password: "{{postgres_connectionInfo_password}}"
     state: present
     privs: ALL
-    objs: ALL_IN_SCHEMA
+    type: database
     schema: public
     roles: registry
     grant_option: true
