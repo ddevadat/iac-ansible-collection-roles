@@ -22,17 +22,16 @@
     path: /root/sunbird-rc/customization/vault/vault_init.done
   register: vault_init_file
 
-- name: Check if vault secret file exists
-  stat:
-    path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
-  register: vault_secrets_file
-
 - name: Unseal vault
   shell: |
     cd /root/sunbird-rc/customization/vault/
     /root/sunbird-rc/customization/vault/init_vault.sh
   when: not vault_init_file.stat.exists
 
+- name: Check if vault secret file exists
+  stat:
+    path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
+  register: vault_secrets_file
 
 - name: Fetch file from remote server
   fetch:
