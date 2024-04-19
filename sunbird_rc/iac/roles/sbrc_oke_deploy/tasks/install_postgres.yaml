@@ -24,7 +24,7 @@
   when: not create_registry_db 
 
 
-- name: Create registry databse
+- name: Create registry database
   community.postgresql.postgresql_db:
     name: registry
     comment: Sunbird RC Database

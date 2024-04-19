@@ -53,3 +53,13 @@
     export PATH=/root/istio-1.21.0/bin:$PATH
     istioctl uninstall -y --purge
     kubectl delete ns istio-system
+
+- name: Delete registry database
+  community.postgresql.postgresql_db:
+    name: registry
+    comment: Sunbird RC Database
+    login_host: "{{postgress_db_host}}"
+    login_user: "{{postgres_admin_user}}"
+    login_password: "{{postgres_connectionInfo_password}}"
+    state: absent
+  when: create_registry_db 
