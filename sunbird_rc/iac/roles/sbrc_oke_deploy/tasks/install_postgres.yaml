@@ -18,3 +18,4 @@
 - name: Create postres db
   shell: |
     kubectl -n sunbird-rc apply -f /root/sunbird-rc/customization/postgres/postgres.yaml
+

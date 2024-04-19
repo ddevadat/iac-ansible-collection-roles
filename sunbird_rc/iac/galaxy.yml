@@ -47,6 +47,7 @@ dependencies:
   "amazon.aws": "=5.2.0"
   "community.general": "=5.8.3"
   "oracle.oci": "=5.0.0"
+  "community.postgresql": "=3.4.0"
 
 # The URL of the originating SCM repository
 repository: http://example.com/repository
