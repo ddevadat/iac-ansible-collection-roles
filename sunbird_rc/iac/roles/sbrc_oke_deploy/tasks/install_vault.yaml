@@ -40,20 +40,12 @@
     flat: yes
   when: vault_secrets_file.stat.exists
 
-- name: Delete vault secret file
-  file:
-    path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
-    state: absent
+# - name: Delete vault secret file
+#   file:
+#     path: /root/sunbird-rc/customization/vault/vault_secrets.yaml
+#     state: absent
 
 - name: Delete vault cluster key json file
   file:
     path: /root/sunbird-rc/customization/vault/cluster-keys.json
     state: absent
-
-# - name: Include variables from file
-#   include_vars:
-#     file: /root/sunbird-rc/customization/vault/vault_secrets.yaml
-
-# - name: Print variables
-#   debug:
-#     msg: "inventory_dir: {{ inventory_dir }}"
