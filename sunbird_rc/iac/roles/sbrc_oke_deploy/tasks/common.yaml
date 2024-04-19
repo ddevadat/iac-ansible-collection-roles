@@ -13,6 +13,8 @@
   package:
     name:
       - libpq-dev
+      - postgresql
+
 
 - name: Install kubernetes pre requisites
   pip:
