@@ -13,6 +13,7 @@
   pip:
     name: 
       - kubernetes
+      - psycopg2
 
 - name: Add a reloader helm repository
   kubernetes.core.helm_repository:
