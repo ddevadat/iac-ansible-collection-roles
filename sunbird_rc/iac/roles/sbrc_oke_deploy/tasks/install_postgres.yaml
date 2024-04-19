@@ -31,6 +31,7 @@
     login_host: "{{postgress_db_host}}"
     login_user: "{{postgres_admin_user}}"
     login_password: "{{postgres_connectionInfo_password}}"
+    state: absent
   when: create_registry_db 
 
 
@@ -42,6 +43,5 @@
 #     login_host: "{{postgress_db_host}}"
 #     login_user: "{{postgres_admin_user}}"
 #     login_password: "{{postgres_connectionInfo_password}}"
-#     priv: "CONNECT/products:ALL"
 #     expires: "infinity"
 #   when: create_registry_db 
