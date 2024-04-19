@@ -20,6 +20,7 @@
   shell: |
     kubectl -n sunbird-rc delete cluster.postgresql.cnpg.io/postgres-cluster
   ignore_errors: true
+  when: not create_registry_db 
 
 - name: Cleanu up vault
   file:
@@ -47,8 +48,8 @@
     - sbrciam
     - sbrcfs
 
-# - name: Uninstall istio service mesh
-#   shell: |
-#     export PATH=/root/istio-1.21.0/bin:$PATH
-#     istioctl uninstall -y --purge
-#     kubectl delete ns istio-system
+- name: Uninstall istio service mesh
+  shell: |
+    export PATH=/root/istio-1.21.0/bin:$PATH
+    istioctl uninstall -y --purge
+    kubectl delete ns istio-system
