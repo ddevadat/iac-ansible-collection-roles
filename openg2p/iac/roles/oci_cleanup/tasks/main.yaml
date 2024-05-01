@@ -6,4 +6,4 @@
 
 - name: Dump result
   debug: 
-    msg: '{{result}}'
+    msg: '{{result.log_analytics_entities}}'
