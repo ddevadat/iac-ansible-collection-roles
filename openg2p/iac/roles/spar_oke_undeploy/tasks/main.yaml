@@ -41,6 +41,7 @@
   shell: |
     export PATH=/root/istio-1.21.0/bin:$PATH
     istioctl uninstall -y --purge
+    kubectl patch ns istio-system -p '{"metadata":{"finalizers":null}}'
     kubectl delete ns istio-system
 
 
