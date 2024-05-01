@@ -6,4 +6,5 @@
 
 - name: Dump result
   debug: 
-    msg: '{{result.log_analytics_entities}}'
+    msg: '{{item.id}}'
+  with_items: '{{result.log_analytics_entities}}'
