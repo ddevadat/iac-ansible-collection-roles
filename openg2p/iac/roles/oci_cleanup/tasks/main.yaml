@@ -1,0 +1,9 @@
+- name: List log_analytics_entities
+  oracle.oci.oci_log_analytics_entity_facts:
+    namespace_name: "{{namespace}}"
+    compartment_id: "{{compartment_id}}"
+  register: result
+
+- name: Dump result
+  debug: 
+    msg: '{{result}}'
