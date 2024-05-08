@@ -9,6 +9,12 @@
   shell: cp -r /root/openg2p-deployment/kubernetes/ /root/openg2p/customization/
 
 
+- name: "Update spar config"
+  template:
+    src: "spar/install.j2"
+    dest: "/root/openg2p/customization/kubernetes/social-payments-account-registry/install.sh"
+    mode: '0755'
+
 - name: "Update spar helm values config"
   template:
     src: "spar/values.yaml.j2"
