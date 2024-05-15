@@ -15,58 +15,43 @@
     istioctl install -y -f /root/kubernetes/istio/istio-operator-external-lb.yaml
 
 
-- name: Upload ssl cert private key
-  copy:
-    src: "{{ ansible_ssl_cert_private_key_file }}"
-    dest: "/root/.ssh/ssl_cert_private_key.key"
-    mode: "0600"
+# - name: Upload ssl cert private key
+#   copy:
+#     src: "{{ ansible_ssl_cert_private_key_file }}"
+#     dest: "/root/.ssh/ssl_cert_private_key.key"
+#     mode: "0600"
 
-- name: Upload ssl cert file
-  copy:
-    src: "{{ ansible_ssl_cert_file }}"
-    dest: "/root/.ssh/ssl_cert.pem"
-    mode: "0600"
+# - name: Upload ssl cert file
+#   copy:
+#     src: "{{ ansible_ssl_cert_file }}"
+#     dest: "/root/.ssh/ssl_cert.pem"
+#     mode: "0600"
 
-- name: Create ssl secret for istio gateway
-  shell: |
-    kubectl -n istio-system delete secret tls-sunbird-rc-ingress
-    kubectl create secret tls tls-sunbird-rc-ingress -n istio-system \
-    --cert=/root/.ssh/ssl_cert.pem \
-    --key=/root/.ssh/ssl_cert_private_key.key
+# - name: Create ssl secret for istio gateway
+#   shell: |
+#     kubectl -n istio-system delete secret tls-sunbird-rc-ingress
+#     kubectl create secret tls tls-sunbird-rc-ingress -n istio-system \
+#     --cert=/root/.ssh/ssl_cert.pem \
+#     --key=/root/.ssh/ssl_cert_private_key.key
 
-- name: Remove ssl cert private key
-  ansible.builtin.file:
-    path: /root/.ssh/ssl_cert_private_key.key
-    state: absent
+# - name: Remove ssl cert private key
+#   ansible.builtin.file:
+#     path: /root/.ssh/ssl_cert_private_key.key
+#     state: absent
 
-- name: Remove ssl cert file
-  ansible.builtin.file:
-    path: /root/.ssh/ssl_cert.pem
-    state: absent
+# - name: Remove ssl cert file
+#   ansible.builtin.file:
+#     path: /root/.ssh/ssl_cert.pem
+#     state: absent
 
-- name: "Update istio gateway config"
-  template:
-    src: "gateway.j2"
-    dest: "/root/kubernetes/istio/gateway.yaml"
-
-- name: Create istio gateway for all hosts
-  shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
-
-- name: Wait for deployments in istio-system namespace
-  shell: bash /root/check_deployment.sh istio-system
-
-# - name: "Update clusterissuer config"
+# - name: "Update istio gateway config"
 #   template:
-#     src: "cluster_issuer.j2"
-#     dest: "/root/kubernetes/istio/cluster_issuer.yaml"
+#     src: "gateway.j2"
+#     dest: "/root/kubernetes/istio/gateway.yaml"
 
-# - name: Install Cluster Issuer
-#   shell: kubectl apply -f /root/kubernetes/istio/cluster_issuer.yaml
+# - name: Create istio gateway for all hosts
+#   shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
 
-# - name: "Update certificate config"
-#   template:
-#     src: "certificate.j2"
-#     dest: "/root/kubernetes/istio/certificate.yaml"
+# - name: Wait for deployments in istio-system namespace
+#   shell: bash /root/check_deployment.sh istio-system
 
-# - name: Install Certificate
-#   shell: kubectl apply -f /root/kubernetes/istio/certificate.yaml
