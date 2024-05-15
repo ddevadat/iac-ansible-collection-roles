@@ -16,8 +16,8 @@
     create_namespace: true
     update_repo_cache: true
 
-- name: Wait for deployments in cert-manager namespace
-  shell: bash /root/check_deployment.sh cert-manager
+# - name: Wait for deployments in cert-manager namespace
+#   shell: bash /root/check_deployment.sh cert-manager
 
 
 - name: Get oci iam user api private key
