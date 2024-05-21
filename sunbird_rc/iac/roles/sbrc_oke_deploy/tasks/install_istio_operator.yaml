@@ -44,14 +44,14 @@
 #     path: /root/.ssh/ssl_cert.pem
 #     state: absent
 
-# - name: "Update istio gateway config"
-#   template:
-#     src: "gateway.j2"
-#     dest: "/root/kubernetes/istio/gateway.yaml"
+- name: "Update istio gateway config"
+  template:
+    src: "gateway.j2"
+    dest: "/root/kubernetes/istio/gateway.yaml"
 
-# - name: Create istio gateway for all hosts
-#   shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
+- name: Create istio gateway for all hosts
+  shell: kubectl apply -f /root/kubernetes/istio/gateway.yaml
 
-# - name: Wait for deployments in istio-system namespace
-#   shell: bash /root/check_deployment.sh istio-system
+- name: Wait for deployments in istio-system namespace
+  shell: bash /root/check_deployment.sh istio-system
 
