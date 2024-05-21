@@ -1,3 +1,13 @@
+- name: Get Deployment status
+  shell: |
+    kubectl get pods --all-namespaces
+  regsiter: deployment_results
+
+- name: Show Deployment status
+  debug: 
+    msg: '{{deployment_results.stdout}}'
+
+
 - name: "Create Outputs"
   template:
     src: "outputs.j2"
