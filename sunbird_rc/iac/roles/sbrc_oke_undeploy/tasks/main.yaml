@@ -10,6 +10,15 @@
     dest: "/root/sunbird-rc/cleanup/uninstall.sh"
     mode: '0755'
 
+- name: Delete k8s objects for certmanager
+  kubernetes.core.k8s:
+    state: absent
+    src: /root/sunbird-rc/customization/cert-manager/{{item}}
+  with_items:
+    - oci-webhook-profile.yaml
+    - clusterissuer.yaml
+    - certificate.yaml
+
 
 - name: Uninstall longhorn
   shell: |
@@ -34,6 +43,7 @@
     - cnpg-system
     - vault   
     - longhorn-system
+    - cert-manager
   ignore_errors: true
 
 
