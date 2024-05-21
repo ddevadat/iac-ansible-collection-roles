@@ -1,7 +1,7 @@
 - name: Get Deployment status
   shell: |
     kubectl get pods --all-namespaces
-  regsiter: deployment_results
+  register: deployment_results
 
 - name: Show Deployment status
   debug: 
