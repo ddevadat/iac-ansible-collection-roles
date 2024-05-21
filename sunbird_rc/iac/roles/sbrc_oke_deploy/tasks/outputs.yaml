@@ -3,10 +3,9 @@
     kubectl get pods --all-namespaces
   register: deployment_results
 
-- name: Show Deployment status
-  debug: 
-    msg: '{{deployment_results.stdout}}'
-
+- name: Set deployment result
+  set_fact:
+    deployment_status: "{{deployment_results.stdout}}"
 
 - name: "Create Outputs"
   template:
