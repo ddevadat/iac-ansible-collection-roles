@@ -9,4 +9,5 @@ spec:
     - "*.{{domain}}"
   issuerRef:
     name: letsencrypt-staging
+    kind: ClusterIssuer
   secretName: {{ domain | replace('.', '-') }}
