@@ -1,5 +1,5 @@
 - name: "Create Outputs"
   template:
     src: "outputs.j2"
-    dest: "/iac-run-dir/output/functional-registry-app/"
+    dest: "/iac-run-dir/output/functional-registry-app/outputs_{{domain}}.txt"
     mode: "0600"
