@@ -4,7 +4,6 @@ metadata:
   name: {{ domain | replace('.', '-') }}
   namespace: istio-system
 spec:
-  commonName: {{domain}} 
   dnsNames:
     - "*.{{domain}}"
   issuerRef:
