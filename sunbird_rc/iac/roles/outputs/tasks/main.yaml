@@ -1,5 +1,5 @@
 - name: "Create Outputs"
   template:
     src: "outputs.j2"
-    dest: "{{ inventory_dir }}/"
+    dest: "/iac-run-dir/output/functional-registry-app/"
     mode: "0600"
