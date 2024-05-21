@@ -1,0 +1,5 @@
+- name: "Create Outputs"
+  template:
+    src: "outputs.j2"
+    dest: "{{ inventory_dir }}/"
+    mode: "0600"
