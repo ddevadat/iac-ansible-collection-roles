@@ -1,7 +1,7 @@
 - name : Debug value
   debug: 
     msg: '{{create_registry_db}}'
-  when: create_registry_db 
+  when: create_registry_db | bool
 
 - name: Install Postgres
   kubernetes.core.helm:
