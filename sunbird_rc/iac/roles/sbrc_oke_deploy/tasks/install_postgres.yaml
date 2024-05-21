@@ -1,3 +1,7 @@
+- name : Debug value
+  debug: 
+    msg: '{{create_registry_db}}'
+
 - name: Install Postgres
   kubernetes.core.helm:
     name: cnpg
