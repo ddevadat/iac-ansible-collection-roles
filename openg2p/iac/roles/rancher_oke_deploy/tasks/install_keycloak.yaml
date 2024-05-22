@@ -40,7 +40,7 @@
     update_repo_cache: true
     values:
       proxy: edge
-      production: false
+      production: true
       containerSecurityContext:
         readOnlyRootFilesystem: false
       ingress:
