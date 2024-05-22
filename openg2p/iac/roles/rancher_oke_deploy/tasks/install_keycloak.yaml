@@ -41,6 +41,8 @@
     values:
       proxy: edge
       production: true
+      containerSecurityContext:
+        readOnlyRootFilesystem: false
       ingress:
         enabled: true
         ingressClassName: "nginx"
