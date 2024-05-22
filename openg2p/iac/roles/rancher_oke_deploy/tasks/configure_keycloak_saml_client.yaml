@@ -126,7 +126,7 @@
 - name: Update default admin user validate false
   community.general.keycloak_user:
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
-    validate_certs: "false"
+    validate_certs: False
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
     auth_realm: master
