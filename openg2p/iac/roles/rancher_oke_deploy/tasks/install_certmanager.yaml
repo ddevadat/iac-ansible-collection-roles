@@ -15,3 +15,33 @@
 
 - name: Wait for deployments in cert-manager namespace
   shell: bash /root/check_deployment.sh cert-manager
+
+#####
+
+- name: Install cert-manager-webhook-oci
+  kubernetes.core.helm:
+    name: cert-manager-webhook-oci
+    chart_ref: cert-manager-webhook-oci/cert-manager-webhook-oci
+    release_namespace: cert-manager
+    create_namespace: true
+    update_repo_cache: true
+
+
+- name: "Update templates"
+  template:
+    src: "cert-manager/{{item}}.j2"
+    dest: "/root/sunbird-rc/customization/cert-manager/{{item}}"
+    mode: '0755'
+  with_items:
+    - oci-webhook-profile.yaml
+    - clusterissuer.yaml
+    - certificate.yaml
+
+- name: Create k8s objects for certmanager
+  kubernetes.core.k8s:
+    state: present
+    src: /root/sunbird-rc/customization/cert-manager/{{item}}
+  with_items:
+    - oci-webhook-profile.yaml
+    - clusterissuer.yaml
+    - certificate.yaml
