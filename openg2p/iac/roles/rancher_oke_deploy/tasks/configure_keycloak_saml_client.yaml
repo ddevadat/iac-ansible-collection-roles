@@ -123,7 +123,7 @@
         saml.onetimeuse.condition: "false"
         saml_idp_initiated_sso_url_name: "IdPSSOName"
     
-- name: Update default admin user validate false
+- name: Update default admin user validate False
   community.general.keycloak_user:
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
     validate_certs: "False"
