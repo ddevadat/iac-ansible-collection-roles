@@ -2,6 +2,6 @@
 # - include_tasks: install_certmanager.yaml
 - include_tasks: install_keycloak.yaml
 - include_tasks: install_nginx_controller.yaml
-# - include_tasks: update_zone_record.yaml
-# - include_tasks: install_rancher.yaml
+- include_tasks: update_zone_record.yaml
+- include_tasks: install_rancher.yaml
 # - include_tasks: configure_keycloak_saml_client.yaml
