@@ -19,3 +19,12 @@
   shell: |
     rm -R /usr/lib/python3/dist-packages/OpenSSL
     pip3 install pyOpenSSL --upgrade
+
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /root/openg2p/customization/cert-manager
+    - /root/openg2p/customization/outputs

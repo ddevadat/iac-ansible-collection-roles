@@ -45,7 +45,7 @@
 - name: "Update templates"
   template:
     src: "cert-manager/{{item}}.j2"
-    dest: "/root/sunbird-rc/customization/cert-manager/{{item}}"
+    dest: "/root/openg2p/customization/cert-manager/{{item}}"
     mode: '0755'
   with_items:
     - oci-webhook-profile.yaml
@@ -55,7 +55,7 @@
 - name: Create k8s objects for certmanager
   kubernetes.core.k8s:
     state: present
-    src: /root/sunbird-rc/customization/cert-manager/{{item}}
+    src: /root/openg2p/customization/cert-manager/{{item}}
   with_items:
     - oci-webhook-profile.yaml
     - clusterissuer.yaml
