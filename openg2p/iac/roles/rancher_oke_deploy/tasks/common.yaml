@@ -13,7 +13,6 @@
   pip:
     name: 
       - kubernetes
-      - psycopg2
 
 
 - name: Install oci sdk
