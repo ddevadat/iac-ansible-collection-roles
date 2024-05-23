@@ -69,6 +69,18 @@
     echo $ssl_cert
   register: ssl_cert
 
-- name: Show certificate 
+- name: Get ssl certificate private key
+  shell: |
+    export KUBECONFIG="/root/.kube/oke_obs_config"
+    ssl_cert_key=`kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.key"|base64decode{{ '}}' }}'`
+    echo $ssl_cert_key
+  register: ssl_cert_key
+
+- name: Show certificate key
   debug: 
-    msg: '{{ssl_cert.stdout}}'
+    msg: '{{ssl_cert_key.stdout}}'
+
+- name: Set ssl certificates variable
+  set_fact:
+    ssl_cert: "{{ssl_cert.stdout}}"
+    ssl_cert_key: "{{ssl_cert_key.stdout}}"
