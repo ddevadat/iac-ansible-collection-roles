@@ -80,3 +80,7 @@
   set_fact:
     ssl_cert: "{{ssl_cert.stdout}}"
     ssl_cert_key: "{{ssl_cert_key.stdout}}"
+
+- name: Dump result
+  debug: 
+    msg: '{{ssl_cert_key}}'
