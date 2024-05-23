@@ -65,15 +65,13 @@
 - name: Get ssl certificate
   shell: |
     export KUBECONFIG="/root/.kube/oke_obs_config"
-    ssl_cert=`kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.crt"|base64decode{{ '}}' }}'`
-    echo $ssl_cert > /root/.ssh/ssl_cert.pem
+    kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.crt"|base64decode{{ '}}' }}' > /root/.ssh/ssl_cert.pem
     chmod 600 /root/.ssh/ssl_cert.pem
 
 - name: Get ssl certificate private key
   shell: |
     export KUBECONFIG="/root/.kube/oke_obs_config"
-    ssl_cert_key=`kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.key"|base64decode{{ '}}' }}'`
-    echo $ssl_cert_key > /root/.ssh/ssl_cert_private_key.key
+    kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.key"|base64decode{{ '}}' }}' > /root/.ssh/ssl_cert_private_key.key
     chmod 600 /root/.ssh/ssl_cert_private_key.key
   register: output_ssl_cert_key
 
