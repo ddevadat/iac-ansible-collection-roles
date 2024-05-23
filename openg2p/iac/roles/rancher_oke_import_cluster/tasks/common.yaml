@@ -66,21 +66,42 @@
   shell: |
     export KUBECONFIG="/root/.kube/oke_obs_config"
     ssl_cert=`kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.crt"|base64decode{{ '}}' }}'`
-    echo $ssl_cert
-  register: output_ssl_cert
+    echo $ssl_cert > /root/.ssh/ssl_cert.pem
+    chmod 600 /root/.ssh/ssl_cert.pem
 
 - name: Get ssl certificate private key
   shell: |
     export KUBECONFIG="/root/.kube/oke_obs_config"
     ssl_cert_key=`kubectl get secret --namespace ingress-nginx {{ domain | replace('.', '-') }} -o go-template='{{ '{{' }}index .data "tls.key"|base64decode{{ '}}' }}'`
-    echo $ssl_cert_key
+    echo $ssl_cert_key > /root/.ssh/ssl_cert_private_key.key
+    chmod 600 /root/.ssh/ssl_cert_private_key.key
   register: output_ssl_cert_key
+
+- name: Get ssl certificate content
+  slurp:
+    src: /root/.ssh/ssl_cert.pem
+  register: ssl_cert_content_encoded
+
+- name: Get ssl certificate key content
+  slurp:
+    src: /root/.ssh/ssl_cert_private_key.key
+  register: ssl_cert_key_content_encoded
 
 - name: Set ssl certificates variable
   set_fact:
-    ssl_cert: "{{output_ssl_cert.stdout}}"
-    ssl_cert_key: "{{output_ssl_cert_key.stdout}}"
+    ssl_cert: "{{ssl_cert_content_encoded.content | b64decode}}"
+    ssl_cert_key: "{{ssl_cert_key_content_encoded.content | b64decode}}"
+
+- name: Remove ssl cert private key
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert_private_key.key
+    state: absent
+
+- name: Remove ssl cert file
+  ansible.builtin.file:
+    path: /root/.ssh/ssl_cert.pem
+    state: absent
 
 - name: Dump result
   debug: 
-    msg: '{{output_ssl_cert_key}}'
+    msg: '{{ssl_cert_key}}'
