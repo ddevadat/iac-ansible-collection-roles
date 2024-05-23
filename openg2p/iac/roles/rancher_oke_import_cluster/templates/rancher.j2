@@ -83,7 +83,7 @@ resource "rancher2_auth_config_keycloak" "keycloak" {
 resource "null_resource" "run_kubectl" {
   provisioner "local-exec" {
     command     = <<-EOT
-          ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command}
+          ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].insecure_command}
     EOT
     working_dir = path.module
   }
@@ -104,4 +104,8 @@ output "cluster_registration_token" {
 
 output "cluster_registration_command" {
   value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command
+}
+
+output "cluster_registration_command_insecure" {
+  value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].insecure_command
 }
