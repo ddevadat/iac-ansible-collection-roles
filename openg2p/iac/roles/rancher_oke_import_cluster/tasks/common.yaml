@@ -71,4 +71,4 @@
 
 - name: Show certificate 
   debug: 
-    msg: '{{ssl_cert}}'
+    msg: '{{ssl_cert.stdout}}'
