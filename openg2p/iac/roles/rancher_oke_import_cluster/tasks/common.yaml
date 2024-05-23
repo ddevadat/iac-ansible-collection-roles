@@ -76,10 +76,6 @@
     echo $ssl_cert_key
   register: ssl_cert_key
 
-- name: Show certificate key
-  debug: 
-    msg: '{{ssl_cert_key.stdout}}'
-
 - name: Set ssl certificates variable
   set_fact:
     ssl_cert: "{{ssl_cert.stdout}}"
