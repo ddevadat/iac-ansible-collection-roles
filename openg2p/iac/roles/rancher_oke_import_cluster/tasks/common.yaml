@@ -83,4 +83,4 @@
 
 - name: Dump result
   debug: 
-    msg: '{{ssl_cert_key}}'
+    msg: '{{ssl_cert_key |trim}}'
