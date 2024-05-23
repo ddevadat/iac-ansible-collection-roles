@@ -18,6 +18,7 @@ provider "rancher2" {
   alias = "admin"
   api_url   = module.bootstrap.url
   token_key = module.bootstrap.token
+  insecure = true
 }
 
 variable "server_url" {
