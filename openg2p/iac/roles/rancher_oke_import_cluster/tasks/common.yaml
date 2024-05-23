@@ -92,15 +92,15 @@
     ssl_cert: "{{ssl_cert_content_encoded.content | b64decode}}"
     ssl_cert_key: "{{ssl_cert_key_content_encoded.content | b64decode}}"
 
-- name: Remove ssl cert private key
-  ansible.builtin.file:
-    path: /root/.ssh/ssl_cert_private_key.key
-    state: absent
+# - name: Remove ssl cert private key
+#   ansible.builtin.file:
+#     path: /root/.ssh/ssl_cert_private_key.key
+#     state: absent
 
-- name: Remove ssl cert file
-  ansible.builtin.file:
-    path: /root/.ssh/ssl_cert.pem
-    state: absent
+# - name: Remove ssl cert file
+#   ansible.builtin.file:
+#     path: /root/.ssh/ssl_cert.pem
+#     state: absent
 
 - name: Dump result
   debug: 
