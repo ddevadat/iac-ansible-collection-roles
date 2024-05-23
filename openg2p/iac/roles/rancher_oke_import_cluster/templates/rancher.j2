@@ -64,6 +64,7 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 data "http" "idp_metadata" {
   url    = "https://keycloak-rancher.{{domain}}/realms/master/protocol/saml/descriptor"
   method = "GET"
+  insecure = true
 }
 
 resource "rancher2_auth_config_keycloak" "keycloak" {
