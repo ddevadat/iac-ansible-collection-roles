@@ -18,7 +18,6 @@ provider "rancher2" {
   alias = "admin"
   api_url   = module.bootstrap.url
   token_key = module.bootstrap.token
-  insecure = true
 }
 
 variable "server_url" {
@@ -65,7 +64,6 @@ resource "rancher2_cluster" "openg2p_k8s_cluster" {
 data "http" "idp_metadata" {
   url    = "https://keycloak-rancher.{{domain}}/realms/master/protocol/saml/descriptor"
   method = "GET"
-  insecure = true
 }
 
 resource "rancher2_auth_config_keycloak" "keycloak" {
@@ -85,7 +83,7 @@ resource "rancher2_auth_config_keycloak" "keycloak" {
 resource "null_resource" "run_kubectl" {
   provisioner "local-exec" {
     command     = <<-EOT
-          ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].insecure_command}
+          ${rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command}
     EOT
     working_dir = path.module
   }
@@ -108,6 +106,3 @@ output "cluster_registration_command" {
   value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].command
 }
 
-output "cluster_registration_command_insecure" {
-  value     = rancher2_cluster.openg2p_k8s_cluster.cluster_registration_token[0].insecure_command
-}

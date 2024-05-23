@@ -8,7 +8,6 @@
   community.general.keycloak_client:
     auth_client_id: admin-cli
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
-    validate_certs: false
     auth_realm: master
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
@@ -126,7 +125,6 @@
 - name: Update default admin user
   community.general.keycloak_user:
     auth_keycloak_url: https://keycloak-rancher.{{domain}}
-    validate_certs: false
     auth_username: user
     auth_password: "{{keycloak_admin_password.stdout}}"
     auth_realm: master
