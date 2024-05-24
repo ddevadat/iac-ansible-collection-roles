@@ -12,7 +12,7 @@
 - name: Create zone 
   oracle.oci.oci_dns_zone:
     name: "{{domain}}"
-    compartment_id: "{{compartment_id}}"
+    compartment_id: "{{zone_compartment_id}}"
     zone_type: PRIMARY
   when: result.zones | length == 0
 
@@ -38,7 +38,7 @@
       rdata: "{{istio_gw_external_ip.stdout}}"
       rtype: "A"
       ttl: 300
-    compartment_id: "{{compartment_id}}"
+    compartment_id: "{{zone_compartment_id}}"
   with_items:
     - sbrc
     - sbrciam
