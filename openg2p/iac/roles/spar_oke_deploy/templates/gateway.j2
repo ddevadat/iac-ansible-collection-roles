@@ -22,5 +22,5 @@ spec:
       number: 443
       protocol: HTTPS
     tls:
-      credentialName: tls-openg2p-ingress
+      credentialName: {{ domain | replace('.', '-') }}
       mode: SIMPLE

@@ -38,8 +38,16 @@
     - /root/openg2p/customization
     - /root/openg2p/customization/grafana
     - /root/openg2p/customization/esignet
+    - /root/openg2p/customization/cert-manager-core
     - /root/mosip/activemq
     - /root/mosip/msg_gateway
     - /root/mosip/captcha
 
-
+- name: Create a k8s namespace
+  kubernetes.core.k8s:
+    name: "{{item}}"
+    api_version: v1
+    kind: Namespace
+    state: present
+  with_items:
+    - istio-system
