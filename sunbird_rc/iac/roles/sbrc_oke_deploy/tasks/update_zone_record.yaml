@@ -4,9 +4,9 @@
     name: "{{domain}}"
   register: result
   
-- name: Dump result
-  debug: 
-    msg: '{{result}}'
+# - name: Dump result
+#   debug: 
+#     msg: '{{result}}'
 
 
 - name: Create zone 
