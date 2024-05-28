@@ -15,4 +15,3 @@
 - include_tasks: install_filestorage.yaml
 - include_tasks: install_keycloak.yaml
 - include_tasks: install_registry.yaml
-- include_tasks: outputs.yaml
