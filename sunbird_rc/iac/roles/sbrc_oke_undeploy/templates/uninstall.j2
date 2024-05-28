@@ -12,4 +12,5 @@ for RELEASE in $RELEASES; do
 done
 
 # Delete the namespace 
-kubectl delete ns $NAMESPACE
+# kubectl patch ns $NAMESPACE -p '{"metadata":{"finalizers":null}}'
+# kubectl delete ns $NAMESPACE

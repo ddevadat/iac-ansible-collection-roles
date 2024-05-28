@@ -87,10 +87,14 @@
     - /root/sunbird-rc/customization/keycloak
     - /root/sunbird-rc/customization/registry
     - /root/sunbird-rc/customization/cert-manager
+    - /root/sunbird-rc/customization/outputs
 
 - name: Create a k8s namespace
   kubernetes.core.k8s:
-    name: sunbird-rc
+    name: "{{item}}"
     api_version: v1
     kind: Namespace
     state: present
+  with_items:
+    - sunbird-rc
+    - istio-system

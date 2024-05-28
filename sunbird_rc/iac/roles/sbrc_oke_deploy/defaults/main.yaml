@@ -11,3 +11,5 @@ elastic_search_storage_class: longhorn
 filestorage_storage_class: longhorn
 elastic_search_storage_size: 1Gi
 filestorage_storage_size: 1Gi
+certificate_email: user@yopmail.com
+acme_server: https://acme-staging-v02.api.letsencrypt.org/directory

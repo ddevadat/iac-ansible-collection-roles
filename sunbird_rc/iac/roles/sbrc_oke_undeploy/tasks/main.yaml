@@ -10,6 +10,15 @@
     dest: "/root/sunbird-rc/cleanup/uninstall.sh"
     mode: '0755'
 
+- name: Delete k8s objects for certmanager
+  kubernetes.core.k8s:
+    state: absent
+    src: /root/sunbird-rc/customization/cert-manager/{{item}}
+  with_items:
+    - oci-webhook-profile.yaml
+    - clusterissuer.yaml
+    - certificate.yaml
+
 
 - name: Uninstall longhorn
   shell: |
@@ -20,7 +29,7 @@
   shell: |
     kubectl -n sunbird-rc delete cluster.postgresql.cnpg.io/postgres-cluster
   ignore_errors: true
-  when: not create_registry_db 
+  when: not create_registry_db | bool
 
 - name: Clean up vault
   file:
@@ -34,6 +43,7 @@
     - cnpg-system
     - vault   
     - longhorn-system
+    - cert-manager
   ignore_errors: true
 
 
@@ -52,7 +62,7 @@
   shell: |
     export PATH=/root/istio-1.21.0/bin:$PATH
     istioctl uninstall -y --purge
-    kubectl delete ns istio-system
+    #kubectl delete ns istio-system
 
 - name: Delete registry database
   community.postgresql.postgresql_db:
@@ -62,4 +72,4 @@
     login_user: "{{postgres_admin_user}}"
     login_password: "{{postgres_connectionInfo_password}}"
     state: absent
-  when: create_registry_db 
+  when: create_registry_db | bool
