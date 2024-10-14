@@ -7,6 +7,11 @@
     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file ~/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 ~/.kube/config
 
+- name: Install kubernetes pre requisites
+  pip:
+    name: 
+      - kubernetes
+      
 - name: Create a k8s namespace
   kubernetes.core.k8s:
     name: "{{item}}"
