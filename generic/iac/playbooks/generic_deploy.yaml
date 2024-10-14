@@ -1,0 +1,8 @@
+- hosts: operator
+  become: true
+  environment:
+    OCI_CLI_AUTH: "instance_principal"
+  roles:
+    - generic.iac.oke_common
+
+
