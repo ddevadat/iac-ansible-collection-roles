@@ -4,6 +4,6 @@
 
 - name: Generate kube config for oke k8s cluster
   shell: |
-    oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file ~.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
+    oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file ~/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 ~/.kube/config
 
