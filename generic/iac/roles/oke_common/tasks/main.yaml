@@ -8,10 +8,10 @@
     chmod 600 ~/.kube/config
 
 - name: Install kubernetes pre requisites
-  pip:
+  pip3:
     name: 
       - kubernetes
-      
+
 - name: Create a k8s namespace
   kubernetes.core.k8s:
     name: "{{item}}"
