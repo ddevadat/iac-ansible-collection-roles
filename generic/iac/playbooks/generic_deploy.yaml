@@ -2,6 +2,7 @@
   become: true
   environment:
     OCI_CLI_AUTH: "instance_principal"
+    KUBECONFIG: "/home/opc/.kube/config"
   roles:
     - generic.iac.oke_common
 
