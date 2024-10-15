@@ -3,3 +3,4 @@ acme_server: https://acme-staging-v02.api.letsencrypt.org/directory
 istio_chart_version: 1.23.2
 certmanager_chart_version: 1.15.3
 certmanager_webhook_oci_chart_version: 1.2.1
+longhorn_chart_version: 1.5.1
