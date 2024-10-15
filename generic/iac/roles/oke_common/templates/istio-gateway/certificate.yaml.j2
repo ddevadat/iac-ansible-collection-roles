@@ -4,7 +4,6 @@ metadata:
   name: {{ domain | replace('.', '-') }}
   namespace: istio-system
 spec:
-  duration: 6h
   privateKey:
     rotationPolicy: Always
   dnsNames:
