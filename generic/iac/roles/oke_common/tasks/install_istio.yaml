@@ -38,6 +38,8 @@
     create_namespace: true
     update_repo_cache: true
     values:
+      annotations:
+        reloader.stakater.com/auto: "true"
       defaults:
         service:
           type: LoadBalancer
