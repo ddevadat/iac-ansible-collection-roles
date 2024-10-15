@@ -26,6 +26,7 @@
     - argocd-server.yaml
     - argocd-repo-server.yaml
     - argocd-application.yaml
+    - argocd-virtual-service.yaml
 
 - name: Install argocd
   shell: |
