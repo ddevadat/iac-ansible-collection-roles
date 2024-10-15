@@ -4,8 +4,8 @@ metadata:
   name: {{ domain | replace('.', '-') }}
   namespace: istio-system
 spec:
-  duration: 60m
-  renewBefore: 30m
+  duration: 3h
+  renewBefore: 1h
   privateKey:
     rotationPolicy: Always
   dnsNames:
