@@ -60,3 +60,20 @@
             oci-network-load-balancer.oraclecloud.com/oci-network-security-groups: "{{public_lb_nsg_id}}"
           externalTrafficPolicy: "Local"
 
+
+- name: "Update istio gateway templates"
+  template:
+    src: "istio-gateway/{{item}}.j2"
+    dest: "/home/opc/istio/{{item}}"
+    mode: '0755'
+  with_items:
+    - certificate.yaml
+    - istio-gateway.yaml
+
+- name: Create k8s objects for istio gateway
+  kubernetes.core.k8s:
+    state: present
+    src: /home/opc/istio/{{item}}
+  with_items:
+    - certificate.yaml
+    - istio-gateway.yaml
