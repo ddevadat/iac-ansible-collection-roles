@@ -20,6 +20,7 @@
   kubernetes.core.helm:
     name: cert-manager
     chart_ref: jetstack/cert-manager
+    chart_version: "{{certmanager_chart_version}}"
     release_namespace: cert-manager
     create_namespace: true
     update_repo_cache: true
@@ -30,6 +31,7 @@
   kubernetes.core.helm:
     name: cert-manager-webhook-oci
     chart_ref: cert-manager-webhook-oci/cert-manager-webhook-oci
+    chart_version: "{{certmanager_webhook_oci_chart_version}}"
     release_namespace: cert-manager
     create_namespace: true
     update_repo_cache: true

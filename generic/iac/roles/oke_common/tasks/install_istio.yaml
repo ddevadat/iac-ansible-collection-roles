@@ -16,6 +16,7 @@
   kubernetes.core.helm:
     name: istio-base
     chart_ref: istio/base
+    chart_version: "{{istio_chart_version}}"
     release_namespace: istio-system
     create_namespace: true
     update_repo_cache: true
@@ -24,6 +25,7 @@
   kubernetes.core.helm:
     name: istiod
     chart_ref: istio/istiod
+    chart_version: "{{istio_chart_version}}"
     release_namespace: istio-system
     create_namespace: true
     update_repo_cache: true
