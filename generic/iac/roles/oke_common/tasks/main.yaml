@@ -35,6 +35,7 @@
     - cmp-plugin.yaml
     - argocd-server.yaml
     - argocd-repo-server.yaml
+    - argocd-application.yaml
 
 - name: Install argocd
   shell: |
