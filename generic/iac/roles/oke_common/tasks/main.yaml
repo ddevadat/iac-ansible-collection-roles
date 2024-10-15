@@ -1,44 +1,4 @@
-- name: Generate kube config for oke k8s cluster
-  shell: |
-    oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
-    chmod 600 /home/opc/.kube/config
-
-- name: Install kubernetes pre requisites
-  pip:
-    name: 
-      - kubernetes
-
-- name: Create a k8s namespace
-  kubernetes.core.k8s:
-    name: "{{item}}"
-    api_version: v1
-    kind: Namespace
-    state: present
-  with_items:
-    - argocd
-
-- name: Create project directories
-  file:
-    path: "{{item}}"
-    state: directory
-    mode: '0755'
-  with_items:
-    - /home/opc/argocd-setup
-
-- name: "Update argocd templates"
-  template:
-    src: "{{item}}.j2"
-    dest: "/home/opc/argocd-setup/{{item}}"
-    mode: '0755'
-  with_items:
-    - kustomization.yaml
-    - cmp-plugin.yaml
-    - argocd-server.yaml
-    - argocd-repo-server.yaml
-    - argocd-application.yaml
-
-- name: Install argocd
-  shell: |
-    kubectl apply -k .
-  args:
-    chdir: /home/opc/argocd-setup
+- include_tasks: common.yaml
+- include_tasks: install_certmanager.yaml
+# - include_tasks: install_istio.yaml
+- include_tasks: install_argocd.yaml

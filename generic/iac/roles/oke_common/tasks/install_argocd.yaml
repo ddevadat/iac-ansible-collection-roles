@@ -1,0 +1,34 @@
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /home/opc/argocd-setup
+
+- name: Create a k8s namespace
+  kubernetes.core.k8s:
+    name: "{{item}}"
+    api_version: v1
+    kind: Namespace
+    state: present
+  with_items:
+    - argocd
+
+- name: "Update argocd templates"
+  template:
+    src: "argocd/{{item}}.j2"
+    dest: "/home/opc/argocd-setup/{{item}}"
+    mode: '0755'
+  with_items:
+    - kustomization.yaml
+    - cmp-plugin.yaml
+    - argocd-server.yaml
+    - argocd-repo-server.yaml
+    - argocd-application.yaml
+
+- name: Install argocd
+  shell: |
+    kubectl apply -k .
+  args:
+    chdir: /home/opc/argocd-setup
