@@ -42,6 +42,11 @@
     - istio-system
   ignore_errors: true
 
+- name: Uninstall argocd
+  shell: |
+    kubectl delete -k .
+  args:
+    chdir: /home/opc/argocd-setup
 
 - name: Remove zone records
   oracle.oci.oci_dns_rrset:
