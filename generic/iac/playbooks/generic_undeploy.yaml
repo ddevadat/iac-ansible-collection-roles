@@ -5,6 +5,6 @@
     OCI_ANSIBLE_AUTH_TYPE: "instance_principal"
     KUBECONFIG: "/home/opc/.kube/config"
   roles:
-    - generic.iac.generic_deploy
+    - generic.iac.generic_undeploy
 
 
