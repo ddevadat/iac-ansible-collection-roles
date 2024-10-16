@@ -4,10 +4,10 @@ kind: Kustomization
 namespace: argocd
 images:
   - name: quay.io/argoproj/argocd
-    newTag: v2.7.9
+    newTag: v2.12.4
 
 resources:
-- https://github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.7.9
+- https://github.com/argoproj/argo-cd//manifests/cluster-install?ref=v2.12.4
 - cmp-plugin.yaml
 - argocd-virtual-service.yaml
 
