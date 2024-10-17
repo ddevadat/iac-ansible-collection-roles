@@ -1,0 +1,22 @@
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /home/opc/oidc-setup
+
+- name: "Update oidc templates"
+  template:
+    src: "oidc/{{item}}.j2"
+    dest: "/home/opc/oidc-setup/{{item}}"
+    mode: '0755'
+  with_items:
+    - workload-identity.yaml
+
+- name: Create k8s objects for oidc
+  kubernetes.core.k8s:
+    state: present
+    src: /home/opc/oidc-setup/{{item}}
+  with_items:
+    - workload-identity.yaml
