@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-id-account-mapper-apps
+  name: argocd-mosip-apps
   namespace: argocd
 spec:
   destination:
@@ -11,10 +11,11 @@ spec:
   source:
     repoURL: {{application_repo}}
     targetRevision: HEAD
-    path: argocd/id-account-mapper
+    path: argocd/mosip
     plugin:
       name: argocd-vault-plugin-helm
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+
