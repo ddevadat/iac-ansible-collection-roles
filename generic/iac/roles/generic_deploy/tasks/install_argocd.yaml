@@ -28,6 +28,7 @@
     - argocd-application.yaml
     - argocd-virtual-service.yaml
     - argocd-cm.yaml
+    - argocd-cmd-params-cm.yaml
 
 - name: Install argocd
   shell: |
