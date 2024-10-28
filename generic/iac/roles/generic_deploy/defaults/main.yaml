@@ -1,4 +1,4 @@
-avp_version: 1.19.4
+avp_version: 1.20.0
 acme_server: https://acme-staging-v02.api.letsencrypt.org/directory
 istio_chart_version: 1.23.2
 certmanager_chart_version: 1.15.3
