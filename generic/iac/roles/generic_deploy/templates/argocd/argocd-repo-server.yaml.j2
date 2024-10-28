@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: argocd-repo-server
 spec:
-  replicas: 1
+  replicas: 5
   template:
     spec:
 
@@ -72,8 +72,6 @@ spec:
             value: {{vault_id}}
           - name: AVP_OCI_VAULT_COMPARTMENT_ID
             value: {{vault_compartmet_id}}
-          - name: ARGOCD_EXEC_TIMEOUT
-            value: 300s
 
       # argocd-vault-plugin with Kustomize
       - name: avp-kustomize
