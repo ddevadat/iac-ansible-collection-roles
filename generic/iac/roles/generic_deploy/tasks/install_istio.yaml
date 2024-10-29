@@ -34,6 +34,7 @@
   kubernetes.core.helm:
     name: istio-ingress
     chart_ref: istio/gateway
+    chart_version: "{{istio_chart_version}}"
     release_namespace: istio-system
     create_namespace: true
     update_repo_cache: true
