@@ -72,7 +72,6 @@
   with_items:
     - certificate.yaml
     - istio-gateway.yaml
-    - mosip-ext-istio-gateway.yaml
 
 - name: Create k8s objects for istio gateway
   kubernetes.core.k8s:
@@ -81,4 +80,3 @@
   with_items:
     - certificate.yaml
     - istio-gateway.yaml
-    - mosip-ext-istio-gateway.yaml
