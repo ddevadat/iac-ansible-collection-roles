@@ -29,6 +29,12 @@
     release_namespace: istio-system
     create_namespace: true
     update_repo_cache: true
+    values: 
+      defaults:
+        meshConfig:
+          enablePrometheusMerge: true
+          pathNormalization:
+            normalization: MERGE_SLASHES
 
 - name: Install istio gateway
   kubernetes.core.helm:
