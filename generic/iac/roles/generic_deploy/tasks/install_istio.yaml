@@ -33,6 +33,7 @@
       defaults:
         meshConfig:
           enablePrometheusMerge: true
+          accessLogFile: /dev/stdout
           pathNormalization:
             normalization: MERGE_SLASHES
           defaultConfig:
