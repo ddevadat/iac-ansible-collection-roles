@@ -10,7 +10,7 @@
 
 - name: cilium client version
   shell: |
-    cilium version --client
+    /usr/local/bin/cilium version --client
   register: cilium_client_version
 
 - name: Display Cilium client version
