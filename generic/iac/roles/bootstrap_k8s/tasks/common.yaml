@@ -10,6 +10,7 @@
     kubectl delete pod --namespace kube-system -l k8s-app=hubble-relay
     kubectl delete pod --namespace kube-system -l k8s-app=hubble-ui
     kubectl delete pod --namespace kube-system -l k8s-app=kube-dns-autoscaler
+    kubectl delete pod --namespace kube-system -l k8s-app=clustermesh-apiserver
 
 - name: Install kubernetes pre requisites
   pip:
