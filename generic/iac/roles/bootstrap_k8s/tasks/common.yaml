@@ -3,6 +3,14 @@
 #     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
 #     chmod 600 /home/opc/.kube/config
 
+
+- name: Restart pods
+  shell: |
+    kubectl delete pod --namespace kube-system -l k8s-app=kube-dns
+    kubectl delete pod --namespace kube-system -l k8s-app=hubble-relay
+    kubectl delete pod --namespace kube-system -l k8s-app=hubble-ui
+    kubectl delete pod --namespace kube-system -l k8s-app=kube-dns-autoscaler
+
 - name: Install kubernetes pre requisites
   pip:
     name: 
