@@ -1,0 +1,14 @@
+- name: Add a cnpg helm repository
+  kubernetes.core.helm_repository:
+    name: cnpg
+    repo_url: https://cloudnative-pg.github.io/charts
+
+- name: Install cnpg operator
+  kubernetes.core.helm:
+    name: cnpg
+    chart_ref: cnpg/cloudnative-pg
+    chart_version: "{{cnpg_chart_version}}"
+    release_namespace: cnpg-system
+    create_namespace: true
+    update_repo_cache: true
+
