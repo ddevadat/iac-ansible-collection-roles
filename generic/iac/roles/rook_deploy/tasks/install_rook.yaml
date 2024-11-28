@@ -1,0 +1,22 @@
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /home/opc/rook
+
+- name: Add a rook helm repository
+  kubernetes.core.helm_repository:
+    name: rook-release
+    repo_url: https://charts.rook.io/release
+
+- name: Install rook operator
+  kubernetes.core.helm:
+    name: rook-ceph
+    chart_ref: rook-release/rook-ceph
+    chart_version: "{{rook_chart_version}}"
+    release_namespace: rook-ceph
+    create_namespace: true
+    update_repo_cache: true
+

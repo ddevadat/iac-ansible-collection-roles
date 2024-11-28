@@ -6,6 +6,7 @@
     KUBECONFIG: "/home/opc/.kube/config"
   roles:
     - generic.iac.bootstrap_k8s
+    - generic.iac.rook_deploy
     # - generic.iac.cilium_client
 
 

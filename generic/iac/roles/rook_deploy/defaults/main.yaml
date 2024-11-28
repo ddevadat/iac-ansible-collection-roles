@@ -1,0 +1,11 @@
+avp_version: 1.20.0
+acme_server_stage: https://acme-staging-v02.api.letsencrypt.org/directory
+acme_server_prod: https://acme-v02.api.letsencrypt.org/directory
+istio_chart_version: 1.23.2
+certmanager_chart_version: 1.15.3
+certmanager_webhook_oci_chart_version: 1.2.1
+longhorn_chart_version: 1.5.1
+reloader_chart_version: 1.1.0
+reflector_chart_version: 7.1.288
+cnpg_chart_version: 0.22.1
+rook_chart_version: 1.15.6
