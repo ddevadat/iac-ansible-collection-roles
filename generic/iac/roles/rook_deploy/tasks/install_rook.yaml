@@ -19,4 +19,9 @@
     release_namespace: rook-ceph
     create_namespace: true
     update_repo_cache: true
+    wait: true
 
+
+- name: Install rook operator status
+  debug:
+    msg: "Rook Operator Installed"
