@@ -15,7 +15,7 @@
   kubernetes.core.helm:
     name: rook-ceph
     chart_ref: rook-release/rook-ceph
-    chart_version: "{{rook_chart_version}}"
+    chart_version: "{{rook_operator_chart_version}}"
     release_namespace: rook-ceph
     create_namespace: true
     update_repo_cache: true
@@ -25,3 +25,19 @@
 - name: Install rook operator status
   debug:
     msg: "Rook Operator Installed"
+
+
+
+- name: Install Ceph Cluster
+  kubernetes.core.helm:
+    name: rook-ceph-cluster
+    chart_ref: rook-release/rook-ceph-cluster
+    chart_version: "{{rook_ceph_cluster_chart_version}}"
+    release_namespace: rook-ceph
+    create_namespace: true
+    update_repo_cache: true
+    wait: true
+
+- name: Install rook ceph cluster status
+  debug:
+    msg: "Rook Ceph Cluster Installed"
