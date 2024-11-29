@@ -1,0 +1,23 @@
+- name: Create project directories
+  file:
+    path: "{{item}}"
+    state: directory
+    mode: '0755'
+  with_items:
+    - /home/opc/minio
+
+- name: Add a minio helm repository
+  kubernetes.core.helm_repository:
+    name: minio
+    repo_url: https://mosip.github.io/mosip-helm
+
+- name: Install minio
+  kubernetes.core.helm:
+    name: minio
+    chart_ref: minio/minio
+    chart_version: "{{minio_chart_version}}"
+    release_namespace: minio
+    create_namespace: true
+    update_repo_cache: true
+    wait: true
+
