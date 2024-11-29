@@ -38,8 +38,8 @@
     update_repo_cache: true
     wait: true
     values:
-    toolbox:
-      enabled: true
+      toolbox:
+        enabled: true
 
 - name: Install rook ceph cluster status
   debug:
