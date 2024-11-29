@@ -22,5 +22,5 @@
     wait: true
     values:
       global:
-        storageClass: "oci-bv"   
+        storageClass: "ceph-block"   
 
