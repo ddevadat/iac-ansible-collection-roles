@@ -20,4 +20,7 @@
     create_namespace: true
     update_repo_cache: true
     wait: true
+    values:
+      global:
+        storageClass: "oci-bv"   
 
