@@ -20,6 +20,19 @@
     name: "rook"
   register: node_pool_fact
 
-- name: Display instance OCIDs
+- name: Save node pool ocid
+  set_fact:
+    rook_node_pool_id: "{{ node_pool_fact.node_pools[0].id }}"
+
+- name: Get node pool instance IDs
+  shell: |
+    oci ce node-pool get --node-pool-id {{rook_node_pool_id}} --query "data.nodes[*].id" --output json
+  register: node_pool_output
+
+- name: Parse instance IDs from output
+  set_fact:
+    instance_ids: "{{ node_pool_output.stdout | from_json }}"
+    
+- name: Display instance IDs
   debug:
-    msg: "{{ node_pool_fact.node_pools[0].id }}"
+    msg: "{{ instance_ids }}"
