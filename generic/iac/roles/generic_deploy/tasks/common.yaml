@@ -41,7 +41,7 @@
 
 - name: Store availability domain names in a variable
   set_fact:
-    availability_domain_names: "{{ ad_facts.data | map(attribute='name') | list }}"
+    availability_domain_names: "{{ ad_facts.availability_domains | map(attribute='name') | list }}"
 
 - name: Display the list of availability domain names
   debug:
