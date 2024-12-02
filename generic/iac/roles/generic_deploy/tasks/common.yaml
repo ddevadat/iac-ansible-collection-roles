@@ -68,22 +68,22 @@
   set_fact:
     volume_ids: "{{ volume_creation.results | map(attribute='volume.id') | list }}"
 
-- name: Debug volume IDs
-  debug:
-    var: volume_ids
+# - name: Debug volume IDs
+#   debug:
+#     var: volume_ids
 
 
-# - name: Attach each block volume to its respective instance
-#   oracle.oci.oci_compute_volume_attachment:
-#     compartment_id: "{{compartment_id}}" 
-#     instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
-#     type: paravirtualized  # Attachment type
-#     volume_id: volume_creation.results[idx].volume.id  # Get volume ID based on loop index
-#   with_items: "{{ instance_ids }}"
-#   loop_control:
-#     loop_var: item
-#     index_var: idx
-#   register: volume_attachment
+- name: Attach each block volume to its respective instance
+  oracle.oci.oci_compute_volume_attachment:
+    compartment_id: "{{compartment_id}}" 
+    instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
+    type: paravirtualized  # Attachment type
+    volume_id: "{{ volume_ids[idx] }}"
+  with_items: "{{ instance_ids }}"
+  loop_control:
+    loop_var: item
+    index_var: idx
+  register: volume_attachment
 
 # - name: Debug volume creation output
 #   debug:
