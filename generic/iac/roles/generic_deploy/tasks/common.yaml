@@ -64,6 +64,18 @@
     loop_var: item
     index_var: idx  
 
+
+- name: Attach each block volume to its respective instance
+  oracle.oci.oci_compute_volume_attachment:
+    instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
+    type: paravirtualized  # Attachment type
+    volume_id: volume_creation.results[idx].volume.id  # Get volume ID based on loop index
+  with_items: "{{ instance_ids }}"
+  loop_control:
+    loop_var: item
+    index_var: idx
+  register: volume_attachment
+
 # - name: Debug volume creation output
 #   debug:
 #     var: volume_creation
