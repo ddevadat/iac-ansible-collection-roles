@@ -11,3 +11,19 @@
 - name: Taint Nodes
   shell: |
     kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule
+
+
+- name: Get details of the node pool
+  oci_container_engine_node_pool_facts:
+    compartment_id: "{{compartment_id}}"
+    cluster_id: "{{oke_k8s_cluster_id}}"
+    name: "rook"
+  register: node_pool_fact
+
+- name: Extract instance OCIDs from node pool details
+  set_fact:
+    instance_ocids: "{{ node_pool_facts.data.node_pools[0].node_config_details[0].placement_configs | map(attribute='instance_id') | list }}"
+    
+- name: Display instance OCIDs
+  debug:
+    msg: "{{ instance_ocids }}"
