@@ -32,7 +32,13 @@
 - name: Parse instance IDs from output
   set_fact:
     instance_ids: "{{ node_pool_output.stdout | from_json }}"
-    
-- name: Display instance IDs
-  debug:
-    msg: "{{ instance_ids }}"
+
+- name: Create block volumes for each instance
+  oracle.oci.oci_blockstorage_volume:
+    compartment_id: "{{compartment_id}}" 
+    size_in_gbs: 50  # Specify the size of the block volume (in GB)
+    display_name: "volume-{{ item | basename }}"
+  with_items: "{{ instance_ids }}"
+  loop_control:
+    loop_var: item
+  register: volume_creation
