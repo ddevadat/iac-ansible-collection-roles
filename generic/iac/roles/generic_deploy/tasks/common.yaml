@@ -33,12 +33,26 @@
   set_fact:
     instance_ids: "{{ node_pool_output.stdout | from_json }}"
 
-- name: Create block volumes for each instance
-  oracle.oci.oci_blockstorage_volume:
-    compartment_id: "{{compartment_id}}" 
-    size_in_gbs: 50  # Specify the size of the block volume (in GB)
-    display_name: "volume-{{ item | basename }}"
-  with_items: "{{ instance_ids }}"
-  loop_control:
-    loop_var: item
-  register: volume_creation
+
+- name: List availability_domains
+  oracle.oci.oci_identity_availability_domain_facts:
+    compartment_id: "{{compartment_id}}"
+  register: ad_facts
+
+- name: Store availability domain names in a variable
+  set_fact:
+    availability_domain_names: "{{ ad_facts.data | map(attribute='name') | list }}"
+
+- name: Display the list of availability domain names
+  debug:
+    msg: "Availability domains: {{ availability_domain_names }}"
+
+# - name: Create block volumes for each instance
+#   oracle.oci.oci_blockstorage_volume:
+#     compartment_id: "{{compartment_id}}" 
+#     size_in_gbs: 50  # Specify the size of the block volume (in GB)
+#     display_name: "volume-{{ item | basename }}"
+#   with_items: "{{ instance_ids }}"
+#   loop_control:
+#     loop_var: item
+#   register: volume_creation
