@@ -1,16 +1,16 @@
-# - name: Generate kube config for oke k8s cluster
-#   shell: |
-#     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
-#     chmod 600 /home/opc/.kube/config
+- name: Generate kube config for oke k8s cluster
+  shell: |
+    oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
+    chmod 600 /home/opc/.kube/config
 
-# - name: Install kubernetes pre requisites
-#   pip:
-#     name: 
-#       - kubernetes
+- name: Install kubernetes pre requisites
+  pip:
+    name: 
+      - kubernetes
 
-# - name: Taint Nodes
-#   shell: |
-#     kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
+- name: Taint Nodes
+  shell: |
+    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
 
 
 - name: Get details of the node pool
@@ -55,23 +55,9 @@
     index_var: idx
   register: volume_creation
 
-
-# - name: Debug
-#   debug: 
-#     var:  volume_creation.results[idx].volume.id
-#   with_items: "{{ instance_ids }}"
-#   loop_control:
-#     loop_var: item
-#     index_var: idx  
-
 - name: Extract volume IDs into a list
   set_fact:
     volume_ids: "{{ volume_creation.results | map(attribute='volume.id') | list }}"
-
-# - name: Debug volume IDs
-#   debug:
-#     var: volume_ids
-
 
 - name: Attach each block volume to its respective instance
   oracle.oci.oci_compute_volume_attachment:
@@ -85,6 +71,3 @@
     index_var: idx
   register: volume_attachment
 
-# - name: Debug volume creation output
-#   debug:
-#     var: volume_creation
