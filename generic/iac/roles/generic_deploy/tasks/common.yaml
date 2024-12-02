@@ -20,10 +20,6 @@
     name: "rook"
   register: node_pool_fact
 
-# - name: Extract instance OCIDs from node pool details
-#   set_fact:
-#     instance_ocids: "{{ node_pool_facts.data.node_pools[0].node_config_details[0].placement_configs | map(attribute='instance_id') | list }}"
-
 - name: Display instance OCIDs
   debug:
-    msg: "{{ node_pool_fact.node_pools[0] }}"
+    msg: "{{ node_pool_fact.node_pools[0].id }}"
