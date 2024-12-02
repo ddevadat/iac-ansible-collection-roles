@@ -10,7 +10,7 @@
 
 - name: Taint Nodes
   shell: |
-    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule
+    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
 
 
 - name: Get details of the node pool
