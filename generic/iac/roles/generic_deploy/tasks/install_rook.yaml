@@ -21,11 +21,12 @@
     update_repo_cache: true
     wait: true
     values: 
-      discover:
-        tolerations:
-          - key: node-role.kubernetes.io/rook-node
-            operator: Exists
-            effect: NoSchedule
+      nodeSelector:
+       oke.oraclecloud.com/pool.name: rook
+      tolerations:
+      - key: "node-role.kubernetes.io/rook-node"
+        operator: "Exists"
+        effect: "NoSchedule"
 
 
 - name: Install rook operator status
