@@ -42,4 +42,5 @@
   with_items:
     - argocd
     - ceph
+    - chaosmesh
     
