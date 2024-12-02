@@ -58,7 +58,7 @@
 
 - name: Debug
   debug: 
-    var: "{{ volume_creation.results[ansible_loop.index0].id }}"
+    var: "{{ volume_creation.results[idx].id }}"
   with_items: "{{ instance_ids }}"
   loop_control:
     loop_var: item
