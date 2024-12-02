@@ -58,7 +58,7 @@
 
 - name: Debug
   debug: 
-    var: "{{ volume_creation.volume }}"
+    var: "{{ volume_creation.stdout.volume }}"
   with_items: "{{ instance_ids }}"
   loop_control:
     loop_var: item
