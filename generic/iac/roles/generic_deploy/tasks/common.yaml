@@ -1,16 +1,16 @@
-- name: Generate kube config for oke k8s cluster
-  shell: |
-    oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
-    chmod 600 /home/opc/.kube/config
+# - name: Generate kube config for oke k8s cluster
+#   shell: |
+#     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
+#     chmod 600 /home/opc/.kube/config
 
-- name: Install kubernetes pre requisites
-  pip:
-    name: 
-      - kubernetes
+# - name: Install kubernetes pre requisites
+#   pip:
+#     name: 
+#       - kubernetes
 
-- name: Taint Nodes
-  shell: |
-    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
+# - name: Taint Nodes
+#   shell: |
+#     kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
 
 
 - name: Get details of the node pool
