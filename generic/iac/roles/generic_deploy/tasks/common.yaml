@@ -66,8 +66,4 @@
 
 - name: Debug volume creation output
   debug:
-    var: "{{ volume_creation.results[idx] }}"
-  with_items: "{{ instance_ids }}"
-  loop_control:
-    loop_var: item
-    index_var: idx
+    var: "{{ volume_creation }}"
