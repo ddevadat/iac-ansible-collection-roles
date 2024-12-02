@@ -56,14 +56,14 @@
   register: volume_creation
 
 
-# - name: Debug
-#   debug: 
-#     var: "{{ volume_creation.results[0] }}"
-#   with_items: "{{ instance_ids }}"
-#   loop_control:
-#     loop_var: item
-#     index_var: idx  
+- name: Debug
+  debug: 
+    var:  volume_creation.results[idx].volume.id
+  with_items: "{{ instance_ids }}"
+  loop_control:
+    loop_var: item
+    index_var: idx  
 
-- name: Debug volume creation output
-  debug:
-    var: volume_creation
+# - name: Debug volume creation output
+#   debug:
+#     var: volume_creation
