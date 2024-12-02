@@ -7,3 +7,7 @@
   pip:
     name: 
       - kubernetes
+
+- name: Taint Nodes
+  shell: |
+    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule
