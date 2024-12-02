@@ -67,6 +67,7 @@
 
 - name: Attach each block volume to its respective instance
   oracle.oci.oci_compute_volume_attachment:
+    compartment_id: "{{compartment_id}}" 
     instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
     type: paravirtualized  # Attachment type
     volume_id: volume_creation.results[idx].volume.id  # Get volume ID based on loop index
