@@ -54,3 +54,8 @@
     loop_var: item
     index_var: idx
   register: volume_creation
+
+
+- name: Debug
+  debug: 
+    var: "{{ volume_creation }}"
