@@ -26,4 +26,4 @@
 
 - name: Display instance OCIDs
   debug:
-    msg: "{{ node_pool_fact.node_pools[0].node_config_details.nodes }}"
+    msg: "{{ node_pool_fact.node_pools[0].node_config_details }}"
