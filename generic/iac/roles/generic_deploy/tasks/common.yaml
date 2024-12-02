@@ -58,4 +58,4 @@
 
 - name: Debug
   debug: 
-    var: "{{ volume_creation }}"
+    var: "{{ volume_creation.volume }}"
