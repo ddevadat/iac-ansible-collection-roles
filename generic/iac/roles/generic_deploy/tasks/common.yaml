@@ -52,7 +52,7 @@
     compartment_id: "{{compartment_id}}" 
     availability_domain: "{{availability_domain_names[0]}}"
     size_in_gbs: 50  # Specify the size of the block volume (in GB)
-    display_name: "rook-{{ item | basename }}"
+    display_name: "rook-{{ loop.index0 }}"
   with_items: "{{ instance_ids }}"
   loop_control:
     loop_var: item
