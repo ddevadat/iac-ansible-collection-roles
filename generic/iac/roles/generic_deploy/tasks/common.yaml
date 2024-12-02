@@ -53,12 +53,12 @@
   loop_control:
     loop_var: item
     index_var: idx
-  register: volume_creation
+  register: volume_creation.volume.id
 
 
 - name: Debug
   debug: 
-    var: "{{ volume_creation.results[idx] }}"
+    var: "{{ volume_creation.volume.id }}"
   with_items: "{{ instance_ids }}"
   loop_control:
     loop_var: item
