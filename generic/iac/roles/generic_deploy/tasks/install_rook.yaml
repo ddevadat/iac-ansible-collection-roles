@@ -27,7 +27,26 @@
       - key: "node-role.kubernetes.io/rook-node"
         operator: "Exists"
         effect: "NoSchedule"
-
+      csi:
+        provisionerTolerations:
+        - key: "node-role.kubernetes.io/rook-node"
+          operator: "Exists"
+          effect: "NoSchedule"
+        provisionerNodeAffinity: 
+          oke.oraclecloud.com/pool.name: rook
+        pluginTolerations:
+        - key: "node-role.kubernetes.io/rook-node"
+          operator: "Exists"
+          effect: "NoSchedule"
+        pluginNodeAffinity: 
+          oke.oraclecloud.com/pool.name: rook
+      discover:
+        tolerations:
+        - key: "node-role.kubernetes.io/rook-node"
+          operator: "Exists"
+          effect: "NoSchedule"
+        nodeAffinity:
+          oke.oraclecloud.com/pool.name: rook
 
 - name: Install rook operator status
   debug:
