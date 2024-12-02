@@ -66,4 +66,4 @@
 
 - name: Debug volume creation output
   debug:
-    var: "{{ volume_creation }}"
+    var: volume_creation
