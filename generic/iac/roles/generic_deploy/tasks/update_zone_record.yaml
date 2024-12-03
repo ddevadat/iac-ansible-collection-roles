@@ -43,4 +43,5 @@
     - argocd
     - ceph
     - chaosmesh
+    - grafana
     
