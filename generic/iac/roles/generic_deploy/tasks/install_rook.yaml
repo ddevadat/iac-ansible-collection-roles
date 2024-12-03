@@ -21,6 +21,8 @@
     update_repo_cache: true
     wait: true
     values: 
+      monitoring:
+        enabled: true
       nodeSelector:
        oke.oraclecloud.com/pool.name: rook
       tolerations:
