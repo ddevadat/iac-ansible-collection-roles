@@ -44,4 +44,4 @@
     - ceph
     - chaosmesh
     - grafana
-    
+    - prom
