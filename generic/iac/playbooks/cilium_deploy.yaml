@@ -7,7 +7,7 @@
   roles:
     - generic.iac.bootstrap_k8s
     # - generic.iac.rook_deploy
-    - generic.iac.minio_deploy
+    # - generic.iac.minio_deploy
     # - generic.iac.cilium_client
 
 
