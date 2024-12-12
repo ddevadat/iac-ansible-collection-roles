@@ -8,66 +8,66 @@
     name: 
       - kubernetes
 
-- name: Taint Nodes
-  shell: |
-    kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
+# - name: Taint Nodes
+#   shell: |
+#     kubectl taint nodes -l oke.oraclecloud.com/pool.name=rook node-role.kubernetes.io/rook-node=true:NoSchedule --overwrite
 
 
-- name: Get details of the node pool
-  oracle.oci.oci_container_engine_node_pool_facts:
-    compartment_id: "{{compartment_id}}"
-    cluster_id: "{{oke_k8s_cluster_id}}"
-    name: "rook"
-  register: node_pool_fact
+# - name: Get details of the node pool
+#   oracle.oci.oci_container_engine_node_pool_facts:
+#     compartment_id: "{{compartment_id}}"
+#     cluster_id: "{{oke_k8s_cluster_id}}"
+#     name: "rook"
+#   register: node_pool_fact
 
-- name: Save node pool ocid
-  set_fact:
-    rook_node_pool_id: "{{ node_pool_fact.node_pools[0].id }}"
+# - name: Save node pool ocid
+#   set_fact:
+#     rook_node_pool_id: "{{ node_pool_fact.node_pools[0].id }}"
 
-- name: Get node pool instance IDs
-  shell: |
-    oci ce node-pool get --node-pool-id {{rook_node_pool_id}} --query "data.nodes[*].id" --output json
-  register: node_pool_output
+# - name: Get node pool instance IDs
+#   shell: |
+#     oci ce node-pool get --node-pool-id {{rook_node_pool_id}} --query "data.nodes[*].id" --output json
+#   register: node_pool_output
 
-- name: Parse instance IDs from output
-  set_fact:
-    instance_ids: "{{ node_pool_output.stdout | from_json }}"
+# - name: Parse instance IDs from output
+#   set_fact:
+#     instance_ids: "{{ node_pool_output.stdout | from_json }}"
 
 
-- name: List availability_domains
-  oracle.oci.oci_identity_availability_domain_facts:
-    compartment_id: "{{compartment_id}}"
-  register: ad_facts
+# - name: List availability_domains
+#   oracle.oci.oci_identity_availability_domain_facts:
+#     compartment_id: "{{compartment_id}}"
+#   register: ad_facts
 
-- name: Store availability domain names in a variable
-  set_fact:
-    availability_domain_names: "{{ ad_facts.availability_domains | map(attribute='name') | list }}"
+# - name: Store availability domain names in a variable
+#   set_fact:
+#     availability_domain_names: "{{ ad_facts.availability_domains | map(attribute='name') | list }}"
 
-- name: Create block volumes for each instance
-  oracle.oci.oci_blockstorage_volume:
-    compartment_id: "{{compartment_id}}" 
-    availability_domain: "{{availability_domain_names[0]}}"
-    size_in_gbs: 50  # Specify the size of the block volume (in GB)
-    display_name: "rook-{{ idx }}"
-  with_items: "{{ instance_ids }}"
-  loop_control:
-    loop_var: item
-    index_var: idx
-  register: volume_creation
+# - name: Create block volumes for each instance
+#   oracle.oci.oci_blockstorage_volume:
+#     compartment_id: "{{compartment_id}}" 
+#     availability_domain: "{{availability_domain_names[0]}}"
+#     size_in_gbs: 50  # Specify the size of the block volume (in GB)
+#     display_name: "rook-{{ idx }}"
+#   with_items: "{{ instance_ids }}"
+#   loop_control:
+#     loop_var: item
+#     index_var: idx
+#   register: volume_creation
 
-- name: Extract volume IDs into a list
-  set_fact:
-    volume_ids: "{{ volume_creation.results | map(attribute='volume.id') | list }}"
+# - name: Extract volume IDs into a list
+#   set_fact:
+#     volume_ids: "{{ volume_creation.results | map(attribute='volume.id') | list }}"
 
-- name: Attach each block volume to its respective instance
-  oracle.oci.oci_compute_volume_attachment:
-    compartment_id: "{{compartment_id}}" 
-    instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
-    type: paravirtualized  # Attachment type
-    volume_id: "{{ volume_ids[idx] }}"
-  with_items: "{{ instance_ids }}"
-  loop_control:
-    loop_var: item
-    index_var: idx
-  register: volume_attachment
+# - name: Attach each block volume to its respective instance
+#   oracle.oci.oci_compute_volume_attachment:
+#     compartment_id: "{{compartment_id}}" 
+#     instance_id: "{{ instance_ids[idx] }}"  # Get instance ID based on loop index
+#     type: paravirtualized  # Attachment type
+#     volume_id: "{{ volume_ids[idx] }}"
+#   with_items: "{{ instance_ids }}"
+#   loop_control:
+#     loop_var: item
+#     index_var: idx
+#   register: volume_attachment
 
