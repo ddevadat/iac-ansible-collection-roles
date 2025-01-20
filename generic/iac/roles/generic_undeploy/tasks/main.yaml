@@ -16,9 +16,9 @@
     - delete_argocd_app.sh
 
 
-- name: Uninstall argocd applications
-  shell: /home/opc/cleanup/delete_argocd_app.sh
-  ignore_errors: true
+# - name: Uninstall argocd applications
+#   shell: /home/opc/cleanup/delete_argocd_app.sh
+#   ignore_errors: true
 
 - name: Delete k8s objects for certmanager
   kubernetes.core.k8s:
