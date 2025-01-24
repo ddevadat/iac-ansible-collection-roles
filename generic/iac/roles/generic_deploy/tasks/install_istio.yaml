@@ -107,10 +107,16 @@
     - certificate.yaml
     - istio-gateway.yaml
 
-- name: Create k8s objects for istio gateway
-  kubernetes.core.k8s:
-    state: present
-    src: /home/opc/istio/{{item}}
-  with_items:
-    - certificate.yaml
-    - istio-gateway.yaml
+# - name: Create k8s objects for istio gateway
+#   kubernetes.core.k8s:
+#     state: present
+#     src: /home/opc/istio/{{item}}
+#   with_items:
+#     - certificate.yaml
+#     - istio-gateway.yaml
+
+- name: Create k8s objects for certmanager
+  shell: |
+    kubectl apply -f .
+  args:
+    chdir: /home/opc/istio/
