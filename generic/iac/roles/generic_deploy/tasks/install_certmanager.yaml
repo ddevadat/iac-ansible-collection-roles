@@ -45,7 +45,7 @@
     - clusterissuer.yaml
 
 - name: Create k8s objects for certmanager
-  kubernetes.core.k8s:
+  community.kubernetes.k8s:
     state: present
     src: /home/opc/certmanager/{{item}}
   with_items:
