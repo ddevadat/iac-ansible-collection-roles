@@ -3,16 +3,11 @@
     oci ce cluster create-kubeconfig --cluster-id {{oke_k8s_cluster_id}} --file /home/opc/.kube/config --region {{region}} --token-version 2.0.0  --kube-endpoint PRIVATE_ENDPOINT
     chmod 600 /home/opc/.kube/config
 
-- name: Install Pip3
-  apt:
-    name: python3-pip
-    update_cache: yes
-
 - name: Install kubernetes pre requisites
   pip:
     name: 
       - kubernetes
-      # - openshift
+      - openshift
 
 # - name: Taint Nodes
 #   shell: |
