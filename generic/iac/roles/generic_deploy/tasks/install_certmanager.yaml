@@ -44,9 +44,15 @@
   with_items:
     - clusterissuer.yaml
 
+# - name: Create k8s objects for certmanager
+#   community.kubernetes.k8s:
+#     state: present
+#     src: /home/opc/certmanager/{{item}}
+#   with_items:
+#     - clusterissuer.yaml
+
 - name: Create k8s objects for certmanager
-  community.kubernetes.k8s:
-    state: present
-    src: /home/opc/certmanager/{{item}}
-  with_items:
-    - clusterissuer.yaml
+  shell: |
+    kubectl apply -f .
+  args:
+    chdir: /home/opc/certmanager/
