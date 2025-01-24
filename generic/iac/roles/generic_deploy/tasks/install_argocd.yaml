@@ -6,14 +6,14 @@
   with_items:
     - /home/opc/argocd-setup
 
-- name: Create a k8s namespace
-  kubernetes.core.k8s:
-    name: "{{item}}"
-    api_version: v1
-    kind: Namespace
-    state: present
-  with_items:
-    - argocd
+# - name: Create a k8s namespace
+#   kubernetes.core.k8s:
+#     name: "{{item}}"
+#     api_version: v1
+#     kind: Namespace
+#     state: present
+#   with_items:
+#     - argocd
 
 - name: "Update argocd templates"
   template:
@@ -30,6 +30,7 @@
 
 - name: Install argocd
   shell: |
+    kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
     kubectl apply -k .
   args:
     chdir: /home/opc/argocd-setup
@@ -43,9 +44,15 @@
 - name: Wait for deployments in argocd namespace
   shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
 
-- name: Create application for argocd
-  kubernetes.core.k8s:
-    state: present
-    src: /home/opc/argocd-setup/{{item}}
-  with_items:
-    - argocd-application.yaml
+# - name: Create application for argocd
+#   kubernetes.core.k8s:
+#     state: present
+#     src: /home/opc/argocd-setup/{{item}}
+#   with_items:
+#     - argocd-application.yaml
+
+- name: Install argocd application
+  shell: |
+    kubectl apply -f argocd-application.yaml
+  args:
+    chdir: /home/opc/argocd-setup
