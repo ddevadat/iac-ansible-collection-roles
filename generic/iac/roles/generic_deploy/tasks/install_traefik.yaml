@@ -11,3 +11,44 @@
   kubernetes.core.helm_repository:
     name: traefik
     repo_url: https://traefik.github.io/charts
+
+- name: Install traefik
+  kubernetes.core.helm:
+    name: traefik
+    chart_ref: traefik/traefik
+    chart_version: "{{traefik_chart_version}}"
+    release_namespace: traefik
+    create_namespace: true
+    update_repo_cache: true
+    wait: true
+    values:
+      globalArguments:
+      - "--api=true"
+      - "--api.dashboard=true"
+      ingressRoute:
+        dashboard:
+          enabled: true
+      ports:
+        web:
+          redirectTo:
+            port: websecure
+        # websecure:
+        #   forwardedHeaders:
+        #     insecure: true
+        #   proxyProtocol:
+        #     insecure: true
+        #   tls:
+        #     enabled: false
+      service:
+        annotations:
+          oci.oraclecloud.com/load-balancer-type: lb
+          oci.oraclecloud.com/ingress-ip-mode: "Proxy"
+          service.beta.kubernetes.io/oci-load-balancer-backend-protocol: HTTP
+          service.beta.kubernetes.io/oci-load-balancer-shape: flexible
+          service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+          service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+          service.beta.kubernetes.io/oci-load-balancer-ssl-ports: "443"
+          service.beta.kubernetes.io/oci-load-balancer-tls-secret: {{ domain | replace('.', '-') }}
+          service.beta.kubernetes.io/oci-load-balancer-subnet1: "{{public_lb_subnet_id}}"
+          oci.oraclecloud.com/oci-network-security-groups: "{{public_lb_nsg_id}}"
+          oci.oraclecloud.com/security-rule-management-mode: "None"  
