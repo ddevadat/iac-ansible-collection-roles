@@ -48,7 +48,7 @@
           service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
           service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
           service.beta.kubernetes.io/oci-load-balancer-ssl-ports: "443"
-          service.beta.kubernetes.io/oci-load-balancer-tls-secret: {{ domain | replace('.', '-') }}
+          service.beta.kubernetes.io/oci-load-balancer-tls-secret: "{{ domain | replace('.', '-') }}"
           service.beta.kubernetes.io/oci-load-balancer-subnet1: "{{public_lb_subnet_id}}"
           oci.oraclecloud.com/oci-network-security-groups: "{{public_lb_nsg_id}}"
           oci.oraclecloud.com/security-rule-management-mode: "None"  
