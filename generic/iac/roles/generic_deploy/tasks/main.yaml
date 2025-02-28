@@ -2,7 +2,8 @@
 # - include_tasks: install_rook.yaml
 # - include_tasks: install_reflector.yaml
 # - include_tasks: install_certmanager.yaml
-- include_tasks: install_istio.yaml
+# - include_tasks: install_istio.yaml
+- include_tasks: install_traefik.yaml
 # - include_tasks: install_cnpg.yaml
 # - include_tasks: install_longhorn.yaml
 # - include_tasks: install_argocd.yaml
