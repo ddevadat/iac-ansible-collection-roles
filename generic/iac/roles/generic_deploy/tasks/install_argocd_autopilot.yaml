@@ -24,6 +24,12 @@
     dest: "/home/opc/argocd-autopilot/"
     remote_src: yes
 
+- name: Move binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: "/home/opc/argocd-autopilot/argocd-autopilot-linux-amd64"
+    dest: "/usr/local/bin/argocd-autopilot"
+    mode: '0755'
+    remote_src: yes
 
 # - name: Download argocd autopilot install
 #   shell: |
