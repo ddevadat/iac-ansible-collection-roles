@@ -14,7 +14,7 @@
 
 - name: Download argocd autopilot install
   shell: |
-    mv ./argocd-autopilot-* /usr/local/bin/argocd-autopilot
+    cp ./argocd-autopilot-* /usr/local/bin/argocd-autopilot
     /usr/local/bin/argocd-autopilot version
   register: argocd_pilot_install
   args:
