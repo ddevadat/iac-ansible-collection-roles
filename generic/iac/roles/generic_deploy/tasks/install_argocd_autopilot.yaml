@@ -6,15 +6,20 @@
   with_items:
     - /home/opc/argocd-autopilot
 
-- name: Download argocd autopilot binary & install
+- name: Download argocd autopilot binary
   shell: |
     curl -L --output - https://github.com/argoproj-labs/argocd-autopilot/releases/download/{{argocd_autopilot_version}}/argocd-autopilot-darwin-amd64.tar.gz | tar zx
+  args:
+    chdir: /home/opc/argocd-autopilot
+
+- name: Download argocd autopilot install
+  shell: |
     mv ./argocd-autopilot-* /usr/local/bin/argocd-autopilot
-    argocd-autopilot version
+    /usr/local/bin/argocd-autopilot version
   register: argocd_pilot_install
   args:
     chdir: /home/opc/argocd-autopilot
-    
+
 - name: argocd auto-pilot version
   debug:
     msg: "argocd auto-pilot versionversion: {{ argocd_pilot_install.stdout }}"
