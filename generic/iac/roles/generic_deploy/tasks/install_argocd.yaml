@@ -41,8 +41,8 @@
 #     dest: "/home/opc/argocd-setup/check_deployment.sh"
 #     mode: "0755"
 
-- name: Wait for deployments in argocd namespace
-  shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
+# - name: Wait for deployments in argocd namespace
+#   shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
 
 # - name: Create application for argocd
 #   kubernetes.core.k8s:
