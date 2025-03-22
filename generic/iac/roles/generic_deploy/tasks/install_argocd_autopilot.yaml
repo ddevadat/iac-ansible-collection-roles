@@ -14,7 +14,7 @@
 
 - name: Download argocd autopilot binary
   get_url:
-    url: "https://github.com/argoproj-labs/argocd-autopilot/releases/download/{{ argocd_autopilot_version }}/argocd-autopilot-darwin-amd64.tar.gz"
+    url: "https://github.com/argoproj-labs/argocd-autopilot/releases/download/{{ argocd_autopilot_version }}/argocd-autopilot-linux-amd64.tar.gz"
     dest: "/home/opc/argocd-autopilot/argocd-autopilot.tar.gz"
     mode: '0644'
 
