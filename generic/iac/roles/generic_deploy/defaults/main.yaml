@@ -11,4 +11,4 @@ cnpg_chart_version: 0.22.1
 rook_operator_chart_version: 1.15.6
 rook_ceph_cluster_chart_version: 1.15.6
 traefik_chart_version: 26.0.0
-argo_autopilot_version: v0.4.19
+argocd_autopilot_version: v0.4.19

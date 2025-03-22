@@ -8,7 +8,7 @@
 
 - name: Download argocd autopilot binary & install
   shell: |
-    curl -L --output - https://github.com/argoproj-labs/argocd-autopilot/releases/download/$VERSION/argocd-autopilot-darwin-amd64.tar.gz | tar zx
+    curl -L --output - https://github.com/argoproj-labs/argocd-autopilot/releases/download/{{argocd_autopilot_version}}/argocd-autopilot-darwin-amd64.tar.gz | tar zx
     mv ./argocd-autopilot-* /usr/local/bin/argocd-autopilot
     argocd-autopilot version
   register: argocd_pilot_install
