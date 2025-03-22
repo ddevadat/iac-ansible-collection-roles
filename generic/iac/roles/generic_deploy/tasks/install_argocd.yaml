@@ -28,18 +28,18 @@
     - argocd-application.yaml
     - argocd-virtual-service.yaml
 
-- name: Install argocd
-  shell: |
-    kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
-    kubectl apply -k .
-  args:
-    chdir: /home/opc/argocd-setup
+# - name: Install argocd
+#   shell: |
+#     kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
+#     kubectl apply -k .
+#   args:
+#     chdir: /home/opc/argocd-setup
 
-- name: "Copy deployment check script"
-  copy:
-    src: "check_deployment.sh"
-    dest: "/home/opc/argocd-setup/check_deployment.sh"
-    mode: "0755"
+# - name: "Copy deployment check script"
+#   copy:
+#     src: "check_deployment.sh"
+#     dest: "/home/opc/argocd-setup/check_deployment.sh"
+#     mode: "0755"
 
 - name: Wait for deployments in argocd namespace
   shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
@@ -51,8 +51,8 @@
 #   with_items:
 #     - argocd-application.yaml
 
-- name: Install argocd application
-  shell: |
-    kubectl apply -f argocd-application.yaml
-  args:
-    chdir: /home/opc/argocd-setup
+# - name: Install argocd application
+#   shell: |
+#     kubectl apply -f argocd-application.yaml
+#   args:
+#     chdir: /home/opc/argocd-setup
