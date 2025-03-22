@@ -6,7 +6,7 @@
 # - include_tasks: install_traefik.yaml
 # - include_tasks: install_cnpg.yaml
 # - include_tasks: install_longhorn.yaml
-# - include_tasks: install_argocd.yaml
-- include_tasks: install_argocd_autopilot.yaml
+- include_tasks: install_argocd.yaml
+# - include_tasks: install_argocd_autopilot.yaml
 # - include_tasks: update_zone_record.yaml
 # - include_tasks: test_oidc.yaml:q

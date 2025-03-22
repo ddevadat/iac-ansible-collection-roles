@@ -35,24 +35,24 @@
 #   args:
 #     chdir: /home/opc/argocd-setup
 
-# - name: "Copy deployment check script"
-#   copy:
-#     src: "check_deployment.sh"
-#     dest: "/home/opc/argocd-setup/check_deployment.sh"
-#     mode: "0755"
+- name: "Copy deployment check script"
+  copy:
+    src: "check_deployment.sh"
+    dest: "/home/opc/argocd-setup/check_deployment.sh"
+    mode: "0755"
 
-# - name: Wait for deployments in argocd namespace
-#   shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
+- name: Wait for deployments in argocd namespace
+  shell: bash /home/opc/argocd-setup/check_deployment.sh argocd
 
-# - name: Create application for argocd
-#   kubernetes.core.k8s:
-#     state: present
-#     src: /home/opc/argocd-setup/{{item}}
-#   with_items:
-#     - argocd-application.yaml
+- name: Create application for argocd
+  kubernetes.core.k8s:
+    state: present
+    src: /home/opc/argocd-setup/{{item}}
+  with_items:
+    - argocd-application.yaml
 
-# - name: Install argocd application
-#   shell: |
-#     kubectl apply -f argocd-application.yaml
-#   args:
-#     chdir: /home/opc/argocd-setup
+- name: Install argocd application
+  shell: |
+    kubectl apply -f argocd-application.yaml
+  args:
+    chdir: /home/opc/argocd-setup
