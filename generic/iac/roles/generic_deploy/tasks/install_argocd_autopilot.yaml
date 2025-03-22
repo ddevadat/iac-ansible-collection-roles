@@ -12,7 +12,9 @@
     mv ./argocd-autopilot-* /usr/local/bin/argocd-autopilot
     argocd-autopilot version
   register: argocd_pilot_install
-
+  args:
+    chdir: /home/opc/argocd-autopilot
+    
 - name: argocd auto-pilot version
   debug:
     msg: "argocd auto-pilot versionversion: {{ argocd_pilot_install.stdout }}"
