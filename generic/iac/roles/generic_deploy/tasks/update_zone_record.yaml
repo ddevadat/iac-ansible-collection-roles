@@ -45,3 +45,4 @@
     - chaosmesh
     - grafana
     - prom
+    - pmm
